@@ -1,8 +1,8 @@
-#Advanced Programming for Robots
+# Advanced Programming for Robots 
 
 Google C++ Style Guideline: https://google.github.io/styleguide/cppguide.html
 
-# How to compile provided c-scripts
+# How to compile provided c-scripts 
 
 ```bash
 cd sockets
