@@ -39,3 +39,9 @@ To run the tcp_client, just type in:
 ./tcp_client 127.0.0.1 hello! 10000
 Received: hello!
 ```
+
+# ChattyTCPServer
+A TCP Server, that sends simulated Data on Ports 9997 [LaserScanData: angle:distance] and 9998 [OdometryData: x:y:theta].
+
+# tcp_crawler
+The TCP_crawlers connects to two Ports 9997 (LaserScan) and 9998  (Odometry) and receives data. The received data will be written in two csv-files.

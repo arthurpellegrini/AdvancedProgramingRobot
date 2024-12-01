@@ -45,6 +45,9 @@ int main(int argc, char *argv[])
     if (listen(servSock, MAXPENDING) < 0)
         DieWithError("listen() failed");
 
+    /* Print a message indicating the server is ready */
+    printf("Listening to Port %d!\n", echoServPort);
+
     for (;;) /* Run forever */
     {
         /* Set the size of the in-out parameter */

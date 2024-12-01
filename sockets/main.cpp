@@ -1,34 +1,30 @@
 #include <iostream>
-#include <cstdlib>
+#include <thread>
 #include <unistd.h>
-#include "CreateTCPServerSocket.h"
-#include "AcceptTCPConnection.h"
-#include "HandleTCPClient.h"
-#include "DieWithError.h"
+#include <arpa/inet.h>
+#include "ConnectToServer.h"
+#include "LaserScanHandler.h"
+#include "OdometryHandler.h"
 
-int main(int argc, char *argv[])
-{
-    if (argc != 2)
-    {
-        std::cerr << "Usage: " << argv[0] << " <Port>" << std::endl;
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <Server IP>" << std::endl;
         exit(1);
     }
 
-    unsigned short port = std::atoi(argv[1]); // Read the port from arguments
+    const char *serverIP = argv[1];
 
-    // Create the server socket
-    int serverSock = CreateTCPServerSocket(port);
-    std::cout << "Server is listening on port " << port << std::endl;
+    // Connect to the LaserScan port (9997)
+    int laserSock = ConnectToServer(serverIP, 9997);
+    std::thread laserThread(ReceiveAndSaveLaserScanData, laserSock);
 
-    for (;;)
-    {
-        // Accept a new connection
-        int clientSock = AcceptTCPConnection(serverSock);
+    // Connect to the Odometry port (9998)
+    int odometrySock = ConnectToServer(serverIP, 9998);
+    std::thread odometryThread(ReceiveAndSaveOdometryData, odometrySock);
 
-        // Handle the client connection
-        HandleTCPClient(clientSock);
-    }
+    // Wait for both threads to complete
+    laserThread.join();
+    odometryThread.join();
 
-    close(serverSock); // Close the server socket (this is never reached)
     return 0;
 }
