@@ -15,8 +15,8 @@ cd sockets
 git add .
 
 git commit -m "feat: TITLE" \
--m "Body: DESCRIPTION" \
--m "Footer: Co-authored-by: Arthur PELLEGRINI <arthur.pellegrini@outlook.fr>"
+-m "DESCRIPTION" \
+-m "Co-authored-by: Arthur PELLEGRINI <arthur.pellegrini@outlook.fr>, cfriedl1 <ch.friedl1010@gmail.com>"
 
 git push
 ```
