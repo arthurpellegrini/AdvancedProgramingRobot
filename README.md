@@ -61,5 +61,11 @@ A TCPSocket that connects to a tcp-ip port. Received data will be displayed in t
 # TalkOnTCPPort
 A TCPSocket that connects to a tcp-ip port. Data can be send via user input via this port.
 
-# RosTCPLaserListener
-In progress. Connects to localhost:PORT and listens. First received Byte == 1 -> laserdata, 2 -> handlePointCloud2Data
+# RosLaserListener
+Connects to localhost:PORT and listens. First received Byte == 1 -> laserdata, 2 -> handlePointCloud2Data
+
+# RosTCPLaserScanListener
+Connects to <IP><PORT> and listens. First received Byte == 1 -> laserdata, 2 -> handlePointCloud2Data
+
+# RosTCPOdometryListener
+Connects to <IP><PORT> and listens.

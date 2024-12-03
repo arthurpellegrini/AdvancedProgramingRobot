@@ -1,6 +1,5 @@
-#include "RosTCPLaserListener.h"
-#include "HandlePointCloud2Data.h"
-#include "HandleLaserScanData.h"
+#include "RosTCPOdometryListener.h"
+#include "HandleOdometryData.h"
 #include "CreateTCPServerSocket.h"
 #include "ConnectToServer.h"
 
@@ -22,7 +21,7 @@ void setSocketNonBlocking(int socket) {
     }
 }
 
-void startTCPListener(const char* serverIP, unsigned short port, ros::Publisher& laserScanPub) {
+void startTCPListener(const char* serverIP, unsigned short port, ros::Publisher& odometryPub) {
     int serverSock, clientSock;
     struct sockaddr_in clientAddr;
     socklen_t clientLen;
@@ -71,16 +70,12 @@ void startTCPListener(const char* serverIP, unsigned short port, ros::Publisher&
                 break;
             }
 
-            // Assuming first byte indicates the message type: 1 for PointCloud2, 2 for LaserScan
-            if (buffer[0] == 1) {
-                handlePointCloud2Data(buffer + 1, bytesReceived - 1);
-            } else if (buffer[0] == 2) {
-                sensor_msgs::LaserScan scanMsg;
-                // Hier sollte der empfangene Puffer in die LaserScan-Nachricht konvertiert werden
-                // Zum Beispiel:
-                // deserializeLaserScan(buffer + 1, bytesReceived - 1, scanMsg);
-                laserScanPub.publish(scanMsg);
-                ROS_INFO("Published LaserScan data");
+            // Assuming first byte indicates the message type: 1 for PointCloud2, 2 for LaserScan, 3 for Odometry
+            if (buffer[0] == 3) {
+                nav_msgs::Odometry odometryMsg;
+                handleOdometryData(buffer + 1, bytesReceived - 1);
+                odometryPub.publish(odometryMsg);
+                ROS_INFO("Published Odometry data");
             } else {
                 ROS_WARN("Unknown message type received");
             }
@@ -97,7 +92,7 @@ int main(int argc, char** argv) {
     signal(SIGINT, intHandler);
     signal(SIGTERM, intHandler);
 
-    ros::init(argc, argv, "tcp_laser_listener_node");
+    ros::init(argc, argv, "tcp_listener_node");
     ros::NodeHandle nh;
 
     if (argc != 3) {
@@ -108,8 +103,8 @@ int main(int argc, char** argv) {
     const char* serverIP = argv[1];
     unsigned short port = static_cast<unsigned short>(std::stoi(argv[2]));
 
-    ros::Publisher laserScanPub = nh.advertise<sensor_msgs::LaserScan>("/tcp_laser_scan", 10);
+    ros::Publisher odometryPub = nh.advertise<nav_msgs::Odometry>("/tcp_odometry_data", 10);
 
-    startTCPListener(serverIP, port, laserScanPub);
+    startTCPListener(serverIP, port, odometryPub);
     return 0;
 }

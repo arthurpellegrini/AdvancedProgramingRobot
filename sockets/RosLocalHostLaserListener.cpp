@@ -1,8 +1,13 @@
-#include "RosTCPLaserListener.h"
+#include "RosLocalHostLaserListener.h"
 #include "HandlePointCloud2Data.h"
 #include "HandleLaserScanData.h"
 #include "CreateTCPServerSocket.h"
 #include "ConnectToServer.h"
+#include <signal.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <ros/ros.h>
+#include <sensor_msgs/LaserScan.h>
 
 volatile bool keepRunning = true;
 
@@ -22,7 +27,7 @@ void setSocketNonBlocking(int socket) {
     }
 }
 
-void startTCPListener(const char* serverIP, unsigned short port, ros::Publisher& laserScanPub) {
+void startTCPListener(unsigned short port, ros::Publisher& laserScanPub) {
     int serverSock, clientSock;
     struct sockaddr_in clientAddr;
     socklen_t clientLen;
@@ -97,19 +102,18 @@ int main(int argc, char** argv) {
     signal(SIGINT, intHandler);
     signal(SIGTERM, intHandler);
 
-    ros::init(argc, argv, "tcp_laser_listener_node");
+    ros::init(argc, argv, "tcp_odometry_listener_node");
     ros::NodeHandle nh;
 
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <Server IP> <Port>" << std::endl;
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <Port>" << std::endl;
         return 1;
     }
 
-    const char* serverIP = argv[1];
-    unsigned short port = static_cast<unsigned short>(std::stoi(argv[2]));
+    unsigned short port = static_cast<unsigned short>(std::stoi(argv[1]));
 
     ros::Publisher laserScanPub = nh.advertise<sensor_msgs::LaserScan>("/tcp_laser_scan", 10);
 
-    startTCPListener(serverIP, port, laserScanPub);
+    startTCPListener(port, laserScanPub);
     return 0;
 }
