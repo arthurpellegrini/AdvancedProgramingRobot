@@ -1,12 +1,6 @@
 #include "ChattyTCPServer.h"
 #include "SendSimulatedData.h"
-#include <iostream>
-#include <cstring>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <cstdlib>
 
-// Function to start the chatty TCP server
 void StartChattyTCPServer(unsigned short port) {
     int serverSock, clientSock;
     struct sockaddr_in serverAddr, clientAddr;
@@ -37,9 +31,15 @@ void StartChattyTCPServer(unsigned short port) {
         close(serverSock);
         exit(1);
     }
-
-    std::cout << "Chatting on port " << port << std::endl;
-
+    if (port == 9997) {
+        std::cout << "Simulating LaserScan data on port " << port << std::endl;
+    } else if (port == 9998) {
+        std::cout << "Simulating Odometry data on port " << port << std::endl;
+    } else if (port == 9999) {
+        std::cout << "Listening for data on port " << port << std::endl;
+    } else
+        std::cout << "Chatting on port " << port << std::endl;
+        
     // Handle clients in a loop
     for (;;) {
         clientLen = sizeof(clientAddr);
@@ -50,12 +50,29 @@ void StartChattyTCPServer(unsigned short port) {
 
         std::cout << "Client connected: " << inet_ntoa(clientAddr.sin_addr) << std::endl;
 
-        // Send simulated data based on the port
         if (port == 9997) {
             SendSimulatedData(clientSock, "LaserScan");
         } else if (port == 9998) {
             SendSimulatedData(clientSock, "Odometry");
+        } else if (port == 9999) {
+            char buffer[1024];
+            ssize_t bytesReceived;
+            std::cout << "Listening for data on port 9999..." << std::endl;
+            
+            // Receive data in a loop
+            while ((bytesReceived = recv(clientSock, buffer, sizeof(buffer) - 1, 0)) > 0) {
+                buffer[bytesReceived] = '\0'; // Null-terminate the received data
+                std::cout << "Received: " << buffer << std::endl;
+            }
+
+            if (bytesReceived < 0) {
+                perror("recv() failed");
+            } else {
+                std::cout << "Client disconnected." << std::endl;
+            }
         }
+
+        close(clientSock);
     }
 
     close(serverSock);

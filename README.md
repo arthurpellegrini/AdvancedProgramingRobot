@@ -45,3 +45,11 @@ A TCP Server, that sends simulated Data on Ports 9997 [LaserScanData: angle:dist
 
 # tcp_crawler
 The TCP_crawlers connects to two Ports 9997 (LaserScan) and 9998  (Odometry) and receives data. The received data will be written in two csv-files.
+
+# Using ros and Json in cpp
+
+```bash
+sudo apt-get update
+sudo apt-get install ros-noetic-roscpp ros-noetic-sensor-msgs
+sudo apt-get install libjsoncpp-dev
+```

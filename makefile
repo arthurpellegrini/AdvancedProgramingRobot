@@ -6,7 +6,7 @@ CFLAGS = -Wall -Iinclude
 C_COMPILER = gcc
 
 # Target executable
-PROGRAMS  = tcp_server tcp_client tcp_crawler ChattyTCPServer ListenOnTCPPort
+PROGRAMS  = tcp_server tcp_client tcp_crawler ChattyTCPServer ListenOnTCPPort TalkOnTCPPort
 
 # Source and object files
 tcp_server_SRCS = sockets/TCPEchoServer.c sockets/CreateTCPServerSocket.c sockets/AcceptTCPConnection.c sockets/HandleTCPClient.c sockets/DieWithError.c
@@ -23,6 +23,9 @@ ChattyTCPServer_OBJS = sockets/ChattyTCPServer.o sockets/SendSimulatedData.o
 
 ListenOnTCPPort_SRCS = sockets/ListenOnTCPPort.cpp sockets/ConnectToServer.cpp
 ListenOnTCPPort_OBJS = sockets/ListenOnTCPPort.o sockets/ConnectToServer.o
+
+TalkOnTCPPort_SRCS = sockets/TalkOnTCPPort.cpp sockets/ConnectToServer.cpp
+TalkOnTCPPort_OBJS = sockets/TalkOnTCPPort.o sockets/ConnectToServer.o
 
 
 # Default rule: Build all programs
@@ -48,6 +51,10 @@ ChattyTCPServer: $(ChattyTCPServer_OBJS)
 ListenOnTCPPort: $(ListenOnTCPPort_OBJS)
 	$(CC) $(CFLAGS) -o ListenOnTCPPort $(ListenOnTCPPort_OBJS)
 
+# Rule to build talkOnTCPPort
+TalkOnTCPPort: $(TalkOnTCPPort_OBJS)
+	$(CC) $(CFLAGS) -o TalkOnTCPPort $(TalkOnTCPPort_OBJS)
+
 
 # Compile .c files
 sockets/%.o: sockets/%.c
@@ -59,4 +66,4 @@ sockets/%.o: sockets/%.cpp
 
 # Clean rule to remove generated files
 clean:
-	rm -f $(tcp_server_OBJS) $(tcp_client_OBJS) $(tcp_crawler_OBJS) $(ChattyTCPServer_OBJS) $(listenOnTCPPort_OBJS) $(PROGRAMS)
+	rm -f $(tcp_server_OBJS) $(tcp_client_OBJS) $(tcp_crawler_OBJS) $(ChattyTCPServer_OBJS) $(ListenOnTCPPort_OBJS) $(TalkOnTCPPort_OBJS) $(PROGRAMS) 
