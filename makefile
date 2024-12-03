@@ -1,12 +1,15 @@
 # Compiler
 CC = g++
-CFLAGS = -Wall -Iinclude
+#CFLAGS = -Wall -Iinclude -pthread
+CFLAGS = -Wall -Iinclude -I/opt/ros/noetic/include -pthread
+LDFLAGS = -L/opt/ros/noetic/lib -lroscpp -lrosconsole -lrostime -lroscpp_serialization -ljsoncpp -pthread
 
 # C-Compiler für .c-Dateien
 C_COMPILER = gcc
 
 # Target executable
-PROGRAMS  = tcp_server tcp_client tcp_crawler ChattyTCPServer ListenOnTCPPort TalkOnTCPPort
+#PROGRAMS  = tcp_server tcp_client tcp_crawler ChattyTCPServer ListenOnTCPPort TalkOnTCPPort
+PROGRAMS  = Ros_LaserScan_Listener
 
 # Source and object files
 tcp_server_SRCS = sockets/TCPEchoServer.c sockets/CreateTCPServerSocket.c sockets/AcceptTCPConnection.c sockets/HandleTCPClient.c sockets/DieWithError.c
@@ -27,6 +30,8 @@ ListenOnTCPPort_OBJS = sockets/ListenOnTCPPort.o sockets/ConnectToServer.o
 TalkOnTCPPort_SRCS = sockets/TalkOnTCPPort.cpp sockets/ConnectToServer.cpp
 TalkOnTCPPort_OBJS = sockets/TalkOnTCPPort.o sockets/ConnectToServer.o
 
+Ros_LaserScan_Listener_SRCS = sockets/RosTCPLaserListener.cpp sockets/HandleLaserScanData.cpp sockets/HandlePointCloud2Data.cpp sockets/CreateTCPServerSocket.c sockets/DieWithError.c sockets/ConnectToServer.cpp
+Ros_LaserScan_Listener_OBJS = sockets/RosTCPLaserListener.o sockets/HandleLaserScanData.o sockets/HandlePointCloud2Data.o sockets/CreateTCPServerSocket.o sockets/DieWithError.o sockets/ConnectToServer.o
 
 # Default rule: Build all programs
 all: $(PROGRAMS)
@@ -55,6 +60,9 @@ ListenOnTCPPort: $(ListenOnTCPPort_OBJS)
 TalkOnTCPPort: $(TalkOnTCPPort_OBJS)
 	$(CC) $(CFLAGS) -o TalkOnTCPPort $(TalkOnTCPPort_OBJS)
 
+# Rule to build Ros_LaserScan_Listener
+Ros_LaserScan_Listener: $(Ros_LaserScan_Listener_OBJS)
+	$(CC) $(CFLAGS) -o Ros_LaserScan_Listener $(Ros_LaserScan_Listener_OBJS) $(LDFLAGS)
 
 # Compile .c files
 sockets/%.o: sockets/%.c
@@ -66,4 +74,4 @@ sockets/%.o: sockets/%.cpp
 
 # Clean rule to remove generated files
 clean:
-	rm -f $(tcp_server_OBJS) $(tcp_client_OBJS) $(tcp_crawler_OBJS) $(ChattyTCPServer_OBJS) $(ListenOnTCPPort_OBJS) $(TalkOnTCPPort_OBJS) $(PROGRAMS) 
+	rm -f $(tcp_server_OBJS) $(tcp_client_OBJS) $(tcp_crawler_OBJS) $(ChattyTCPServer_OBJS) $(ListenOnTCPPort_OBJS) $(TalkOnTCPPort_OBJS) $(tcp_listener_node_OBJS) $(PROGRAMS) 
