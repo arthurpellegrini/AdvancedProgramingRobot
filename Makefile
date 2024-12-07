@@ -11,7 +11,7 @@ BUILD_DIR = build
 SRC_DIR = src
 
 # Target executables
-PROGRAMS = tcp_server tcp_client tcp_crawler ChattyTCPServer ListenOnTCPPort TalkOnTCPPort Ros_LaserScan_Listener Ros_TCP_LaserScan_Listener Ros_TCP_Odometry_Listener
+PROGRAMS = tcp_server tcp_client tcp_crawler ChattyTCPServer ListenOnTCPPort TalkOnTCPPort # Ros_LaserScan_Listener Ros_TCP_LaserScan_Listener Ros_TCP_Odometry_Listener
 PROGRAM_PATHS = $(addprefix $(BUILD_DIR)/, $(PROGRAMS))
 
 # Source and object files
