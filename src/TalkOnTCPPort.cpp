@@ -2,27 +2,45 @@
 #include <thread>
 #include <cstring>
 #include <unistd.h>
+#include <atomic>
 #include "TalkOnTCPPort.h"
 #include "ConnectToServer.h"
 
+std::atomic<bool> running(true);
+
 // Function to send movement commands to the TurtleBot
 void startTalkOnTCPPort(int socket, float linear_x, float angular_z) {
-    // Create a JSON-like string for the movement command
-    // ---START---{"linear": 0.1, "angular": 0.5}___END___
     std::string command = "---START---{\"linear\": " + std::to_string(linear_x) +
                           ", \"angular\": " + std::to_string(angular_z) + "}___END___";
-
-    // Send the command to the server
     if (send(socket, command.c_str(), command.length(), 0) < 0) {
         perror("send() failed");
-        close(socket);
-        exit(1);
+        throw std::runtime_error("Failed to send command. Connection may be lost.");
     }
-
     std::cout << "Command sent: " << command << std::endl;
 }
 
-int main(int argc, char* argv[]) {
+// Function to maintain the connection and handle reconnections
+void maintainConnection(const char *serverIP, int port, int &tcpSock) {
+    while (running) {
+        if (tcpSock < 0) {
+            std::cerr << "Connection lost. Reconnecting..." << std::endl;
+            sleep(2); // Wait before retrying
+            tcpSock = ConnectToServer(serverIP, port);
+            if (tcpSock >= 0) {
+                std::cout << "Reconnected to server." << std::endl;
+                try {
+                    startTalkOnTCPPort(tcpSock, 0.0, 0.0); // Send stop command after reconnecting
+                } catch (const std::exception &e) {
+                    std::cerr << "Error after reconnect: " << e.what() << std::endl;
+                }
+            }
+        } else {
+            sleep(1); // Check periodically
+        }
+    }
+}
+
+int main(int argc, char *argv[]) {
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <IP> <PORT>\n";
         return 1;
@@ -32,26 +50,30 @@ int main(int argc, char* argv[]) {
     int port = std::stoi(argv[2]);
 
     int tcpSock = ConnectToServer(serverIP, port);
-    std::thread tcpThread([&]() {
-        startTalkOnTCPPort(tcpSock, 0.0, 0.0);
+    if (tcpSock < 0) {
+        std::cerr << "Failed to connect to server." << std::endl;
+        return 1;
+    }
+
+    std::thread connectionThread([&]() {
+        maintainConnection(serverIP, port, tcpSock);
     });
 
     std::cout << "Connected to TurtleBot. Enter movement commands:" << std::endl;
     std::cout << "Format: <linear_x> <angular_z> (e.g., 0.5 0.2)" << std::endl;
     std::cout << "Enter 'q' to quit." << std::endl;
 
-    while (true) {
+    while (running) {
         std::string input;
         std::cout << "> ";
         std::getline(std::cin, input);
 
-        // Check for quit command
         if (input == "q" || input == "Q") {
             std::cout << "Exiting..." << std::endl;
+            running = false;
             break;
         }
 
-        // Parse the input for linear_x and angular_z
         float linear_x, angular_z;
         try {
             size_t space_pos = input.find(' ');
@@ -62,7 +84,6 @@ int main(int argc, char* argv[]) {
             linear_x = std::stof(input.substr(0, space_pos));
             angular_z = std::stof(input.substr(space_pos + 1));
 
-            // Send the movement command
             startTalkOnTCPPort(tcpSock, linear_x, angular_z);
         } catch (const std::exception &e) {
             std::cerr << "Error: " << e.what() << std::endl;
@@ -70,12 +91,14 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    // Stop the TurtleBot before exiting
-    startTalkOnTCPPort(tcpSock, 0.0, 0.0);
+    startTalkOnTCPPort(tcpSock, 0.0, 0.0); // Send stop command before exit
+    running = false;
+    connectionThread.join();
 
-    // Close the connection
-    close(tcpSock);
-    std::cout << "Connection closed." << std::endl;
+    if (tcpSock >= 0) {
+        close(tcpSock);
+        std::cout << "Connection closed." << std::endl;
+    }
 
     return 0;
 }
