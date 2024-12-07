@@ -69,3 +69,24 @@ Connects to <IP><PORT> and listens. First received Byte == 1 -> laserdata, 2 -> 
 
 # RosTCPOdometryListener
 Connects to <IP><PORT> and listens.
+
+
+
+# Setting up the connection with the robot
+Turtlebot 2: Michelangelo
+IP: 192.168.100.52
+Password: on the back side of the rooter
+
+Try the connection between the robot and your laptop: 
+```sh
+ping 192.168.100.52
+```
+
+# 
+
+# /odom
+
+# /cmd_vel
+
+
+# 

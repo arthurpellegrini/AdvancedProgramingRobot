@@ -8,8 +8,9 @@
 // Function to send movement commands to the TurtleBot
 void startTalkOnTCPPort(int socket, float linear_x, float angular_z) {
     // Create a JSON-like string for the movement command
-    std::string command = "{\"linear_x\": " + std::to_string(linear_x) +
-                          ", \"angular_z\": " + std::to_string(angular_z) + "}";
+    // ---START---{"linear": 0.1, "angular": 0.5}___END___
+    std::string command = "---START---{\"linear\": " + std::to_string(linear_x) +
+                          ", \"angular\": " + std::to_string(angular_z) + "}___END___";
 
     // Send the command to the server
     if (send(socket, command.c_str(), command.length(), 0) < 0) {
