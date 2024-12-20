@@ -1,16 +1,24 @@
 # Compiler
 CC = gcc
 CXX = g++
-CFLAGS = -Wall -Iinclude
-LDFLAGS = -lpthread
+CFLAGS = -Wall -Iinclude -I/opt/ros/noetic/include -pthread
+LDFLAGS = -L/opt/ros/noetic/lib -lroscpp -lrosconsole -lrostime -lroscpp_serialization -ljsoncpp -pthread
 
 # Directories
+SRC_DIR = ./src
+BUILD_DIR = ./build
 CLIENT_SERVER_SRC_DIR = ./examples/client_server_communication
 CLIENT_SERVER_BUILD_DIR = ./build/client_server_communication
 THREADS_SRC_DIR = ./examples/processes_threads
 THREADS_BUILD_DIR = ./build/processes_threads
 SHARED_MEMORY_SRC_DIR = ./examples/shared_memory
 SHARED_MEMORY_BUILD_DIR = ./build/shared_memory
+
+
+# Source files for the main programs
+main_SRCS = $(SRC_DIR)/main.cpp $(SRC_DIR)/ConnectToServer.cpp $(SRC_DIR)/LaserScanHandler.cpp $(SRC_DIR)/OdometryHandler.cpp
+talk_on_tcp_port_SRCS = $(SRC_DIR)/TalkOnTCPPort.cpp $(SRC_DIR)/ConnectToServer.cpp
+listen_on_tcp_port_SRCS = $(SRC_DIR)/ListenOnTCPPort.cpp $(SRC_DIR)/ConnectToServer.cpp
 
 # Source files for client_server_communication programs
 tcp_client_SRCS = $(CLIENT_SERVER_SRC_DIR)/TCPEchoClient.c $(CLIENT_SERVER_SRC_DIR)/DieWithError.c
@@ -47,6 +55,7 @@ shm_sem_prod_cons_SRCS = $(SHARED_MEMORY_SRC_DIR)/shm-sem-prod-cons.cpp
 msgq_prod_cons_SRCS = $(SHARED_MEMORY_SRC_DIR)/msgq-prod-cons.cpp
 
 # Programs
+SRC_PROGRAMS = Main TalkOnTCPPort ListenOnTCPPort
 CLIENT_SERVER_PROGRAMS = TCPEchoClient TCPEchoServer TCPEchoServer-Fork TCPEchoServer-Fork-SIGCHLD \
            TCPEchoServer-ForkN TCPEchoServer-Select TCPEchoServer-Thread \
            BroadcastReceiver BroadcastSender UDPEchoClient UDPEchoServer
@@ -54,10 +63,14 @@ THREADS_PROGRAMS = pthread1 race_demo mutex1 join1 sem1 sem2_1 sem2_2 sem3 semab
 SHARED_MEMORY_PROGRAMS = thrd-posix fork_exec newproc-posix shm-prod-cons shm-sem-prod-cons msgq-prod-cons
 
 # Default target
-all: $(CLIENT_SERVER_BUILD_DIR) $(THREADS_BUILD_DIR) $(SHARED_MEMORY_BUILD_DIR) \
+all: $(BUILD_DIR) $(CLIENT_SERVER_BUILD_DIR) $(THREADS_BUILD_DIR) $(SHARED_MEMORY_BUILD_DIR) \
+	 $(addprefix $(BUILD_DIR)/, $(SRC_PROGRAMS)) \
      $(addprefix $(CLIENT_SERVER_BUILD_DIR)/, $(CLIENT_SERVER_PROGRAMS)) \
      $(addprefix $(THREADS_BUILD_DIR)/, $(THREADS_PROGRAMS)) \
      $(addprefix $(SHARED_MEMORY_BUILD_DIR)/, $(SHARED_MEMORY_PROGRAMS))
+
+# Build main executables
+main: $(addprefix $(BUILD_DIR)/, $(SRC_PROGRAMS))
 
 # Build client_server_communication executables
 client_server_communication: $(addprefix $(CLIENT_SERVER_BUILD_DIR)/, $(CLIENT_SERVER_PROGRAMS))
@@ -67,6 +80,16 @@ processes_threads: $(addprefix $(THREADS_BUILD_DIR)/, $(THREADS_PROGRAMS))
 
 # Build shared_memory executables
 shared_memory: $(addprefix $(SHARED_MEMORY_BUILD_DIR)/, $(SHARED_MEMORY_PROGRAMS))
+
+# Build main executables
+$(BUILD_DIR)/Main: $(main_SRCS) | $(BUILD_DIR)
+	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(BUILD_DIR)/TalkOnTCPPort: $(talk_on_tcp_port_SRCS) | $(BUILD_DIR)
+	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(BUILD_DIR)/ListenOnTCPPort: $(listen_on_tcp_port_SRCS) | $(BUILD_DIR)
+	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
 # Build client_server_communication executables 
 $(CLIENT_SERVER_BUILD_DIR)/TCPEchoClient: $(tcp_client_SRCS) | $(CLIENT_SERVER_BUILD_DIR)
@@ -156,6 +179,9 @@ $(SHARED_MEMORY_BUILD_DIR)/msgq-prod-cons: $(msgq_prod_cons_SRCS) | $(SHARED_MEM
 	$(CXX) $(CFLAGS) $^ -o $@
 
 # Create build directories if they don't exist
+$(BUILD_DIR):
+	mkdir -p $@
+
 $(CLIENT_SERVER_BUILD_DIR):
 	mkdir -p $@
 
@@ -167,4 +193,4 @@ $(SHARED_MEMORY_BUILD_DIR):
 
 # Clean up build artifacts
 clean:
-	rm -rf $(CLIENT_SERVER_BUILD_DIR) $(THREADS_BUILD_DIR) $(SHARED_MEMORY_BUILD_DIR)
+	rm -rf $(BUILD_DIR) $(CLIENT_SERVER_BUILD_DIR) $(THREADS_BUILD_DIR) $(SHARED_MEMORY_BUILD_DIR)
