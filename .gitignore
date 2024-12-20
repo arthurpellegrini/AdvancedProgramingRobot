@@ -27,6 +27,17 @@
 *.lib
 
 # Executables
+build/
 *.exe
 *.out
 *.app
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.user
+*.workspace
+*.sublime-workspace
+*.sublime-project
