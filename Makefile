@@ -85,7 +85,7 @@ shared_memory: $(addprefix $(SHARED_MEMORY_BUILD_DIR)/, $(SHARED_MEMORY_PROGRAMS
 # ******************* Build Main Executables ****************************** #
 # ************************************************************************* #
 $(BUILD_DIR)/Main: $(main_SRCS) | $(BUILD_DIR)
-	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
+	$(CXX) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 $(BUILD_DIR)/TalkOnTCPPort: $(talk_on_tcp_port_SRCS) | $(BUILD_DIR)
 	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@

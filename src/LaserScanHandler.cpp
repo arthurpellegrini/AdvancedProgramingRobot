@@ -1,63 +1,99 @@
 #include "LaserScanHandler.h"
+#include <jsoncpp/json/json.h>
+#include <fstream>
+#include <sstream>
+#include <ctime>
+#include <iostream>
+#include <string>
+#include <cstdlib> // For system()
 
-// Function to receive and save LaserScan data
 void ReceiveAndSaveLaserScanData(int sock) {
-    std::ofstream laserFile("laserscan.csv", std::ios::app); // Open file in append mode
-    if (!laserFile) {
-        perror("Failed to open laserscan.csv for writing");
+    // Get the current time
+    std::time_t now = std::time(nullptr);
+    std::tm *localTime = std::localtime(&now);
+    char dateTime[20];
+    std::strftime(dateTime, sizeof(dateTime), "%Y-%m-%d_%H-%M", localTime); // Format as "YYYY-MM-DD_HH-mm"
+
+    // Ensure the directory exists
+    std::string directoryPath = "./data_test/laserscans";
+    std::string command = "mkdir -p " + directoryPath;
+    if (system(command.c_str()) != 0) {
+        perror("Failed to create directory");
         exit(1);
-    } else {
-        std::cout << "[DEBUG] File laserscan.csv successfully opened." << std::endl;
     }
 
-    // If file is empty, write CSV header
-    if (laserFile.tellp() == 0) {
-        laserFile << "Timestamp,Angle,Distance\n";
-        if (laserFile.fail()) {
-            std::cerr << "[ERROR] Failed to write header to laserscan.csv" << std::endl;
-        } else {
-            std::cout << "[DEBUG] Header written to laserscan.csv" << std::endl;
-        }
+    // Construct the filename
+    std::string filename = directoryPath + "/ls_" + dateTime + ".json";
+
+    // Open the file for writing
+    std::ofstream laserFile(filename, std::ios::app);
+    if (!laserFile) {
+        perror(("Failed to open " + filename + " for writing").c_str());
+        exit(1);
+    } else {
+        std::cout << "[DEBUG] File " << filename << " successfully opened." << std::endl;
+        laserFile << "[" << std::endl;
     }
 
     char buffer[BUFFER_SIZE];
     ssize_t bytesReceived;
+    std::ostringstream dataStream;
+    bool isReadingData = false;
 
     while ((bytesReceived = recv(sock, buffer, BUFFER_SIZE - 1, 0)) > 0) {
-        buffer[bytesReceived] = '\0'; // Null-terminate the received data
-        std::cout << "[DEBUG] Received raw data: " << buffer << std::endl;
+        buffer[bytesReceived] = '\0'; // Null-terminate received data
+        std::string chunk(buffer);
 
-        // Parse data if structured (assume "angle:distance" format for this example)
-        std::istringstream stream(buffer);
-        std::string segment;
-        while (std::getline(stream, segment, ';')) { // Split by ';'
-            std::string angle, distance;
-            std::istringstream segmentStream(segment);
-            if (std::getline(segmentStream, angle, ':') && std::getline(segmentStream, distance, ':')) {
-                // Get current timestamp
-                std::time_t now = std::time(nullptr);
-                std::tm *localTime = std::localtime(&now); // Convert to local time
-                laserFile << std::put_time(localTime, "%Y-%m-%d %H:%M:%S") << "," << angle << "," << distance;
-                laserFile.flush(); // Force writing to the file
+        // Check for data markers
+        if (chunk.find("---START---") != std::string::npos) {
+            isReadingData = true; // Begin reading data
+            dataStream.str("");   // Clear the stream
+        }
+        if (isReadingData) {
+            dataStream << chunk; // Append data to the stream
+        }
+        if (chunk.find("___END___") != std::string::npos) {
+            isReadingData = false; // End reading data
 
-                if (laserFile.fail()) {
-                    std::cerr << "[ERROR] Failed to write data: " << std::put_time(localTime, "%Y-%m-%d %H:%M:%S") << "," << angle << "," << distance << std::endl;
+            // Extract JSON string
+            std::string rawData = dataStream.str();
+            size_t start = rawData.find("---START---") + 11; // Skip "---START---"
+            size_t end = rawData.find("___END___");
+            std::cout << "[LaserScans]";
+            if (start != std::string::npos && end != std::string::npos) {
+                std::string jsonData = rawData.substr(start, end - start);
+
+                // Parse the JSON
+                Json::Value laserScanData;
+                Json::CharReaderBuilder readerBuilder;
+                std::string errors;
+
+                std::istringstream jsonStream(jsonData);
+                if (Json::parseFromStream(readerBuilder, jsonStream, &laserScanData, &errors)) {
+                    // std::cout << "[DEBUG] Parsed JSON data:\n" << laserScanData.toStyledString() << std::endl;
+
+                    // Write the parsed JSON to file
+                    Json::StreamWriterBuilder writerBuilder;
+                    writerBuilder["indentation"] = "    "; // Pretty-print with 4 spaces
+                    laserFile << Json::writeString(writerBuilder, laserScanData) << ", " << std::endl;
+
+                    std::cout << "[DEBUG] JSON data written to file." << std::endl;
                 } else {
-                    std::cout << "[DEBUG] Wrote data to laserscan.csv: " << std::put_time(localTime, "%Y-%m-%d %H:%M:%S") << "," << angle << "," << distance << std::endl;
+                    std::cerr << "[ERROR] Failed to parse JSON: " << errors << std::endl;
                 }
             } else {
-                std::cerr << "[ERROR] Malformed data segment: " << segment << std::endl;
+                std::cerr << "[ERROR] Malformed data, could not find valid JSON." << std::endl;
             }
         }
     }
 
     if (bytesReceived < 0) {
         perror("[ERROR] recv() failed");
-        exit(1);
     } else {
         std::cout << "[DEBUG] Connection closed by client." << std::endl;
     }
 
-    laserFile.close(); // Close the file
-    std::cout << "[DEBUG] File laserscan.csv closed." << std::endl;
+    // Close the file
+    laserFile.close();
+    std::cout << "[DEBUG] File " << filename << " closed." << std::endl;
 }

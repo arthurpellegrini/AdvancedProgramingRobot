@@ -1,63 +1,99 @@
 #include "OdometryHandler.h"
+#include <jsoncpp/json/json.h>
+#include <fstream>
+#include <sstream>
+#include <ctime>
+#include <iostream>
+#include <string>
+#include <cstdlib> // For system()
 
-// Function to receive and save Odometry data
 void ReceiveAndSaveOdometryData(int sock) {
-    std::ofstream odometryFile("odometry.csv", std::ios::app); // Open file in append mode
-    if (!odometryFile) {
-        perror("Failed to open odometry.csv for writing");
+    // Get the current time
+    std::time_t now = std::time(nullptr);
+    std::tm *localTime = std::localtime(&now);
+    char dateTime[20];
+    std::strftime(dateTime, sizeof(dateTime), "%Y-%m-%d_%H-%M", localTime); // Format as "YYYY-MM-DD_HH-MM"
+
+    // Ensure the directory exists
+    std::string directoryPath = "./data_test/odometry";
+    std::string command = "mkdir -p " + directoryPath;
+    if (system(command.c_str()) != 0) {
+        perror("Failed to create directory");
         exit(1);
-    } else {
-        std::cout << "[DEBUG] File odometry.csv successfully opened." << std::endl;
     }
 
-    // If file is empty, write CSV header
-    if (odometryFile.tellp() == 0) {
-        odometryFile << "Timestamp,X,Y,Theta\n";
-        if (odometryFile.fail()) {
-            std::cerr << "[ERROR] Failed to write header to odometry.csv" << std::endl;
-        } else {
-            std::cout << "[DEBUG] Header written to odometry.csv" << std::endl;
-        }
+    // Construct the filename
+    std::string filename = directoryPath + "/odom_" + dateTime + ".json";
+
+    // Open the file for writing
+    std::ofstream odometryFile(filename, std::ios::app);
+    if (!odometryFile) {
+        perror(("Failed to open " + filename + " for writing").c_str());
+        exit(1);
+    } else {
+        std::cout << "[DEBUG] File " << filename << " successfully opened." << std::endl;
+        odometryFile << "[" << std::endl;
     }
 
     char buffer[BUFFER_SIZE];
     ssize_t bytesReceived;
+    std::ostringstream dataStream;
+    bool isReadingData = false;
 
     while ((bytesReceived = recv(sock, buffer, BUFFER_SIZE - 1, 0)) > 0) {
-        buffer[bytesReceived] = '\0'; // Null-terminate the received data
-        std::cout << "[DEBUG] Received raw data: " << buffer << std::endl;
+        buffer[bytesReceived] = '\0'; // Null-terminate received data
+        std::string chunk(buffer);
 
-        // Parse data if structured (assume "X:Y:Theta" format for this example)
-        std::istringstream stream(buffer);
-        std::string segment;
-        while (std::getline(stream, segment, ';')) { // Split by ';'
-            std::string x, y, theta;
-            std::istringstream segmentStream(segment);
-            if (std::getline(segmentStream, x, ':') && std::getline(segmentStream, y, ':') && std::getline(segmentStream, theta, ':')) {
-                // Get current timestamp
-                std::time_t now = std::time(nullptr);
-                std::tm *localTime = std::localtime(&now); // Convert to local time
-                odometryFile << std::put_time(localTime, "%Y-%m-%d %H:%M:%S") << "," << x << "," << y << "," << theta;
-                odometryFile.flush(); // Force writing to the file
+        // Check for data markers
+        if (chunk.find("---START---") != std::string::npos) {
+            isReadingData = true; // Begin reading data
+            dataStream.str("");   // Clear the stream
+        }
+        if (isReadingData) {
+            dataStream << chunk; // Append data to the stream
+        }
+        if (chunk.find("___END___") != std::string::npos) {
+            isReadingData = false; // End reading data
 
-                if (odometryFile.fail()) {
-                    std::cerr << "[ERROR] Failed to write data: " << std::put_time(localTime, "%Y-%m-%d %H:%M:%S") << "," << x << "," << y << "," << theta << std::endl;
+            // Extract JSON string
+            std::string rawData = dataStream.str();
+            size_t start = rawData.find("---START---") + 11; // Skip "---START---"
+            size_t end = rawData.find("___END___");
+            if (start != std::string::npos && end != std::string::npos) {
+                std::string jsonData = rawData.substr(start, end - start);
+
+                // Parse the JSON
+                Json::Value odometryData;
+                Json::CharReaderBuilder readerBuilder;
+                std::string errors;
+
+                std::istringstream jsonStream(jsonData);
+                std::cout << "[Odometry]";
+                if (Json::parseFromStream(readerBuilder, jsonStream, &odometryData, &errors)) {
+                    // std::cout << "[DEBUG] Parsed JSON data:\n" << odometryData.toStyledString() << std::endl;
+
+                    // Write the parsed JSON to file
+                    Json::StreamWriterBuilder writerBuilder;
+                    writerBuilder["indentation"] = "    "; // Pretty-print with 4 spaces
+                    odometryFile << Json::writeString(writerBuilder, odometryData) << ", " << std::endl;
+
+                    std::cout << "[DEBUG] JSON data written to file." << std::endl;
                 } else {
-                    std::cout << "[DEBUG] Wrote data to odometry.csv: " << std::put_time(localTime, "%Y-%m-%d %H:%M:%S") << "," << x << "," << y << "," << theta << std::endl;
+                    std::cerr << "[ERROR] Failed to parse JSON: " << errors << std::endl;
                 }
             } else {
-                std::cerr << "[ERROR] Malformed data segment: " << segment << std::endl;
+                std::cerr << "[ERROR] Malformed data, could not find valid JSON." << std::endl;
             }
         }
     }
 
     if (bytesReceived < 0) {
         perror("[ERROR] recv() failed");
-        exit(1);
     } else {
         std::cout << "[DEBUG] Connection closed by client." << std::endl;
     }
 
-    odometryFile.close(); // Close the file
-    std::cout << "[DEBUG] File odometry.csv closed." << std::endl;
+    // Close the file
+    odometryFile.close();
+    std::cout << "[DEBUG] File " << filename << " closed." << std::endl;
 }

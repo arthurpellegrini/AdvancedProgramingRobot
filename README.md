@@ -76,6 +76,8 @@ Turtlebot 2: Michelangelo
 IP: 192.168.100.52
 Password: on the back side of the rooter
 
+Put the Battery and do not forgot to switch the button to turn on the robot.
+
 Try the connection between the robot and your laptop: 
 ```sh
 ping 192.168.100.52
