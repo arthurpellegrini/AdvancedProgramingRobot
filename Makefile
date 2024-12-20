@@ -7,14 +7,17 @@ LDFLAGS = -ljsoncpp -pthread
 # Directories
 SRC_DIR = ./src
 BUILD_DIR = ./build
-CLIENT_SERVER_SRC_DIR = ./examples/client_server_communication
-CLIENT_SERVER_BUILD_DIR = ./build/client_server_communication
-THREADS_SRC_DIR = ./examples/processes_threads
-THREADS_BUILD_DIR = ./build/processes_threads
-SHARED_MEMORY_SRC_DIR = ./examples/shared_memory
-SHARED_MEMORY_BUILD_DIR = ./build/shared_memory
+EXAMPLES_DIR = ./examples
+CLIENT_SERVER_SRC_DIR = ${EXAMPLES_DIR}/client_server_communication
+CLIENT_SERVER_BUILD_DIR = ${BUILD_DIR}/client_server_communication
+THREADS_SRC_DIR = ${EXAMPLES_DIR}/processes_threads
+THREADS_BUILD_DIR = ${BUILD_DIR}/processes_threads
+SHARED_MEMORY_SRC_DIR = ${EXAMPLES_DIR}/shared_memory
+SHARED_MEMORY_BUILD_DIR = ${BUILD_DIR}/shared_memory
 
-
+# ************************************************************************* #
+# ***************************** Source files ****************************** #
+# ************************************************************************* #
 # Source files for the main programs
 main_SRCS = $(SRC_DIR)/main.cpp $(SRC_DIR)/ConnectToServer.cpp $(SRC_DIR)/LaserScanHandler.cpp $(SRC_DIR)/OdometryHandler.cpp
 talk_on_tcp_port_SRCS = $(SRC_DIR)/TalkOnTCPPort.cpp $(SRC_DIR)/ConnectToServer.cpp
@@ -54,7 +57,9 @@ shm_prod_cons_SRCS = $(SHARED_MEMORY_SRC_DIR)/shm-prod-cons.cpp
 shm_sem_prod_cons_SRCS = $(SHARED_MEMORY_SRC_DIR)/shm-sem-prod-cons.cpp
 msgq_prod_cons_SRCS = $(SHARED_MEMORY_SRC_DIR)/msgq-prod-cons.cpp
 
-# Programs
+# ************************************************************************* #
+# ************** Names of the output Programs ***************************** #
+# ************************************************************************* #
 SRC_PROGRAMS = Main TalkOnTCPPort ListenOnTCPPort
 CLIENT_SERVER_PROGRAMS = TCPEchoClient TCPEchoServer TCPEchoServer-Fork TCPEchoServer-Fork-SIGCHLD \
            TCPEchoServer-ForkN TCPEchoServer-Select TCPEchoServer-Thread \
@@ -62,26 +67,23 @@ CLIENT_SERVER_PROGRAMS = TCPEchoClient TCPEchoServer TCPEchoServer-Fork TCPEchoS
 THREADS_PROGRAMS = pthread1 race_demo mutex1 join1 sem1 sem2_1 sem2_2 sem3 semabinit sema semb
 SHARED_MEMORY_PROGRAMS = thrd-posix fork_exec newproc-posix shm-prod-cons shm-sem-prod-cons msgq-prod-cons
 
-# Default target
+# ************************************************************************* #
+# **************** Build Following the target ***************************** #
+# ************************************************************************* #
 all: $(BUILD_DIR) $(CLIENT_SERVER_BUILD_DIR) $(THREADS_BUILD_DIR) $(SHARED_MEMORY_BUILD_DIR) \
 	 $(addprefix $(BUILD_DIR)/, $(SRC_PROGRAMS)) \
      $(addprefix $(CLIENT_SERVER_BUILD_DIR)/, $(CLIENT_SERVER_PROGRAMS)) \
      $(addprefix $(THREADS_BUILD_DIR)/, $(THREADS_PROGRAMS)) \
      $(addprefix $(SHARED_MEMORY_BUILD_DIR)/, $(SHARED_MEMORY_PROGRAMS))
 
-# Build main executables
 main: $(addprefix $(BUILD_DIR)/, $(SRC_PROGRAMS))
-
-# Build client_server_communication executables
 client_server_communication: $(addprefix $(CLIENT_SERVER_BUILD_DIR)/, $(CLIENT_SERVER_PROGRAMS))
-
-# Build processes_threads executables
 processes_threads: $(addprefix $(THREADS_BUILD_DIR)/, $(THREADS_PROGRAMS))
-
-# Build shared_memory executables
 shared_memory: $(addprefix $(SHARED_MEMORY_BUILD_DIR)/, $(SHARED_MEMORY_PROGRAMS))
 
-# Build main executables
+# ************************************************************************* #
+# ******************* Build Main Executables ****************************** #
+# ************************************************************************* #
 $(BUILD_DIR)/Main: $(main_SRCS) | $(BUILD_DIR)
 	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
@@ -91,7 +93,9 @@ $(BUILD_DIR)/TalkOnTCPPort: $(talk_on_tcp_port_SRCS) | $(BUILD_DIR)
 $(BUILD_DIR)/ListenOnTCPPort: $(listen_on_tcp_port_SRCS) | $(BUILD_DIR)
 	$(CXX) $(CFLAGS) $(LDFLAGS) $^ -o $@
 
-# Build client_server_communication executables 
+# ************************************************************************* #
+# ******************* Build Client_Server_Communication Executables ******* #
+# ************************************************************************* #
 $(CLIENT_SERVER_BUILD_DIR)/TCPEchoClient: $(tcp_client_SRCS) | $(CLIENT_SERVER_BUILD_DIR)
 	$(CC) $(CFLAGS) $^ -o $@
 
@@ -125,7 +129,9 @@ $(CLIENT_SERVER_BUILD_DIR)/UDPEchoClient: $(udp_client_SRCS) | $(CLIENT_SERVER_B
 $(CLIENT_SERVER_BUILD_DIR)/UDPEchoServer: $(udp_server_SRCS) | $(CLIENT_SERVER_BUILD_DIR)
 	$(CC) $(CFLAGS) $^ -o $@
 
-# Build processes_threads executables
+# ************************************************************************* #
+# ******************* Build Processes_Threads Executables ***************** #
+# ************************************************************************* #
 $(THREADS_BUILD_DIR)/pthread1: $(pthread1_SRCS) | $(THREADS_BUILD_DIR)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
@@ -159,7 +165,9 @@ $(THREADS_BUILD_DIR)/sema: $(sema_SRCS) | $(THREADS_BUILD_DIR)
 $(THREADS_BUILD_DIR)/semb: $(semb_SRCS) | $(THREADS_BUILD_DIR)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
-# Build shared_memory executables
+# ************************************************************************* #
+# ******************* Build Shared_Memory Executables ********************* #
+# ************************************************************************* #
 $(SHARED_MEMORY_BUILD_DIR)/thrd-posix: $(thrd_posix_SRCS) | $(SHARED_MEMORY_BUILD_DIR)
 	$(CC) $(CFLAGS) $^ $(LDFLAGS) -o $@
 
@@ -178,7 +186,9 @@ $(SHARED_MEMORY_BUILD_DIR)/shm-sem-prod-cons: $(shm_sem_prod_cons_SRCS) | $(SHAR
 $(SHARED_MEMORY_BUILD_DIR)/msgq-prod-cons: $(msgq_prod_cons_SRCS) | $(SHARED_MEMORY_BUILD_DIR)
 	$(CXX) $(CFLAGS) $^ -o $@
 
-# Create build directories if they don't exist
+# ************************************************************************** #
+# ************************ Create build directories ************************ #
+# ************************************************************************** #
 $(BUILD_DIR):
 	mkdir -p $@
 
@@ -191,6 +201,20 @@ $(THREADS_BUILD_DIR):
 $(SHARED_MEMORY_BUILD_DIR):
 	mkdir -p $@
 
-# Clean up build artifacts
+# ************************************************************************** #
+# ************************ Clean up build artifacts ************************ #
+# ************************************************************************** #
 clean:
-	rm -rf $(BUILD_DIR) $(CLIENT_SERVER_BUILD_DIR) $(THREADS_BUILD_DIR) $(SHARED_MEMORY_BUILD_DIR)
+	rm -rf $(BUILD_DIR)
+
+clean-src:
+	rm -f $(addprefix $(BUILD_DIR)/, $(SRC_PROGRAMS))
+
+clean-client:
+	rm -rf $(CLIENT_SERVER_BUILD_DIR)
+
+clean-threads:
+	rm -rf $(THREADS_BUILD_DIR)
+
+clean-shared:
+	rm -rf $(SHARED_MEMORY_BUILD_DIR)
