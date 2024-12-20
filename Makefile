@@ -1,8 +1,8 @@
 # Compiler
 CC = gcc
 CXX = g++
-CFLAGS = -Wall -Iinclude -I/opt/ros/noetic/include -pthread
-LDFLAGS = -L/opt/ros/noetic/lib -lroscpp -lrosconsole -lrostime -lroscpp_serialization -ljsoncpp -pthread
+CFLAGS = -Wall -Iinclude -pthread
+LDFLAGS = -ljsoncpp -pthread
 
 # Directories
 SRC_DIR = ./src
