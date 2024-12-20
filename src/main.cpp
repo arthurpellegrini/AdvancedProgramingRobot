@@ -5,6 +5,7 @@
 #include "ConnectToServer.h"
 #include "LaserScanHandler.h"
 #include "OdometryHandler.h"
+#include "CommanderHandler.h"
 
 int main(int argc, char *argv[]) {
     if (argc != 2) {
@@ -22,14 +23,17 @@ int main(int argc, char *argv[]) {
     int odometrySock = ConnectToServer(serverIP, 9998);
     std::thread odometryThread(ReceiveAndSaveOdometryData, odometrySock);
 
-    // Wait for both threads to complete
+    // Connect to the Commander port (9999)
+    int commanderSock = ConnectToServer(serverIP, 9999);
+    CommanderHandler(commanderSock);
+
+    // Wait for data handling threads to complete
     laserThread.join();
     odometryThread.join();
 
-    // Adding Commander for moving purpose so that we can get the data from the robot
-    // Connect to the Commander port (9999)
-    // int commanderSock = ConnectToServer(serverIP, 9999);
-    // Asking the use for an arrow key to move the robot in the desired direction
+    // Close the Commander socket
+    close(commanderSock);
+    std::cout << "[INFO] Commander connection closed." << std::endl;
 
     return 0;
 }

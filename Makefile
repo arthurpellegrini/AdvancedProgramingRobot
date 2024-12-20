@@ -19,7 +19,7 @@ SHARED_MEMORY_BUILD_DIR = ${BUILD_DIR}/shared_memory
 # ***************************** Source files ****************************** #
 # ************************************************************************* #
 # Source files for the main programs
-main_SRCS = $(SRC_DIR)/main.cpp $(SRC_DIR)/ConnectToServer.cpp $(SRC_DIR)/LaserScanHandler.cpp $(SRC_DIR)/OdometryHandler.cpp
+main_SRCS = $(SRC_DIR)/main.cpp $(SRC_DIR)/ConnectToServer.cpp $(SRC_DIR)/LaserScanHandler.cpp $(SRC_DIR)/OdometryHandler.cpp $(SRC_DIR)/CommanderHandler.cpp
 talk_on_tcp_port_SRCS = $(SRC_DIR)/TalkOnTCPPort.cpp $(SRC_DIR)/ConnectToServer.cpp
 listen_on_tcp_port_SRCS = $(SRC_DIR)/ListenOnTCPPort.cpp $(SRC_DIR)/ConnectToServer.cpp
 
