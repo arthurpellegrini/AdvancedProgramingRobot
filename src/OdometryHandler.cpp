@@ -62,30 +62,47 @@ void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySem
             std::string rawData = dataStream.str();
             size_t start = rawData.find("---START---") + 11; // Skip "---START---"
             size_t end = rawData.find("___END___");
-            if (start != std::string::npos && end != std::string::npos) {
+            if (start != std::string::npos && end != std::string::npos && start < end) {
                 std::string jsonData = rawData.substr(start, end - start);
 
                 // Parse the JSON
                 Json::Value odometryData;
                 Json::CharReaderBuilder readerBuilder;
                 std::string errors;
-
                 std::istringstream jsonStream(jsonData);
+
                 std::cout << "[Odometry]";
                 if (Json::parseFromStream(readerBuilder, jsonStream, &odometryData, &errors)) {
                     // std::cout << "[DEBUG] Parsed JSON data:\n" << odometryData.toStyledString() << std::endl;
 
-                    // Write the parsed JSON to file
-                    Json::StreamWriterBuilder writerBuilder;
-                    writerBuilder["indentation"] = "    "; // Pretty-print with 4 spaces
-                    odometryFile << Json::writeString(writerBuilder, odometryData) << ", " << std::endl;
+                    Json::Value filteredData;
+                    if (odometryData.isMember("pose") && odometryData["pose"].isMember("pose")) {
+                        const Json::Value& pose = odometryData["pose"]["pose"];
+                        if (pose.isMember("position")) {
+                            filteredData["pose"]["pose"]["position"] = pose["position"];
+                        }
+                        if (pose.isMember("orientation")) {
+                            filteredData["pose"]["pose"]["orientation"] = pose["orientation"];
+                        }
+                    }
 
-                    std::cout << "[DEBUG] JSON data written to file." << std::endl;
+                    std::ofstream odometryFile(filename, std::ios::trunc); // Überschreiben der Datei
+                    if (odometryFile) {
+                        Json::StreamWriterBuilder writerBuilder;
+                        writerBuilder["indentation"] = "    ";
+                        odometryFile << Json::writeString(writerBuilder, filteredData) << std::endl;
+                        odometryFile.close();
+                        std::cout << "[DEBUG] JSON data written to file." << std::endl;
+                    } else {
+                        std::cerr << "[ERROR] Failed to open " << filename << " for writing." << std::endl;
+                    }
 
-                    sem_wait(odometrySemaphore);
-                    strncpy(shared->odometryData, jsonData.c_str(), sizeof(shared->odometryData) - 1);
-                    shared->odometryData[sizeof(shared->odometryData) - 1] = '\0';
-                    sem_post(odometrySemaphore);
+                    if (!jsonData.empty()) {
+                        sem_wait(odometrySemaphore);
+                        strncpy(shared->odometryData, jsonData.c_str(), sizeof(shared->odometryData) - 1);
+                        shared->odometryData[sizeof(shared->odometryData) - 1] = '\0';
+                        sem_post(odometrySemaphore);
+                    }
                 } else {
                     std::cerr << "[ERROR] Failed to parse JSON: " << errors << std::endl;
                 }
@@ -102,6 +119,6 @@ void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySem
     }
 
     // Close the file
-    odometryFile.close();
-    std::cout << "[DEBUG] File " << filename << " closed." << std::endl;
+   // odometryFile.close();
+   // std::cout << "[DEBUG] File " << filename << " closed." << std::endl;
 }
