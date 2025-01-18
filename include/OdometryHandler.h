@@ -10,11 +10,13 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <iomanip> // For std::put_time
+#include "SharedMemory.h"
+#include <semaphore.h>
 
 // Buffer size for receiving data
 #define BUFFER_SIZE 1024
 
 // Function to receive and save Odometry data
-void ReceiveAndSaveOdometryData(int sock);
+void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySemaphore);
 
 #endif // ODOMETRY_HANDLER_H

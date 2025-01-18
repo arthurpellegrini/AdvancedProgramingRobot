@@ -6,8 +6,9 @@
 #include <iostream>
 #include <string>
 #include <cstdlib> // For system()
+#include "SharedMemory.h"
 
-void ReceiveAndSaveOdometryData(int sock) {
+void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySemaphore) {
     // Get the current time
     std::time_t now = std::time(nullptr);
     std::tm *localTime = std::localtime(&now);
@@ -78,6 +79,11 @@ void ReceiveAndSaveOdometryData(int sock) {
                     odometryFile << Json::writeString(writerBuilder, odometryData) << ", " << std::endl;
 
                     std::cout << "[DEBUG] JSON data written to file." << std::endl;
+
+                    sem_wait(odometrySemaphore);
+                    strncpy(shared->odometryData, jsonData.c_str(), sizeof(shared->odometryData) - 1);
+                    shared->odometryData[sizeof(shared->odometryData) - 1] = '\0';
+                    sem_post(odometrySemaphore);
                 } else {
                     std::cerr << "[ERROR] Failed to parse JSON: " << errors << std::endl;
                 }

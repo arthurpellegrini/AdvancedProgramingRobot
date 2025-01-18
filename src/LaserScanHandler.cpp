@@ -6,8 +6,9 @@
 #include <iostream>
 #include <string>
 #include <cstdlib> // For system()
+#include "SharedMemory.h"
 
-void ReceiveAndSaveLaserScanData(int sock) {
+void ReceiveAndSaveLaserScanData(int sock, SharedData* shared, sem_t* laserSemaphore) {
     // Get the current time
     std::time_t now = std::time(nullptr);
     std::tm *localTime = std::localtime(&now);
@@ -78,6 +79,13 @@ void ReceiveAndSaveLaserScanData(int sock) {
                     laserFile << Json::writeString(writerBuilder, laserScanData) << ", " << std::endl;
 
                     std::cout << "[DEBUG] JSON data written to file." << std::endl;
+
+                    if (!jsonData.empty()) {
+                        sem_wait(laserSemaphore);
+                        strncpy(shared->laserScanData, jsonData.c_str(), sizeof(shared->laserScanData) - 1);
+                        shared->laserScanData[sizeof(shared->laserScanData) - 1] = '\0';
+                        sem_post(laserSemaphore);
+                    }
                 } else {
                     std::cerr << "[ERROR] Failed to parse JSON: " << errors << std::endl;
                 }
