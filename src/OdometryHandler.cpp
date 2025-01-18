@@ -16,7 +16,7 @@ void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySem
     std::strftime(dateTime, sizeof(dateTime), "%Y-%m-%d_%H-%M", localTime); // Format as "YYYY-MM-DD_HH-MM"
 
     // Ensure the directory exists
-    std::string directoryPath = "./data_test/odometry";
+    std::string directoryPath = "./tmp";
     std::string command = "mkdir -p " + directoryPath;
     if (system(command.c_str()) != 0) {
         perror("Failed to create directory");
@@ -24,7 +24,9 @@ void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySem
     }
 
     // Construct the filename
-    std::string filename = directoryPath + "/odom_" + dateTime + ".json";
+    // std::string filename = directoryPath + "/odom_" + dateTime + ".json";
+    std::string filename = directoryPath + "/odometry_data" + ".json";
+
 
     // Open the file for writing
     std::ofstream odometryFile(filename, std::ios::app);

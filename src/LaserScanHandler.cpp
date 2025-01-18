@@ -16,7 +16,7 @@ void ReceiveAndSaveLaserScanData(int sock, SharedData* shared, sem_t* laserSemap
     std::strftime(dateTime, sizeof(dateTime), "%Y-%m-%d_%H-%M", localTime); // Format as "YYYY-MM-DD_HH-mm"
 
     // Ensure the directory exists
-    std::string directoryPath = "./data_test/laserscans";
+    std::string directoryPath = "./tmp";
     std::string command = "mkdir -p " + directoryPath;
     if (system(command.c_str()) != 0) {
         perror("Failed to create directory");
@@ -24,7 +24,8 @@ void ReceiveAndSaveLaserScanData(int sock, SharedData* shared, sem_t* laserSemap
     }
 
     // Construct the filename
-    std::string filename = directoryPath + "/ls_" + dateTime + ".json";
+    //std::string filename = directoryPath + "/ls_" + dateTime + ".json";
+    std::string filename = directoryPath + "/laser_data" + ".json";
 
     // Open the file for writing
     std::ofstream laserFile(filename, std::ios::app);
@@ -73,10 +74,20 @@ void ReceiveAndSaveLaserScanData(int sock, SharedData* shared, sem_t* laserSemap
                 if (Json::parseFromStream(readerBuilder, jsonStream, &laserScanData, &errors)) {
                     // std::cout << "[DEBUG] Parsed JSON data:\n" << laserScanData.toStyledString() << std::endl;
 
+                    // Extract only "angle_increment" and "ranges"
+                    Json::Value filteredData;
+                    if (laserScanData.isMember("angle_increment")) {
+                        filteredData["angle_increment"] = laserScanData["angle_increment"];
+                    }
+                    if (laserScanData.isMember("ranges")) {
+                        filteredData["ranges"] = laserScanData["ranges"];
+                    }
+
+
                     // Write the parsed JSON to file
                     Json::StreamWriterBuilder writerBuilder;
                     writerBuilder["indentation"] = "    "; // Pretty-print with 4 spaces
-                    laserFile << Json::writeString(writerBuilder, laserScanData) << ", " << std::endl;
+                    laserFile << Json::writeString(writerBuilder, filteredData) << ", " << std::endl;
 
                     std::cout << "[DEBUG] JSON data written to file." << std::endl;
 
