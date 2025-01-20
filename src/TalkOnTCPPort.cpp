@@ -1,8 +1,3 @@
-#include <iostream>
-#include <thread>
-#include <cstring>
-#include <unistd.h>
-#include <atomic>
 #include "TalkOnTCPPort.h"
 #include "ConnectToServer.h"
 

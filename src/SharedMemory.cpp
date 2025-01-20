@@ -1,9 +1,4 @@
 #include "SharedMemory.h"
-#include <sys/mman.h>
-#include <fcntl.h>
-#include <unistd.h>
-#include <cstring>
-#include <iostream>
 
 #define LASER_SEM_NAME "/laserSem" ///< Name for the semaphore used to synchronize LaserScan data
 #define ODOM_SEM_NAME  "/odomSem" ///< Name for the semaphore used to synchronize Odometry data

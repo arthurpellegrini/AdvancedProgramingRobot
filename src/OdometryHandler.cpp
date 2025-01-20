@@ -1,11 +1,4 @@
 #include "OdometryHandler.h"
-#include <jsoncpp/json/json.h>
-#include <fstream>
-#include <sstream>
-#include <ctime>
-#include <iostream>
-#include <string>
-#include <cstdlib> // For system()
 #include "SharedMemory.h"
 
 /**

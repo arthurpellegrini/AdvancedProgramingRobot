@@ -2,6 +2,11 @@
 #define TALK_ON_TRCP_PORT_H
 
 #include <string>
+#include <iostream>
+#include <thread>
+#include <cstring>
+#include <unistd.h>
+#include <atomic>
 
 /**
  * @file TalkOnTCPPort.h

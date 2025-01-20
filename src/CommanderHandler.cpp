@@ -1,10 +1,4 @@
-#include <iostream>
-#include <termios.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <cstring>
-#include <string>
-#include <sstream>
+#include "CommanderHandler.h"
 
 #define BUFFER_SIZE 1024 ///< Buffer size for TCP communication
 

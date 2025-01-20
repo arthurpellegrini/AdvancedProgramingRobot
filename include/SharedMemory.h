@@ -1,5 +1,10 @@
 #pragma once
 #include <semaphore.h>
+#include <sys/mman.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
+#include <iostream>
 
 /**
  * @file SharedMemory.h

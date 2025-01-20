@@ -1,4 +1,3 @@
-#include <thread>
 #include "ListenOnTCPPort.h"
 #include "ConnectToServer.h"
 

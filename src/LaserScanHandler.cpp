@@ -1,15 +1,8 @@
 #include "LaserScanHandler.h"
-#include <jsoncpp/json/json.h>
-#include <fstream>
-#include <sstream>
-#include <ctime>
-#include <iostream>
-#include <string>
-#include <cstdlib> // For system()
 #include "SharedMemory.h"
 
 /**
- * @file LaserScan.Handler.cpp
+ * @file LaserScanHandler.cpp
  * 
  * @brief Receives and processes LaserScan data from a TCP socket.
  * 

@@ -3,15 +3,26 @@
 
 #include <sstream> // For parsing data if needed
 #include <ctime>   // For adding timestamps
+#include <jsoncpp/json/json.h>
 #include <iostream>
 #include <fstream>
+#include <string>
 #include <cstring>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <iomanip> // For std::put_time
+#include <cstdlib> // For system()
 #include "SharedMemory.h"
 #include <semaphore.h>
+
+
+
+
+
+
+
+
 
 /**
  * @file LaserScanHandler.h
