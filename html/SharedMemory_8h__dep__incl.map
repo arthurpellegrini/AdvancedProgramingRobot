@@ -1,0 +1,6 @@
+<map id="include/SharedMemory.h" name="include/SharedMemory.h">
+<area shape="rect" id="node1" title="Provides shared memory and semaphore management for data synchronization." alt="" coords="32,5,215,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title="Main program to connect to a server and handle LaserScan, Odometry, and Commander data." alt="" coords="71,155,176,181"/>
+<area shape="rect" id="node3" href="$LaserScanHandler_8h.html" title="Handles the reception and storage of LaserScan data." alt="" coords="22,80,225,107"/>
+<area shape="rect" id="node4" href="$OdometryHandler_8h.html" title="Handles the reception and storage of Odometry data." alt="" coords="250,80,451,107"/>
+</map>

@@ -6,9 +6,20 @@
 #include "TalkOnTCPPort.h"
 #include "ConnectToServer.h"
 
-std::atomic<bool> running(true);
+std::atomic<bool> running(true); ///< Atomic flag to control the running state of the program
 
-// Function to send movement commands to the TurtleBot
+/**
+ * @brief Sends a movement command to the TurtleBot via TCP.
+ * 
+ * This function constructs a movement command in a predefined format and sends it to the TurtleBot
+ * using the specified socket connection.
+ * 
+ * @param socket The socket descriptor for the TCP connection.
+ * @param linear_x The linear velocity for the TurtleBot (in meters per second).
+ * @param angular_z The angular velocity for the TurtleBot (in radians per second).
+ * 
+ * @throws std::runtime_error If the `send` operation fails.
+ */
 void startTalkOnTCPPort(int socket, float linear_x, float angular_z) {
     std::string command = "---START---{\"linear\": " + std::to_string(linear_x) +
                           ", \"angular\": " + std::to_string(angular_z) + "}___END___";
@@ -19,7 +30,16 @@ void startTalkOnTCPPort(int socket, float linear_x, float angular_z) {
     std::cout << "Command sent: " << command << std::endl;
 }
 
-// Function to maintain the connection and handle reconnections
+/**
+ * @brief Maintains the TCP connection with the server.
+ * 
+ * This function monitors the connection status and attempts to reconnect if the connection is lost.
+ * Upon reconnection, it sends a stop command to the TurtleBot to ensure safety.
+ * 
+ * @param serverIP The IP address of the server.
+ * @param port The port number of the server.
+ * @param tcpSock Reference to the socket descriptor for the TCP connection.
+ */
 void maintainConnection(const char *serverIP, int port, int &tcpSock) {
     while (running) {
         if (tcpSock < 0) {
@@ -40,6 +60,24 @@ void maintainConnection(const char *serverIP, int port, int &tcpSock) {
     }
 }
 
+/**
+ * @brief Main function to control the TurtleBot via TCP commands.
+ * 
+ * This program connects to the TurtleBot's command server and allows the user to
+ * input movement commands interactively. It also maintains the connection and
+ * handles reconnections if needed.
+ * 
+ * @param argc The number of command-line arguments.
+ * @param argv The command-line arguments. Expects the server IP and port as arguments.
+ * @return Returns 0 on successful execution, or 1 on invalid input or connection failure.
+ * 
+ * @details Usage example:
+ * ```
+ * ./TalkOnTCPPort <IP> <PORT>
+ * ```
+ * The program supports user input in the format `<linear_x> <angular_z>` to control
+ * the TurtleBot's movement. Enter `q` to quit the program.
+ */
 int main(int argc, char *argv[]) {
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <IP> <PORT>\n";
@@ -49,12 +87,14 @@ int main(int argc, char *argv[]) {
     const char *serverIP = argv[1];
     int port = std::stoi(argv[2]);
 
+    // Connect to the server
     int tcpSock = ConnectToServer(serverIP, port);
     if (tcpSock < 0) {
         std::cerr << "Failed to connect to server." << std::endl;
         return 1;
     }
 
+    // Start a thread to maintain the connection
     std::thread connectionThread([&]() {
         maintainConnection(serverIP, port, tcpSock);
     });
@@ -91,7 +131,8 @@ int main(int argc, char *argv[]) {
         }
     }
 
-    startTalkOnTCPPort(tcpSock, 0.0, 0.0); // Send stop command before exit
+    // Send stop command before exiting
+    startTalkOnTCPPort(tcpSock, 0.0, 0.0);
     running = false;
     connectionThread.join();
 

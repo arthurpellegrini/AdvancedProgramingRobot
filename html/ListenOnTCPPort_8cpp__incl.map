@@ -1,0 +1,12 @@
+<map id="src/ListenOnTCPPort.cpp" name="src/ListenOnTCPPort.cpp">
+<area shape="rect" id="node1" title="Implementation of TCP listening and data processing." alt="" coords="75,5,255,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,80,69,107"/>
+<area shape="rect" id="node3" href="$ListenOnTCPPort_8h.html" title="Provides functionality to listen on a TCP port and process incoming connections." alt="" coords="94,80,237,107"/>
+<area shape="rect" id="node5" href="$ConnectToServer_8h.html" title="Provides a function to establish a connection to a server." alt="" coords="322,80,465,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="112,155,187,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="211,155,291,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="315,155,381,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="405,155,472,181"/>
+<area shape="rect" id="node9" title=" " alt="" coords="496,155,571,181"/>
+<area shape="rect" id="node10" title=" " alt="" coords="595,155,687,181"/>
+</map>

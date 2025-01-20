@@ -1,0 +1,84 @@
+\hypertarget{main_8cpp}{}\doxysection{src/main.cpp File Reference}
+\label{main_8cpp}\index{src/main.cpp@{src/main.cpp}}
+
+
+Main program to connect to a server and handle Laser\+Scan, Odometry, and Commander data.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Connect\+To\+Server.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Laser\+Scan\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Odometry\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Commander\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Main program to connect to a server and handle Laser\+Scan, Odometry, and Commander data. 
+
+This program connects to a server, receives data from multiple ports, and stores the data in shared memory for processing and debugging. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function of the program. 
+
+The program expects the server IP address as a command-\/line argument and starts threads to handle Laser\+Scan and Odometry data while providing debugging output. It also handles Commander commands via a separate connection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of command-\/line arguments. \\
+\hline
+{\em argv} & Array of command-\/line arguments. The first argument should be the server IP address. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on successful completion. 
+\end{DoxyReturn}
+Semaphore for synchronizing Laser\+Scan data access.
+
+Semaphore for synchronizing Odometry data access.
+
+Shared memory structure for storing Laser\+Scan and Odometry data.
+
+Socket for the Laser\+Scan data connection.
+
+Thread to handle receiving and saving Laser\+Scan data.
+
+Socket for the Odometry data connection.
+
+Thread to handle receiving and saving Odometry data.
+
+Debugging thread to print shared memory data every 5 seconds.
+
+Socket for the Commander data connection.
+
+Handles Commander commands received from the server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em commander\+Sock} & Socket for receiving Commander commands.\\
+\hline
+\end{DoxyParams}

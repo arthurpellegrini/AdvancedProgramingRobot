@@ -1,0 +1,91 @@
+\hypertarget{ConnectToServer_8h}{}\doxysection{include/\+Connect\+To\+Server.h File Reference}
+\label{ConnectToServer_8h}\index{include/ConnectToServer.h@{include/ConnectToServer.h}}
+
+
+Provides a function to establish a connection to a server.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+Include dependency graph for Connect\+To\+Server.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ConnectToServer_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ConnectToServer_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ConnectToServer_8h_aafd37dae32223d3e79613c754d304d47}{Connect\+To\+Server}} (const char $\ast$server\+IP, unsigned short port)
+\begin{DoxyCompactList}\small\item\em Connects to a server on a specific port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Provides a function to establish a connection to a server. 
+
+This header defines the function required to connect to a server using a specified IP address and port number. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ConnectToServer_8h_aafd37dae32223d3e79613c754d304d47}\label{ConnectToServer_8h_aafd37dae32223d3e79613c754d304d47}} 
+\index{ConnectToServer.h@{ConnectToServer.h}!ConnectToServer@{ConnectToServer}}
+\index{ConnectToServer@{ConnectToServer}!ConnectToServer.h@{ConnectToServer.h}}
+\doxysubsubsection{\texorpdfstring{ConnectToServer()}{ConnectToServer()}}
+{\footnotesize\ttfamily int Connect\+To\+Server (\begin{DoxyParamCaption}\item[{const char $\ast$}]{server\+IP,  }\item[{unsigned short}]{port }\end{DoxyParamCaption})}
+
+
+
+Connects to a server on a specific port. 
+
+Establishes a T\+CP connection to a server using the given IP address and port number. This function is designed for use in scenarios requiring reliable data transmission.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+IP} & The IP address of the server to connect to. \\
+\hline
+{\em port} & The port number to connect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The socket descriptor for the connection if successful.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exits} & the program if the connection fails, outputting an error message to stderr.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxyNote}{Note}
+Ensure that the server is running and accessible before invoking this function.
+\end{DoxyNote}
+Connects to a server on a specific port.
+
+This function creates a T\+CP socket, initializes the server address structure, and attempts to connect to the server. If any step fails, the program will terminate with an error message.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+IP} & The IP address of the server to connect to. \\
+\hline
+{\em port} & The port number to connect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The socket descriptor for the established connection.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exits} & the program with an error message if socket creation, server address initialization, or connection fails.\\
+\hline
+\end{DoxyExceptions}
+The function first creates a socket using {\ttfamily socket()}, then sets up the server address structure with the provided IP address and port number. Finally, it connects to the server using {\ttfamily connect()}. On success, it returns the socket descriptor. 

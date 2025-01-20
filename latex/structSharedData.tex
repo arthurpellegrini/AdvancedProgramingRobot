@@ -1,0 +1,51 @@
+\hypertarget{structSharedData}{}\doxysection{Shared\+Data Struct Reference}
+\label{structSharedData}\index{SharedData@{SharedData}}
+
+
+Structure to store shared data for Laser\+Scan and Odometry.  
+
+
+
+
+{\ttfamily \#include $<$Shared\+Memory.\+h$>$}
+
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structSharedData_aba5b820bba3532326cbab6f05da66191}{laser\+Scan\+Data}} \mbox{[}1024\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer for Laser\+Scan data. \end{DoxyCompactList}\item 
+char \mbox{\hyperlink{structSharedData_a3f95b9e25937c9d54579c86408b76086}{odometry\+Data}} \mbox{[}1024\mbox{]}
+\begin{DoxyCompactList}\small\item\em Buffer for Odometry data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure to store shared data for Laser\+Scan and Odometry. 
+
+This structure holds buffers for storing Laser\+Scan and Odometry data received from the server. It is designed for use in a multi-\/threaded environment with semaphore synchronization. 
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structSharedData_aba5b820bba3532326cbab6f05da66191}\label{structSharedData_aba5b820bba3532326cbab6f05da66191}} 
+\index{SharedData@{SharedData}!laserScanData@{laserScanData}}
+\index{laserScanData@{laserScanData}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{laserScanData}{laserScanData}}
+{\footnotesize\ttfamily char Shared\+Data\+::laser\+Scan\+Data\mbox{[}1024\mbox{]}}
+
+
+
+Buffer for Laser\+Scan data. 
+
+\mbox{\Hypertarget{structSharedData_a3f95b9e25937c9d54579c86408b76086}\label{structSharedData_a3f95b9e25937c9d54579c86408b76086}} 
+\index{SharedData@{SharedData}!odometryData@{odometryData}}
+\index{odometryData@{odometryData}!SharedData@{SharedData}}
+\doxysubsubsection{\texorpdfstring{odometryData}{odometryData}}
+{\footnotesize\ttfamily char Shared\+Data\+::odometry\+Data\mbox{[}1024\mbox{]}}
+
+
+
+Buffer for Odometry data. 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{SharedMemory_8h}{Shared\+Memory.\+h}}\end{DoxyCompactItemize}
