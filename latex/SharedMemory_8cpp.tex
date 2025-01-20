@@ -1,0 +1,123 @@
+\hypertarget{SharedMemory_8cpp}{}\doxysection{src/\+Shared\+Memory.cpp File Reference}
+\label{SharedMemory_8cpp}\index{src/SharedMemory.cpp@{src/SharedMemory.cpp}}
+
+
+Initializes shared memory and semaphores for inter-\/process communication.  
+
+
+{\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+Include dependency graph for Shared\+Memory.\+cpp\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{SharedMemory_8cpp_ad7050c40a17e3f7b3bc99144847de7b8}{LASER\+\_\+\+SEM\+\_\+\+NAME}}~\char`\"{}/laser\+Sem\char`\"{}
+\begin{DoxyCompactList}\small\item\em Name for the semaphore used to synchronize Laser\+Scan data. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{SharedMemory_8cpp_abdee599c749c813ffb20413aee1df788}{ODOM\+\_\+\+SEM\+\_\+\+NAME}}~\char`\"{}/odom\+Sem\char`\"{}
+\begin{DoxyCompactList}\small\item\em Name for the semaphore used to synchronize Odometry data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$ \mbox{\hyperlink{SharedMemory_8cpp_aa24f4bdd8cee7b6681e136286e5bf641}{Initialize\+Shared\+Memory}} (sem\+\_\+t $\ast$\&laser\+Semaphore, sem\+\_\+t $\ast$\&odometry\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Initializes shared memory and semaphores. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{SharedMemory_8cpp_a1ccfb5d14692a55b8a4697924c268351}{Cleanup\+Shared\+Memory}} (\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$shared, sem\+\_\+t $\ast$laser\+Semaphore, sem\+\_\+t $\ast$odometry\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Cleans up shared memory and semaphores. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Initializes shared memory and semaphores for inter-\/process communication. 
+
+This function sets up shared memory and semaphores for synchronizing access to shared Laser\+Scan and Odometry data between processes. It creates or opens the shared memory and semaphores, initializing them as needed.
+
+
+\begin{DoxyParams}{Parameters}
+{\em laser\+Semaphore} & Reference to a pointer for the Laser\+Scan semaphore. \\
+\hline
+{\em odometry\+Semaphore} & Reference to a pointer for the Odometry semaphore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated and initialized shared memory structure.
+\end{DoxyReturn}
+The function uses {\ttfamily shm\+\_\+open} to create or open shared memory and maps it into the process address space. Semaphores are created or opened with initial values of {\ttfamily 1} to allow for mutual exclusion during data access.
+
+\begin{DoxyNote}{Note}
+The shared memory and semaphores must be cleaned up using {\ttfamily Cleanup\+Shared\+Memory} to prevent resource leaks. 
+\end{DoxyNote}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{SharedMemory_8cpp_ad7050c40a17e3f7b3bc99144847de7b8}\label{SharedMemory_8cpp_ad7050c40a17e3f7b3bc99144847de7b8}} 
+\index{SharedMemory.cpp@{SharedMemory.cpp}!LASER\_SEM\_NAME@{LASER\_SEM\_NAME}}
+\index{LASER\_SEM\_NAME@{LASER\_SEM\_NAME}!SharedMemory.cpp@{SharedMemory.cpp}}
+\doxysubsubsection{\texorpdfstring{LASER\_SEM\_NAME}{LASER\_SEM\_NAME}}
+{\footnotesize\ttfamily \#define LASER\+\_\+\+SEM\+\_\+\+NAME~\char`\"{}/laser\+Sem\char`\"{}}
+
+
+
+Name for the semaphore used to synchronize Laser\+Scan data. 
+
+\mbox{\Hypertarget{SharedMemory_8cpp_abdee599c749c813ffb20413aee1df788}\label{SharedMemory_8cpp_abdee599c749c813ffb20413aee1df788}} 
+\index{SharedMemory.cpp@{SharedMemory.cpp}!ODOM\_SEM\_NAME@{ODOM\_SEM\_NAME}}
+\index{ODOM\_SEM\_NAME@{ODOM\_SEM\_NAME}!SharedMemory.cpp@{SharedMemory.cpp}}
+\doxysubsubsection{\texorpdfstring{ODOM\_SEM\_NAME}{ODOM\_SEM\_NAME}}
+{\footnotesize\ttfamily \#define ODOM\+\_\+\+SEM\+\_\+\+NAME~\char`\"{}/odom\+Sem\char`\"{}}
+
+
+
+Name for the semaphore used to synchronize Odometry data. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{SharedMemory_8cpp_a1ccfb5d14692a55b8a4697924c268351}\label{SharedMemory_8cpp_a1ccfb5d14692a55b8a4697924c268351}} 
+\index{SharedMemory.cpp@{SharedMemory.cpp}!CleanupSharedMemory@{CleanupSharedMemory}}
+\index{CleanupSharedMemory@{CleanupSharedMemory}!SharedMemory.cpp@{SharedMemory.cpp}}
+\doxysubsubsection{\texorpdfstring{CleanupSharedMemory()}{CleanupSharedMemory()}}
+{\footnotesize\ttfamily void Cleanup\+Shared\+Memory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$}]{shared,  }\item[{sem\+\_\+t $\ast$}]{laser\+Semaphore,  }\item[{sem\+\_\+t $\ast$}]{odometry\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Cleans up shared memory and semaphores. 
+
+This function unmaps and unlinks the shared memory and closes and unlinks the semaphores created or used during the program execution.
+
+
+\begin{DoxyParams}{Parameters}
+{\em shared} & Pointer to the shared memory structure to be cleaned up. \\
+\hline
+{\em laser\+Semaphore} & Pointer to the semaphore for Laser\+Scan data synchronization. \\
+\hline
+{\em odometry\+Semaphore} & Pointer to the semaphore for Odometry data synchronization.\\
+\hline
+\end{DoxyParams}
+The function ensures that all resources allocated for shared memory and semaphores are released properly. This includes unmapping the memory, unlinking the shared memory file, and closing and unlinking the semaphores. \mbox{\Hypertarget{SharedMemory_8cpp_aa24f4bdd8cee7b6681e136286e5bf641}\label{SharedMemory_8cpp_aa24f4bdd8cee7b6681e136286e5bf641}} 
+\index{SharedMemory.cpp@{SharedMemory.cpp}!InitializeSharedMemory@{InitializeSharedMemory}}
+\index{InitializeSharedMemory@{InitializeSharedMemory}!SharedMemory.cpp@{SharedMemory.cpp}}
+\doxysubsubsection{\texorpdfstring{InitializeSharedMemory()}{InitializeSharedMemory()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSharedData}{Shared\+Data}}$\ast$ Initialize\+Shared\+Memory (\begin{DoxyParamCaption}\item[{sem\+\_\+t $\ast$\&}]{laser\+Semaphore,  }\item[{sem\+\_\+t $\ast$\&}]{odometry\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Initializes shared memory and semaphores. 
+
+This function allocates memory for the shared data structure and initializes semaphores for synchronizing access to Laser\+Scan and Odometry data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em laser\+Semaphore} & Reference to a pointer for the Laser\+Scan semaphore. \\
+\hline
+{\em odometry\+Semaphore} & Reference to a pointer for the Odometry semaphore. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the allocated and initialized shared data structure.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned shared memory must be cleaned up with {\ttfamily Cleanup\+Shared\+Memory} to prevent memory leaks and ensure semaphore destruction. 
+\end{DoxyNote}

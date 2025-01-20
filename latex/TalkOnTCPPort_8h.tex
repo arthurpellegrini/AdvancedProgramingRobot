@@ -1,46 +1,48 @@
-\hypertarget{TalkOnTCPPort_8h}{}\doxysection{include/\+Talk\+On\+T\+C\+P\+Port.h File Reference}
+\hypertarget{TalkOnTCPPort_8h}{}\doxysection{include/\+Talk\+On\+TCPPort.h File Reference}
 \label{TalkOnTCPPort_8h}\index{include/TalkOnTCPPort.h@{include/TalkOnTCPPort.h}}
 
 
-Provides functionality to send movement commands to the Turtle\+Bot via a T\+CP socket.  
+Provides functionality to send movement commands to the Turtle\+Bot via a TCP socket.  
 
 
 {\ttfamily \#include $<$string$>$}\newline
-Include dependency graph for Talk\+On\+T\+C\+P\+Port.\+h\+:\nopagebreak
+Include dependency graph for Talk\+On\+TCPPort.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=215pt]{TalkOnTCPPort_8h__incl}
 \end{center}
 \end{figure}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{TalkOnTCPPort_8h_ad72d0865e1082d68eb3c9269824e1d55}{start\+Talk\+On\+T\+C\+P\+Port}} (int socket, float linear\+\_\+x, float angular\+\_\+z)
-\begin{DoxyCompactList}\small\item\em Sends a movement command to the Turtle\+Bot via a T\+CP socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \mbox{\hyperlink{TalkOnTCPPort_8h_ad72d0865e1082d68eb3c9269824e1d55}{start\+Talk\+On\+TCPPort}} (int socket, float linear\+\_\+x, float angular\+\_\+z)
+\begin{DoxyCompactList}\small\item\em Sends a movement command to the Turtle\+Bot via a TCP socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Provides functionality to send movement commands to the Turtle\+Bot via a T\+CP socket. 
+Provides functionality to send movement commands to the Turtle\+Bot via a TCP socket. 
 
-This header defines a function for communicating movement commands to the Turtle\+Bot over a T\+CP connection. The function allows control of linear and angular velocities. 
+This header defines a function for communicating movement commands to the Turtle\+Bot over a TCP connection. The function allows control of linear and angular velocities. 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{TalkOnTCPPort_8h_ad72d0865e1082d68eb3c9269824e1d55}\label{TalkOnTCPPort_8h_ad72d0865e1082d68eb3c9269824e1d55}} 
 \index{TalkOnTCPPort.h@{TalkOnTCPPort.h}!startTalkOnTCPPort@{startTalkOnTCPPort}}
 \index{startTalkOnTCPPort@{startTalkOnTCPPort}!TalkOnTCPPort.h@{TalkOnTCPPort.h}}
 \doxysubsubsection{\texorpdfstring{startTalkOnTCPPort()}{startTalkOnTCPPort()}}
-{\footnotesize\ttfamily void start\+Talk\+On\+T\+C\+P\+Port (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{float}]{linear\+\_\+x,  }\item[{float}]{angular\+\_\+z }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void start\+Talk\+On\+TCPPort (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{float}]{linear\+\_\+x,  }\item[{float}]{angular\+\_\+z }\end{DoxyParamCaption})}
 
 
 
-Sends a movement command to the Turtle\+Bot via a T\+CP socket. 
+Sends a movement command to the Turtle\+Bot via a TCP socket. 
 
 This function constructs a movement command with the specified linear and angular velocities and sends it to the Turtle\+Bot through the provided socket.
 
 
 \begin{DoxyParams}{Parameters}
-{\em socket} & The socket descriptor for the T\+CP connection. \\
+{\em socket} & The socket descriptor for the TCP connection. \\
 \hline
 {\em linear\+\_\+x} & The linear velocity for the Turtle\+Bot (in meters per second). \\
 \hline
@@ -50,23 +52,4 @@ This function constructs a movement command with the specified linear and angula
 \begin{DoxyNote}{Note}
 Ensure that the socket is connected to the Turtle\+Bot\textquotesingle{}s command server before calling this function.
 \end{DoxyNote}
-This function sends the command in a predefined format that the Turtle\+Bot\textquotesingle{}s command server can interpret. The exact format of the command should match the protocol expected by the Turtle\+Bot.
-
-Sends a movement command to the Turtle\+Bot via a T\+CP socket.
-
-This function constructs a movement command in a predefined format and sends it to the Turtle\+Bot using the specified socket connection.
-
-
-\begin{DoxyParams}{Parameters}
-{\em socket} & The socket descriptor for the T\+CP connection. \\
-\hline
-{\em linear\+\_\+x} & The linear velocity for the Turtle\+Bot (in meters per second). \\
-\hline
-{\em angular\+\_\+z} & The angular velocity for the Turtle\+Bot (in radians per second).\\
-\hline
-\end{DoxyParams}
-
-\begin{DoxyExceptions}{Exceptions}
-{\em std\+::runtime\+\_\+error} & If the {\ttfamily send} operation fails. \\
-\hline
-\end{DoxyExceptions}
+This function sends the command in a predefined format that the Turtle\+Bot\textquotesingle{}s command server can interpret. The exact format of the command should match the protocol expected by the Turtle\+Bot. 

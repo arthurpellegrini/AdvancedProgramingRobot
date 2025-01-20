@@ -12,6 +12,8 @@
 #define BUFFER_SIZE 1024
 
 /**
+ * @file CommanderHandler.h
+ * 
  * @brief Connects to the Commander server.
  * 
  * Establishes a connection to the server handling Commander commands

@@ -1,12 +1,12 @@
-\hypertarget{ListenOnTCPPort_8h}{}\doxysection{include/\+Listen\+On\+T\+C\+P\+Port.h File Reference}
+\hypertarget{ListenOnTCPPort_8h}{}\doxysection{include/\+Listen\+On\+TCPPort.h File Reference}
 \label{ListenOnTCPPort_8h}\index{include/ListenOnTCPPort.h@{include/ListenOnTCPPort.h}}
 
 
-Provides functionality to listen on a T\+CP port and process incoming connections.  
+Provides functionality to listen on a TCP port and process incoming connections.  
 
 
 {\ttfamily \#include $<$iomanip$>$}\newline
-Include dependency graph for Listen\+On\+T\+C\+P\+Port.\+h\+:\nopagebreak
+Include dependency graph for Listen\+On\+TCPPort.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -23,27 +23,27 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{ListenOnTCPPort_8h_ab4cc5768cb138e6f6e843f21a4be6d9c}{listen\+On\+T\+C\+P\+Port}} (int port)
-\begin{DoxyCompactList}\small\item\em Listens on a specified T\+CP port and processes incoming connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
+int \mbox{\hyperlink{ListenOnTCPPort_8h_ab4cc5768cb138e6f6e843f21a4be6d9c}{listen\+On\+TCPPort}} (int port)
+\begin{DoxyCompactList}\small\item\em Listens on a specified TCP port and processes incoming connections. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Provides functionality to listen on a T\+CP port and process incoming connections. 
+Provides functionality to listen on a TCP port and process incoming connections. 
 
-This header defines the function for setting up a T\+CP server socket to accept and handle incoming client connections. It displays received data for debugging or monitoring purposes. 
+This header defines the function for setting up a TCP server socket to accept and handle incoming client connections. It displays received data for debugging or monitoring purposes. 
 
 \doxysubsection{Function Documentation}
 \mbox{\Hypertarget{ListenOnTCPPort_8h_ab4cc5768cb138e6f6e843f21a4be6d9c}\label{ListenOnTCPPort_8h_ab4cc5768cb138e6f6e843f21a4be6d9c}} 
 \index{ListenOnTCPPort.h@{ListenOnTCPPort.h}!listenOnTCPPort@{listenOnTCPPort}}
 \index{listenOnTCPPort@{listenOnTCPPort}!ListenOnTCPPort.h@{ListenOnTCPPort.h}}
 \doxysubsubsection{\texorpdfstring{listenOnTCPPort()}{listenOnTCPPort()}}
-{\footnotesize\ttfamily int listen\+On\+T\+C\+P\+Port (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int listen\+On\+TCPPort (\begin{DoxyParamCaption}\item[{int}]{port }\end{DoxyParamCaption})}
 
 
 
-Listens on a specified T\+CP port and processes incoming connections. 
+Listens on a specified TCP port and processes incoming connections. 
 
-This function initializes a server socket, binds it to the specified port, and listens for incoming T\+CP connections. When a client connects, the function receives data from the client and displays it on the console.
+This function initializes a server socket, binds it to the specified port, and listens for incoming TCP connections. When a client connects, the function receives data from the client and displays it on the console.
 
 
 \begin{DoxyParams}{Parameters}
@@ -58,4 +58,4 @@ Ensure that the specified port is available and not blocked by a firewall.
 
 This function is blocking and will run indefinitely unless an error occurs or terminated manually.
 \end{DoxyNote}
-The function is designed for debugging and demonstration purposes, providing a simple way to test T\+CP client-\/server communication. It can be extended for more complex use cases like processing received data or handling multiple clients. 
+The function is designed for debugging and demonstration purposes, providing a simple way to test TCP client-\/server communication. It can be extended for more complex use cases like processing received data or handling multiple clients. 

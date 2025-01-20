@@ -1,0 +1,15 @@
+digraph "include/ConnectToServer.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="include/ConnectToServer.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Provides a function to establish a connection to a server."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="src/main.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$main_8cpp.html",tooltip="Main program to connect to a server and handle LaserScan, Odometry, and Commander data."];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="src/TalkOnTCPPort.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$TalkOnTCPPort_8cpp.html",tooltip="Sends a movement command to the TurtleBot via TCP."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="src/ListenOnTCPPort.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ListenOnTCPPort_8cpp.html",tooltip="Implementation of TCP listening and data processing."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="src/ConnectToServer.cpp",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$ConnectToServer_8cpp.html",tooltip="Implementation of the function to establish a connection to a server on a specific port."];
+}

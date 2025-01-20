@@ -9,6 +9,8 @@
 #define BUFFER_SIZE 1024 ///< Buffer size for TCP communication
 
 /**
+ * @file CommanderHandler.cpp
+ * 
  * @brief Connects to the Commander server.
  * 
  * Establishes a TCP connection to the Commander server using the specified

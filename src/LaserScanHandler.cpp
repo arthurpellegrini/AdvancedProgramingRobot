@@ -9,6 +9,8 @@
 #include "SharedMemory.h"
 
 /**
+ * @file LaserScan.Handler.cpp
+ * 
  * @brief Receives and processes LaserScan data from a TCP socket.
  * 
  * This function continuously receives LaserScan data from the specified socket, processes it,

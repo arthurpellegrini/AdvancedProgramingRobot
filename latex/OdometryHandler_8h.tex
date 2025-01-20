@@ -23,17 +23,12 @@ Include dependency graph for Odometry\+Handler.\+h\+:\nopagebreak
 \includegraphics[width=350pt]{OdometryHandler_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=231pt]{OdometryHandler_8h__dep__incl}
-\end{center}
-\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{OdometryHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~1024
+\#define \mbox{\hyperlink{OdometryHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1024
 \begin{DoxyCompactList}\small\item\em Defines the buffer size for receiving Odometry data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -52,7 +47,7 @@ This header defines functions and constants used for processing Odometry data re
 \index{OdometryHandler.h@{OdometryHandler.h}!BUFFER\_SIZE@{BUFFER\_SIZE}}
 \index{BUFFER\_SIZE@{BUFFER\_SIZE}!OdometryHandler.h@{OdometryHandler.h}}
 \doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
-{\footnotesize\ttfamily \#define B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~1024}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~1024}
 
 
 
@@ -85,23 +80,4 @@ This function continuously receives Odometry data from the given socket, process
 \begin{DoxyNote}{Note}
 Ensure that the socket is connected to the correct server and port before calling this function.
 \end{DoxyNote}
-The function operates in a loop, reading incoming data from the server, adding timestamps, and writing the data to shared memory. It is designed to run as part of a multi-\/threaded system where thread safety is managed via semaphores.
-
-Receives and saves Odometry data from a socket.
-
-This function continuously receives Odometry data from the specified socket, processes it, and saves filtered J\+S\+ON data to a file. The data is also written into shared memory for inter-\/process communication. The function ensures thread safety using semaphores.
-
-
-\begin{DoxyParams}{Parameters}
-{\em sock} & The socket descriptor used to receive data. \\
-\hline
-{\em shared} & Pointer to the shared memory structure for storing Odometry data. \\
-\hline
-{\em odometry\+Semaphore} & Pointer to the semaphore for synchronizing shared memory access.\\
-\hline
-\end{DoxyParams}
-The received data is expected to be in a custom format, starting with {\ttfamily -\/-\/-\/S\+T\+A\+R\+T-\/-\/-\/} and ending with {\ttfamily \+\_\+\+\_\+\+\_\+\+E\+N\+D\+\_\+\+\_\+\+\_\+}. The content between these markers is parsed as J\+S\+ON. Relevant fields such as {\ttfamily pose} (including {\ttfamily position} and {\ttfamily orientation}) are extracted, written to a J\+S\+ON file, and stored in shared memory.
-
-\begin{DoxyNote}{Note}
-Ensure that the specified socket is connected to the correct server before calling this function. The directory {\ttfamily ./tmp} is created to store the output file {\ttfamily odometry\+\_\+data.\+json}. 
-\end{DoxyNote}
+The function operates in a loop, reading incoming data from the server, adding timestamps, and writing the data to shared memory. It is designed to run as part of a multi-\/threaded system where thread safety is managed via semaphores. 

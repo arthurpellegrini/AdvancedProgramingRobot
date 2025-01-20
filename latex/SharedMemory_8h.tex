@@ -13,13 +13,8 @@ Include dependency graph for Shared\+Memory.\+h\+:\nopagebreak
 \includegraphics[width=217pt]{SharedMemory_8h__incl}
 \end{center}
 \end{figure}
-This graph shows which files directly or indirectly include this file\+:\nopagebreak
-\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[width=350pt]{SharedMemory_8h__dep__incl}
-\end{center}
-\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
 \doxysubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
@@ -95,24 +90,5 @@ This function allocates memory for the shared data structure and initializes sem
 Pointer to the allocated and initialized shared data structure.
 \end{DoxyReturn}
 \begin{DoxyNote}{Note}
-The returned shared memory must be cleaned up with {\ttfamily Cleanup\+Shared\+Memory} to prevent memory leaks and ensure semaphore destruction.
-\end{DoxyNote}
-Initializes shared memory and semaphores.
-
-This function sets up shared memory and semaphores for synchronizing access to shared Laser\+Scan and Odometry data between processes. It creates or opens the shared memory and semaphores, initializing them as needed.
-
-
-\begin{DoxyParams}{Parameters}
-{\em laser\+Semaphore} & Reference to a pointer for the Laser\+Scan semaphore. \\
-\hline
-{\em odometry\+Semaphore} & Reference to a pointer for the Odometry semaphore. \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-Pointer to the allocated and initialized shared memory structure.
-\end{DoxyReturn}
-The function uses {\ttfamily shm\+\_\+open} to create or open shared memory and maps it into the process address space. Semaphores are created or opened with initial values of {\ttfamily 1} to allow for mutual exclusion during data access.
-
-\begin{DoxyNote}{Note}
-The shared memory and semaphores must be cleaned up using {\ttfamily Cleanup\+Shared\+Memory} to prevent resource leaks. 
+The returned shared memory must be cleaned up with {\ttfamily Cleanup\+Shared\+Memory} to prevent memory leaks and ensure semaphore destruction. 
 \end{DoxyNote}

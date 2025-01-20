@@ -9,6 +9,8 @@
 #define ODOM_SEM_NAME  "/odomSem" ///< Name for the semaphore used to synchronize Odometry data
 
 /**
+ * @file SharedMemory.cpp
+ * 
  * @brief Initializes shared memory and semaphores for inter-process communication.
  * 
  * This function sets up shared memory and semaphores for synchronizing access
