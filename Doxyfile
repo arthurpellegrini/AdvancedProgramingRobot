@@ -829,7 +829,7 @@ WARN_LOGFILE           =
 # spaces. See also FILE_PATTERNS and EXTENSION_MAPPING
 # Note: If this tag is empty the current directory is searched.
 
-INPUT                  = src/main.cpp src/OdometryHandler.cpp src/SharedMemory.cpp src/TalkOnTCPPort.cpp src/ListenOnTCPPort.cpp src/LaserScanHandler.cpp src/ConnectToServer.cpp src/CommanderHandler.cpp include/CommanderHandler.h include/ConnectToServer.h include/LaserScanHandler.h include/ListenOnTCPPort.h include/OdometryHandler.h include/SharedMemory.h include/TalkOnTCPPort.h 
+INPUT                  = html/mainpage.md src/main.cpp src/OdometryHandler.cpp src/SharedMemory.cpp src/TalkOnTCPPort.cpp src/ListenOnTCPPort.cpp src/LaserScanHandler.cpp src/ConnectToServer.cpp src/CommanderHandler.cpp include/CommanderHandler.h include/ConnectToServer.h include/LaserScanHandler.h include/ListenOnTCPPort.h include/OdometryHandler.h include/SharedMemory.h include/TalkOnTCPPort.h 
 
 
 
@@ -1028,7 +1028,7 @@ FILTER_SOURCE_PATTERNS =
 # (index.html). This can be useful if you have a project on for instance GitHub
 # and want to reuse the introduction page also for the doxygen output.
 
-USE_MDFILE_AS_MAINPAGE =
+USE_MDFILE_AS_MAINPAGE = html/mainpage.md
 
 #---------------------------------------------------------------------------
 # Configuration options related to source browsing
