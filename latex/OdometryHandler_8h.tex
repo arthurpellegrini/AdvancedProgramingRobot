@@ -1,0 +1,83 @@
+\hypertarget{OdometryHandler_8h}{}\doxysection{include/\+Odometry\+Handler.h File Reference}
+\label{OdometryHandler_8h}\index{include/OdometryHandler.h@{include/OdometryHandler.h}}
+
+
+Handles the reception and storage of Odometry data.  
+
+
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$semaphore.\+h$>$}\newline
+Include dependency graph for Odometry\+Handler.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{OdometryHandler_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{OdometryHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1024
+\begin{DoxyCompactList}\small\item\em Defines the buffer size for receiving Odometry data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{OdometryHandler_8h_a559c819c76b76622cdd0304543c8e6e8}{Receive\+And\+Save\+Odometry\+Data}} (int sock, \mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$shared, sem\+\_\+t $\ast$odometry\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Receives and saves Odometry data from a socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles the reception and storage of Odometry data. 
+
+This header defines functions and constants used for processing Odometry data received from a server. The data is synchronized using semaphores and stored in shared memory for further use. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{OdometryHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}\label{OdometryHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{OdometryHandler.h@{OdometryHandler.h}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!OdometryHandler.h@{OdometryHandler.h}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~1024}
+
+
+
+Defines the buffer size for receiving Odometry data. 
+
+This constant is used to allocate memory for receiving data packets transmitted from the server. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{OdometryHandler_8h_a559c819c76b76622cdd0304543c8e6e8}\label{OdometryHandler_8h_a559c819c76b76622cdd0304543c8e6e8}} 
+\index{OdometryHandler.h@{OdometryHandler.h}!ReceiveAndSaveOdometryData@{ReceiveAndSaveOdometryData}}
+\index{ReceiveAndSaveOdometryData@{ReceiveAndSaveOdometryData}!OdometryHandler.h@{OdometryHandler.h}}
+\doxysubsubsection{\texorpdfstring{ReceiveAndSaveOdometryData()}{ReceiveAndSaveOdometryData()}}
+{\footnotesize\ttfamily void Receive\+And\+Save\+Odometry\+Data (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$}]{shared,  }\item[{sem\+\_\+t $\ast$}]{odometry\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Receives and saves Odometry data from a socket. 
+
+This function continuously receives Odometry data from the given socket, processes it, and stores it in shared memory. Synchronization is ensured through the provided semaphore, allowing safe concurrent access to shared resources.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor used to receive Odometry data. \\
+\hline
+{\em shared} & Pointer to the shared memory structure where Odometry data will be stored. \\
+\hline
+{\em odometry\+Semaphore} & Pointer to the semaphore used for synchronizing access to shared memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Ensure that the socket is connected to the correct server and port before calling this function.
+\end{DoxyNote}
+The function operates in a loop, reading incoming data from the server, adding timestamps, and writing the data to shared memory. It is designed to run as part of a multi-\/threaded system where thread safety is managed via semaphores. 

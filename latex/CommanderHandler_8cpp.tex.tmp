@@ -1,0 +1,303 @@
+\hypertarget{CommanderHandler_8cpp}{}\doxysection{src/\+Commander\+Handler.cpp File Reference}
+\label{CommanderHandler_8cpp}\index{src/CommanderHandler.cpp@{src/CommanderHandler.cpp}}
+
+
+Connects to the Commander server.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
+{\ttfamily \#include $<$cstring$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+Include dependency graph for Commander\+Handler.\+cpp\+:
+% FIG 0
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{CommanderHandler_8cpp_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1024
+\begin{DoxyCompactList}\small\item\em Buffer size for TCP communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{CommanderHandler_8cpp_a38ba2228846c78841d06c2fa5d3975f2}\label{CommanderHandler_8cpp_a38ba2228846c78841d06c2fa5d3975f2}} 
+int {\bfseries Connect\+To\+Commander\+Server} (const char $\ast$server\+IP, int port)
+\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a7947abd8a398ff0f2452b83ee2110895}{Send\+Movement\+Command}} (int sock, float linear, float angular)
+\begin{DoxyCompactList}\small\item\em Sends a movement command to the robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a1ce5ab04ce41dc571c2eaf34a295af90}{Move\+Forward}} (int sock)
+\begin{DoxyCompactList}\small\item\em Moves the robot forward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_afeea8af6d3ee5278aff8b08fb1a5b14a}{Move\+Backward}} (int sock)
+\begin{DoxyCompactList}\small\item\em Moves the robot backward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a6556ef1b5b1312515dfdb495c3290d17}{Move\+Left}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot to the left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a3ce8fe0a91a1e00c570f1efa3f919435}{Move\+Right}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot to the right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_aee6c5d89c2601dd9fd2ea00f403824e7}{Stop\+Robot}} (int sock)
+\begin{DoxyCompactList}\small\item\em Stops the robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_ac3cddda148ab42b47a1a2d55a1542398}{Rotate\+Left90}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot 90 degrees to the left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a7294f6dfb70074b4583270bdcb419e6a}{Rotate\+Right90}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot 90 degrees to the right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a603c3fba448673b7bb86cc2da3b3b1d5}{Rotate180}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot 180 degrees. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a76d526a34213d5784dc4f6e7831be3af}{Set\+Terminal\+Raw\+Mode}} (termios \&original\+Termios)
+\begin{DoxyCompactList}\small\item\em Sets the terminal to raw mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_ac2d56473474506830956c87841ccc073}{Restore\+Terminal\+Mode}} (const termios \&original\+Termios)
+\begin{DoxyCompactList}\small\item\em Restores the terminal settings. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_aa31844fa4652f06ba2f225b4bed3f8e8}{Commander\+Handler}} (int sock)
+\begin{DoxyCompactList}\small\item\em Handles interactive robot movement commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Connects to the Commander server. 
+
+Establishes a TCP connection to the Commander server using the specified IP address and port.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+IP} & The IP address of the server. \\
+\hline
+{\em port} & The port number to connect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The socket descriptor for the connection.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exits} & the program if the connection fails. \\
+\hline
+\end{DoxyExceptions}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a6b20d41d6252e9871430c242cb1a56e7}\label{CommanderHandler_8cpp_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~1024}
+
+
+
+Buffer size for TCP communication. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{CommanderHandler_8cpp_aa31844fa4652f06ba2f225b4bed3f8e8}\label{CommanderHandler_8cpp_aa31844fa4652f06ba2f225b4bed3f8e8}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!CommanderHandler@{CommanderHandler}}
+\index{CommanderHandler@{CommanderHandler}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{CommanderHandler()}{CommanderHandler()}}
+{\footnotesize\ttfamily void Commander\+Handler (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Handles interactive robot movement commands. 
+
+Handles robot movement commands interactively.
+
+Allows the user to control the robot via keyboard input. Supported commands\+:
+\begin{DoxyItemize}
+\item Arrow keys\+: Move forward, backward, left, or right.
+\item \textquotesingle{}s\textquotesingle{}\+: Stop the robot.
+\item \textquotesingle{}l\textquotesingle{}\+: Rotate 90 degrees left.
+\item \textquotesingle{}r\textquotesingle{}\+: Rotate 90 degrees right.
+\item \textquotesingle{}t\textquotesingle{}\+: Rotate 180 degrees.
+\item \textquotesingle{}q\textquotesingle{}\+: Quit the Commander.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_afeea8af6d3ee5278aff8b08fb1a5b14a}\label{CommanderHandler_8cpp_afeea8af6d3ee5278aff8b08fb1a5b14a}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveBackward@{MoveBackward}}
+\index{MoveBackward@{MoveBackward}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveBackward()}{MoveBackward()}}
+{\footnotesize\ttfamily void Move\+Backward (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Moves the robot backward. 
+
+Commands the robot to move backward.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a1ce5ab04ce41dc571c2eaf34a295af90}\label{CommanderHandler_8cpp_a1ce5ab04ce41dc571c2eaf34a295af90}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveForward@{MoveForward}}
+\index{MoveForward@{MoveForward}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveForward()}{MoveForward()}}
+{\footnotesize\ttfamily void Move\+Forward (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Moves the robot forward. 
+
+Commands the robot to move forward.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a6556ef1b5b1312515dfdb495c3290d17}\label{CommanderHandler_8cpp_a6556ef1b5b1312515dfdb495c3290d17}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveLeft@{MoveLeft}}
+\index{MoveLeft@{MoveLeft}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveLeft()}{MoveLeft()}}
+{\footnotesize\ttfamily void Move\+Left (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot to the left. 
+
+Commands the robot to turn left.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a3ce8fe0a91a1e00c570f1efa3f919435}\label{CommanderHandler_8cpp_a3ce8fe0a91a1e00c570f1efa3f919435}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveRight@{MoveRight}}
+\index{MoveRight@{MoveRight}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveRight()}{MoveRight()}}
+{\footnotesize\ttfamily void Move\+Right (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot to the right. 
+
+Commands the robot to turn right.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_ac2d56473474506830956c87841ccc073}\label{CommanderHandler_8cpp_ac2d56473474506830956c87841ccc073}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!RestoreTerminalMode@{RestoreTerminalMode}}
+\index{RestoreTerminalMode@{RestoreTerminalMode}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{RestoreTerminalMode()}{RestoreTerminalMode()}}
+{\footnotesize\ttfamily void Restore\+Terminal\+Mode (\begin{DoxyParamCaption}\item[{const termios \&}]{original\+Termios }\end{DoxyParamCaption})}
+
+
+
+Restores the terminal settings. 
+
+Restores the terminal to its original mode.
+
+Resets the terminal to its original state using the provided termios structure.
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Termios} & The original terminal settings to restore. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a603c3fba448673b7bb86cc2da3b3b1d5}\label{CommanderHandler_8cpp_a603c3fba448673b7bb86cc2da3b3b1d5}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!Rotate180@{Rotate180}}
+\index{Rotate180@{Rotate180}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{Rotate180()}{Rotate180()}}
+{\footnotesize\ttfamily void Rotate180 (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot 180 degrees. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_ac3cddda148ab42b47a1a2d55a1542398}\label{CommanderHandler_8cpp_ac3cddda148ab42b47a1a2d55a1542398}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!RotateLeft90@{RotateLeft90}}
+\index{RotateLeft90@{RotateLeft90}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{RotateLeft90()}{RotateLeft90()}}
+{\footnotesize\ttfamily void Rotate\+Left90 (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot 90 degrees to the left. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a7294f6dfb70074b4583270bdcb419e6a}\label{CommanderHandler_8cpp_a7294f6dfb70074b4583270bdcb419e6a}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!RotateRight90@{RotateRight90}}
+\index{RotateRight90@{RotateRight90}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{RotateRight90()}{RotateRight90()}}
+{\footnotesize\ttfamily void Rotate\+Right90 (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot 90 degrees to the right. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a7947abd8a398ff0f2452b83ee2110895}\label{CommanderHandler_8cpp_a7947abd8a398ff0f2452b83ee2110895}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!SendMovementCommand@{SendMovementCommand}}
+\index{SendMovementCommand@{SendMovementCommand}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{SendMovementCommand()}{SendMovementCommand()}}
+{\footnotesize\ttfamily void Send\+Movement\+Command (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{float}]{linear,  }\item[{float}]{angular }\end{DoxyParamCaption})}
+
+
+
+Sends a movement command to the robot. 
+
+Constructs a command string with the specified linear and angular velocities and sends it over the specified socket.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+{\em linear} & The linear velocity (in meters per second). \\
+\hline
+{\em angular} & The angular velocity (in radians per second). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a76d526a34213d5784dc4f6e7831be3af}\label{CommanderHandler_8cpp_a76d526a34213d5784dc4f6e7831be3af}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!SetTerminalRawMode@{SetTerminalRawMode}}
+\index{SetTerminalRawMode@{SetTerminalRawMode}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{SetTerminalRawMode()}{SetTerminalRawMode()}}
+{\footnotesize\ttfamily void Set\+Terminal\+Raw\+Mode (\begin{DoxyParamCaption}\item[{termios \&}]{original\+Termios }\end{DoxyParamCaption})}
+
+
+
+Sets the terminal to raw mode. 
+
+Configures the terminal for raw input mode, disabling canonical mode and echo, allowing direct keypress capture.
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Termios} & A reference to store the original terminal settings. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_aee6c5d89c2601dd9fd2ea00f403824e7}\label{CommanderHandler_8cpp_aee6c5d89c2601dd9fd2ea00f403824e7}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!StopRobot@{StopRobot}}
+\index{StopRobot@{StopRobot}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{StopRobot()}{StopRobot()}}
+{\footnotesize\ttfamily void Stop\+Robot (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Stops the robot. 
+
+Commands the robot to stop.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the connection. \\
+\hline
+\end{DoxyParams}

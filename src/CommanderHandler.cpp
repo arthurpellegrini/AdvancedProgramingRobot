@@ -1,14 +1,21 @@
-#include <iostream>
-#include <termios.h>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <cstring>
-#include <string>
-#include <sstream>
+#include "CommanderHandler.h"
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 1024 ///< Buffer size for TCP communication
 
-// Function to connect to the server
+/**
+ * @file CommanderHandler.cpp
+ * 
+ * @brief Connects to the Commander server.
+ * 
+ * Establishes a TCP connection to the Commander server using the specified
+ * IP address and port.
+ * 
+ * @param serverIP The IP address of the server.
+ * @param port The port number to connect to.
+ * @return The socket descriptor for the connection.
+ * 
+ * @throws Exits the program if the connection fails.
+ */
 int ConnectToCommanderServer(const char *serverIP, int port) {
     int sock = socket(AF_INET, SOCK_STREAM, 0);
     if (sock < 0) {
@@ -33,7 +40,16 @@ int ConnectToCommanderServer(const char *serverIP, int port) {
     return sock;
 }
 
-// Function to send movement commands
+/**
+ * @brief Sends a movement command to the robot.
+ * 
+ * Constructs a command string with the specified linear and angular velocities
+ * and sends it over the specified socket.
+ * 
+ * @param sock The socket descriptor for the connection.
+ * @param linear The linear velocity (in meters per second).
+ * @param angular The angular velocity (in radians per second).
+ */
 void SendMovementCommand(int sock, float linear, float angular) {
     std::ostringstream oss;
     oss << "---START---{";
@@ -49,52 +65,109 @@ void SendMovementCommand(int sock, float linear, float angular) {
     }
 }
 
-// Movement functions
+// Movement commands
+/**
+ * @brief Moves the robot forward.
+ * @param sock The socket descriptor for the connection.
+ */
 void MoveForward(int sock) {
     SendMovementCommand(sock, 0.1, 0.0);
 }
 
+/**
+ * @brief Moves the robot backward.
+ * @param sock The socket descriptor for the connection.
+ */
 void MoveBackward(int sock) {
     SendMovementCommand(sock, -0.1, 0.0);
 }
 
+/**
+ * @brief Rotates the robot to the left.
+ * @param sock The socket descriptor for the connection.
+ */
 void MoveLeft(int sock) {
     SendMovementCommand(sock, 0.0, 0.5);
 }
 
+/**
+ * @brief Rotates the robot to the right.
+ * @param sock The socket descriptor for the connection.
+ */
 void MoveRight(int sock) {
     SendMovementCommand(sock, 0.0, -0.5);
 }
 
+/**
+ * @brief Stops the robot.
+ * @param sock The socket descriptor for the connection.
+ */
 void StopRobot(int sock) {
     SendMovementCommand(sock, 0.0, 0.0);
 }
 
+/**
+ * @brief Rotates the robot 90 degrees to the left.
+ * @param sock The socket descriptor for the connection.
+ */
 void RotateLeft90(int sock) {
     SendMovementCommand(sock, 0.0, 1.57); // Approx. 90 degrees in radians
 }
 
+/**
+ * @brief Rotates the robot 90 degrees to the right.
+ * @param sock The socket descriptor for the connection.
+ */
 void RotateRight90(int sock) {
     SendMovementCommand(sock, 0.0, -1.57); // Approx. -90 degrees in radians
 }
 
+/**
+ * @brief Rotates the robot 180 degrees.
+ * @param sock The socket descriptor for the connection.
+ */
 void Rotate180(int sock) {
     SendMovementCommand(sock, 0.0, 3.14); // Approx. 180 degrees in radians
 }
 
-// Function to set terminal to raw mode
+/**
+ * @brief Sets the terminal to raw mode.
+ * 
+ * Configures the terminal for raw input mode, disabling canonical mode
+ * and echo, allowing direct keypress capture.
+ * 
+ * @param originalTermios A reference to store the original terminal settings.
+ */
 void SetTerminalRawMode(termios &originalTermios) {
     termios raw = originalTermios;
     raw.c_lflag &= ~(ICANON | ECHO); // Disable canonical mode and echo
     tcsetattr(STDIN_FILENO, TCSANOW, &raw);
 }
 
-// Function to restore terminal settings
+/**
+ * @brief Restores the terminal settings.
+ * 
+ * Resets the terminal to its original state using the provided termios structure.
+ * 
+ * @param originalTermios The original terminal settings to restore.
+ */
 void RestoreTerminalMode(const termios &originalTermios) {
     tcsetattr(STDIN_FILENO, TCSANOW, &originalTermios);
 }
 
-// Function to handle robot movement commands interactively
+/**
+ * @brief Handles interactive robot movement commands.
+ * 
+ * Allows the user to control the robot via keyboard input. Supported commands:
+ * - Arrow keys: Move forward, backward, left, or right.
+ * - 's': Stop the robot.
+ * - 'l': Rotate 90 degrees left.
+ * - 'r': Rotate 90 degrees right.
+ * - 't': Rotate 180 degrees.
+ * - 'q': Quit the Commander.
+ * 
+ * @param sock The socket descriptor for the connection.
+ */
 void CommanderHandler(int sock) {
     termios originalTermios;
     tcgetattr(STDIN_FILENO, &originalTermios); // Get current terminal settings

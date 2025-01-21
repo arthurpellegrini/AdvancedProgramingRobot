@@ -1,0 +1,4 @@
+<map id="include/LaserScanHandler.h" name="include/LaserScanHandler.h">
+<area shape="rect" id="node1" title="Handles the reception and storage of LaserScan data." alt="" coords="5,5,208,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title="Main program to connect to a server and handle LaserScan, Odometry, and Commander data." alt="" coords="54,80,159,107"/>
+</map>

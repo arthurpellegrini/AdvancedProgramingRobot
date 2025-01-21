@@ -108,3 +108,9 @@ We have to use this command format:
 ```
     ---START---{"linear": 0.1, "angular": 0.5}___END___
 ```
+
+## Doxygen
+
+```
+sudo apt install doxygen
+```

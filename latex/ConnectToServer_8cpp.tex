@@ -1,0 +1,58 @@
+\hypertarget{ConnectToServer_8cpp}{}\doxysection{src/\+Connect\+To\+Server.cpp File Reference}
+\label{ConnectToServer_8cpp}\index{src/ConnectToServer.cpp@{src/ConnectToServer.cpp}}
+
+
+Implementation of the function to establish a connection to a server on a specific port.  
+
+
+{\ttfamily \#include \char`\"{}Connect\+To\+Server.\+h\char`\"{}}\newline
+Include dependency graph for Connect\+To\+Server.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ConnectToServer_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{ConnectToServer_8cpp_aafd37dae32223d3e79613c754d304d47}{Connect\+To\+Server}} (const char $\ast$server\+IP, unsigned short port)
+\begin{DoxyCompactList}\small\item\em Connects to the server on a specific port. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the function to establish a connection to a server on a specific port. 
+
+This file contains the implementation of the {\ttfamily Connect\+To\+Server} function, which sets up a TCP connection to a server using the provided IP address and port number. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ConnectToServer_8cpp_aafd37dae32223d3e79613c754d304d47}\label{ConnectToServer_8cpp_aafd37dae32223d3e79613c754d304d47}} 
+\index{ConnectToServer.cpp@{ConnectToServer.cpp}!ConnectToServer@{ConnectToServer}}
+\index{ConnectToServer@{ConnectToServer}!ConnectToServer.cpp@{ConnectToServer.cpp}}
+\doxysubsubsection{\texorpdfstring{ConnectToServer()}{ConnectToServer()}}
+{\footnotesize\ttfamily int Connect\+To\+Server (\begin{DoxyParamCaption}\item[{const char $\ast$}]{server\+IP,  }\item[{unsigned short}]{port }\end{DoxyParamCaption})}
+
+
+
+Connects to the server on a specific port. 
+
+Connects to a server on a specific port.
+
+This function creates a TCP socket, initializes the server address structure, and attempts to connect to the server. If any step fails, the program will terminate with an error message.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+IP} & The IP address of the server to connect to. \\
+\hline
+{\em port} & The port number to connect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The socket descriptor for the established connection.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Exits} & the program with an error message if socket creation, server address initialization, or connection fails.\\
+\hline
+\end{DoxyExceptions}
+The function first creates a socket using {\ttfamily socket()}, then sets up the server address structure with the provided IP address and port number. Finally, it connects to the server using {\ttfamily connect()}. On success, it returns the socket descriptor. 

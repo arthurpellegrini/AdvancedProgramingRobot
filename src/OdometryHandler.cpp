@@ -1,13 +1,29 @@
 #include "OdometryHandler.h"
-#include <jsoncpp/json/json.h>
-#include <fstream>
-#include <sstream>
-#include <ctime>
-#include <iostream>
-#include <string>
-#include <cstdlib> // For system()
+#include "SharedMemory.h"
 
-void ReceiveAndSaveOdometryData(int sock) {
+/**
+ * @file OdometryHandler.cpp
+ * 
+ * @brief Receives and processes Odometry data from a TCP socket.
+ * 
+ * This function continuously receives Odometry data from the specified socket,
+ * processes it, and saves filtered JSON data to a file. The data is also written 
+ * into shared memory for inter-process communication. The function ensures thread 
+ * safety using semaphores.
+ * 
+ * @param sock The socket descriptor used to receive data.
+ * @param shared Pointer to the shared memory structure for storing Odometry data.
+ * @param odometrySemaphore Pointer to the semaphore for synchronizing shared memory access.
+ * 
+ * @details The received data is expected to be in a custom format, starting with `---START---` 
+ * and ending with `___END___`. The content between these markers is parsed as JSON. Relevant 
+ * fields such as `pose` (including `position` and `orientation`) are extracted, written to a 
+ * JSON file, and stored in shared memory.
+ * 
+ * @note Ensure that the specified socket is connected to the correct server before calling this 
+ * function. The directory `./tmp` is created to store the output file `odometry_data.json`.
+ */
+void ReceiveAndSaveOdometryData(int sock, SharedData* shared, sem_t* odometrySemaphore) {
     // Get the current time
     std::time_t now = std::time(nullptr);
     std::tm *localTime = std::localtime(&now);
@@ -15,7 +31,7 @@ void ReceiveAndSaveOdometryData(int sock) {
     std::strftime(dateTime, sizeof(dateTime), "%Y-%m-%d_%H-%M", localTime); // Format as "YYYY-MM-DD_HH-MM"
 
     // Ensure the directory exists
-    std::string directoryPath = "./data_test/odometry";
+    std::string directoryPath = "./tmp";
     std::string command = "mkdir -p " + directoryPath;
     if (system(command.c_str()) != 0) {
         perror("Failed to create directory");
@@ -23,17 +39,7 @@ void ReceiveAndSaveOdometryData(int sock) {
     }
 
     // Construct the filename
-    std::string filename = directoryPath + "/odom_" + dateTime + ".json";
-
-    // Open the file for writing
-    std::ofstream odometryFile(filename, std::ios::app);
-    if (!odometryFile) {
-        perror(("Failed to open " + filename + " for writing").c_str());
-        exit(1);
-    } else {
-        std::cout << "[DEBUG] File " << filename << " successfully opened." << std::endl;
-        odometryFile << "[" << std::endl;
-    }
+    std::string filename = directoryPath + "/odometry_data.json";
 
     char buffer[BUFFER_SIZE];
     ssize_t bytesReceived;
@@ -59,25 +65,44 @@ void ReceiveAndSaveOdometryData(int sock) {
             std::string rawData = dataStream.str();
             size_t start = rawData.find("---START---") + 11; // Skip "---START---"
             size_t end = rawData.find("___END___");
-            if (start != std::string::npos && end != std::string::npos) {
+            if (start != std::string::npos && end != std::string::npos && start < end) {
                 std::string jsonData = rawData.substr(start, end - start);
 
                 // Parse the JSON
                 Json::Value odometryData;
                 Json::CharReaderBuilder readerBuilder;
                 std::string errors;
-
                 std::istringstream jsonStream(jsonData);
-                std::cout << "[Odometry]";
+
                 if (Json::parseFromStream(readerBuilder, jsonStream, &odometryData, &errors)) {
-                    // std::cout << "[DEBUG] Parsed JSON data:\n" << odometryData.toStyledString() << std::endl;
+                    Json::Value filteredData;
+                    if (odometryData.isMember("pose") && odometryData["pose"].isMember("pose")) {
+                        const Json::Value& pose = odometryData["pose"]["pose"];
+                        if (pose.isMember("position")) {
+                            filteredData["pose"]["pose"]["position"] = pose["position"];
+                        }
+                        if (pose.isMember("orientation")) {
+                            filteredData["pose"]["pose"]["orientation"] = pose["orientation"];
+                        }
+                    }
 
-                    // Write the parsed JSON to file
-                    Json::StreamWriterBuilder writerBuilder;
-                    writerBuilder["indentation"] = "    "; // Pretty-print with 4 spaces
-                    odometryFile << Json::writeString(writerBuilder, odometryData) << ", " << std::endl;
+                    std::ofstream odometryFile(filename, std::ios::trunc); // Overwrite the file
+                    if (odometryFile) {
+                        Json::StreamWriterBuilder writerBuilder;
+                        writerBuilder["indentation"] = "    ";
+                        odometryFile << Json::writeString(writerBuilder, filteredData) << std::endl;
+                        odometryFile.close();
+                        std::cout << "[DEBUG] JSON data written to file." << std::endl;
+                    } else {
+                        std::cerr << "[ERROR] Failed to open " << filename << " for writing." << std::endl;
+                    }
 
-                    std::cout << "[DEBUG] JSON data written to file." << std::endl;
+                    if (!jsonData.empty()) {
+                        sem_wait(odometrySemaphore);
+                        strncpy(shared->odometryData, jsonData.c_str(), sizeof(shared->odometryData) - 1);
+                        shared->odometryData[sizeof(shared->odometryData) - 1] = '\0';
+                        sem_post(odometrySemaphore);
+                    }
                 } else {
                     std::cerr << "[ERROR] Failed to parse JSON: " << errors << std::endl;
                 }
@@ -92,8 +117,4 @@ void ReceiveAndSaveOdometryData(int sock) {
     } else {
         std::cout << "[DEBUG] Connection closed by client." << std::endl;
     }
-
-    // Close the file
-    odometryFile.close();
-    std::cout << "[DEBUG] File " << filename << " closed." << std::endl;
 }

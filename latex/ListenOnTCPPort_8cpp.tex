@@ -1,0 +1,96 @@
+\hypertarget{ListenOnTCPPort_8cpp}{}\doxysection{src/\+Listen\+On\+TCPPort.cpp File Reference}
+\label{ListenOnTCPPort_8cpp}\index{src/ListenOnTCPPort.cpp@{src/ListenOnTCPPort.cpp}}
+
+
+Implementation of TCP listening and data processing.  
+
+
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include \char`\"{}Listen\+On\+TCPPort.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Connect\+To\+Server.\+h\char`\"{}}\newline
+Include dependency graph for Listen\+On\+TCPPort.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ListenOnTCPPort_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ListenOnTCPPort_8cpp_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1024
+\begin{DoxyCompactList}\small\item\em Buffer size for TCP communication. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ListenOnTCPPort_8cpp_ab29d96d4365c5dded6006de6ab447357}{startlisten\+On\+TCPPort}} (int sock)
+\begin{DoxyCompactList}\small\item\em Listens on a TCP socket and processes incoming data. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{ListenOnTCPPort_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Main function to demonstrate TCP listening. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of TCP listening and data processing. 
+
+This file contains the implementation of the {\ttfamily startlisten\+On\+TCPPort} function for receiving and printing data from a TCP connection, along with a simple {\ttfamily main} function to demonstrate its usage. 
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{ListenOnTCPPort_8cpp_a6b20d41d6252e9871430c242cb1a56e7}\label{ListenOnTCPPort_8cpp_a6b20d41d6252e9871430c242cb1a56e7}} 
+\index{ListenOnTCPPort.cpp@{ListenOnTCPPort.cpp}!BUFFER\_SIZE@{BUFFER\_SIZE}}
+\index{BUFFER\_SIZE@{BUFFER\_SIZE}!ListenOnTCPPort.cpp@{ListenOnTCPPort.cpp}}
+\doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
+{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~1024}
+
+
+
+Buffer size for TCP communication. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ListenOnTCPPort_8cpp_a0ddf1224851353fc92bfbff6f499fa97}\label{ListenOnTCPPort_8cpp_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{ListenOnTCPPort.cpp@{ListenOnTCPPort.cpp}!main@{main}}
+\index{main@{main}!ListenOnTCPPort.cpp@{ListenOnTCPPort.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Main function to demonstrate TCP listening. 
+
+This program connects to a TCP server using the provided IP address and port, starts a thread to listen for incoming data, and prints the received data with timestamps.
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & The number of command-\/line arguments. \\
+\hline
+{\em argv} & The command-\/line arguments. Expects the server IP and port as arguments. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns 0 on successful execution, or 1 on invalid usage.
+\end{DoxyReturn}
+@usage Example\+: {\ttfamily ./\+Listen\+On\+TCPPort $<$IP$>$ $<$PORT$>$}
+
+The {\ttfamily main} function establishes a connection to the server using {\ttfamily Connect\+To\+Server} and starts a thread to run the {\ttfamily startlisten\+On\+TCPPort} function. The program waits for the thread to complete before exiting. \mbox{\Hypertarget{ListenOnTCPPort_8cpp_ab29d96d4365c5dded6006de6ab447357}\label{ListenOnTCPPort_8cpp_ab29d96d4365c5dded6006de6ab447357}} 
+\index{ListenOnTCPPort.cpp@{ListenOnTCPPort.cpp}!startlistenOnTCPPort@{startlistenOnTCPPort}}
+\index{startlistenOnTCPPort@{startlistenOnTCPPort}!ListenOnTCPPort.cpp@{ListenOnTCPPort.cpp}}
+\doxysubsubsection{\texorpdfstring{startlistenOnTCPPort()}{startlistenOnTCPPort()}}
+{\footnotesize\ttfamily void startlisten\+On\+TCPPort (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Listens on a TCP socket and processes incoming data. 
+
+This function continuously receives data from the specified socket and prints it to the console with a timestamp. It also removes trailing newline characters for clean output.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the TCP connection.\\
+\hline
+\end{DoxyParams}
+The function reads data from the socket in a loop, processing each received message. The data is timestamped with the current local time and displayed on the console. If an error occurs during {\ttfamily recv()}, the function terminates the program.
+
+\begin{DoxyNote}{Note}
+Ensure that the socket is properly connected before calling this function. The function is designed to run in a separate thread for non-\/blocking operation. 
+\end{DoxyNote}

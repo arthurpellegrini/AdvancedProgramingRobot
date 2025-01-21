@@ -1,0 +1,72 @@
+\hypertarget{OdometryHandler_8cpp}{}\doxysection{src/\+Odometry\+Handler.cpp File Reference}
+\label{OdometryHandler_8cpp}\index{src/OdometryHandler.cpp@{src/OdometryHandler.cpp}}
+
+
+Receives and processes Odometry data from a TCP socket.  
+
+
+{\ttfamily \#include \char`\"{}Odometry\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$jsoncpp/json/json.\+h$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
+Include dependency graph for Odometry\+Handler.\+cpp\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{OdometryHandler_8cpp_a559c819c76b76622cdd0304543c8e6e8}{Receive\+And\+Save\+Odometry\+Data}} (int sock, \mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$shared, sem\+\_\+t $\ast$odometry\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Receives and saves Odometry data from a socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Receives and processes Odometry data from a TCP socket. 
+
+This function continuously receives Odometry data from the specified socket, processes it, and saves filtered JSON data to a file. The data is also written into shared memory for inter-\/process communication. The function ensures thread safety using semaphores.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor used to receive data. \\
+\hline
+{\em shared} & Pointer to the shared memory structure for storing Odometry data. \\
+\hline
+{\em odometry\+Semaphore} & Pointer to the semaphore for synchronizing shared memory access.\\
+\hline
+\end{DoxyParams}
+The received data is expected to be in a custom format, starting with {\ttfamily -\/-\/-\/START-\/-\/-\/} and ending with {\ttfamily \+\_\+\+\_\+\+\_\+\+END\+\_\+\+\_\+\+\_\+}. The content between these markers is parsed as JSON. Relevant fields such as {\ttfamily pose} (including {\ttfamily position} and {\ttfamily orientation}) are extracted, written to a JSON file, and stored in shared memory.
+
+\begin{DoxyNote}{Note}
+Ensure that the specified socket is connected to the correct server before calling this function. The directory {\ttfamily ./tmp} is created to store the output file {\ttfamily odometry\+\_\+data.\+json}. 
+\end{DoxyNote}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{OdometryHandler_8cpp_a559c819c76b76622cdd0304543c8e6e8}\label{OdometryHandler_8cpp_a559c819c76b76622cdd0304543c8e6e8}} 
+\index{OdometryHandler.cpp@{OdometryHandler.cpp}!ReceiveAndSaveOdometryData@{ReceiveAndSaveOdometryData}}
+\index{ReceiveAndSaveOdometryData@{ReceiveAndSaveOdometryData}!OdometryHandler.cpp@{OdometryHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{ReceiveAndSaveOdometryData()}{ReceiveAndSaveOdometryData()}}
+{\footnotesize\ttfamily void Receive\+And\+Save\+Odometry\+Data (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$}]{shared,  }\item[{sem\+\_\+t $\ast$}]{odometry\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Receives and saves Odometry data from a socket. 
+
+This function continuously receives Odometry data from the given socket, processes it, and stores it in shared memory. Synchronization is ensured through the provided semaphore, allowing safe concurrent access to shared resources.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor used to receive Odometry data. \\
+\hline
+{\em shared} & Pointer to the shared memory structure where Odometry data will be stored. \\
+\hline
+{\em odometry\+Semaphore} & Pointer to the semaphore used for synchronizing access to shared memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Ensure that the socket is connected to the correct server and port before calling this function.
+\end{DoxyNote}
+The function operates in a loop, reading incoming data from the server, adding timestamps, and writing the data to shared memory. It is designed to run as part of a multi-\/threaded system where thread safety is managed via semaphores. 
