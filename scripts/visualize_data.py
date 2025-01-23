@@ -52,14 +52,17 @@ def visualize_data(laser_scan_points, odometry_poses):
     plt.legend()
     plt.show()
 
-if __name__ == "__main__":
-    laser_scan_filepath = '../tmp/laser_data.json'
-    odometry_filepath = '../tmp/odometry_data.json'
+if __name__ == "__main__": 
+    cwd = os.getcwd()
+    print(cwd)
+    laser_scan_filepath = './tmp/laser_data.json'
+    odometry_filepath = './tmp/odometry_data.json'
 
     laser_scan_data = load_json_file(laser_scan_filepath)
     odometry_data = load_json_file(odometry_filepath)
 
     if laser_scan_data and odometry_data:
+        print(laser_scan_data,odometry_data)
         laser_scan_points = extract_laser_scan_points(laser_scan_data)
         odometry_poses = extract_odometry_poses(odometry_data)
 

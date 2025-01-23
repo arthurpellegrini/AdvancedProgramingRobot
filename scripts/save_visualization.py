@@ -53,12 +53,12 @@ def visualize_data(laser_scan_points, odometry_pose, output_filepath):
     plt.close()
 
 if __name__ == "__main__":
-    laser_scan_filepath = '../tmp/laser_data.json'
-    odometry_filepath = '../tmp/odometry_data.json'
+    laser_scan_filepath = './tmp/laser_data.json'
+    odometry_filepath = './tmp/odometry_data.json'
     
     # Get current timestamp
     timestamp = datetime.now().strftime("%Y-%m-%d-%H%M")
-    output_filepath = f'../tmp/{timestamp}_Visualization.png'
+    output_filepath = f'./tmp/{timestamp}_Visualization.png'
 
     laser_scan_data = load_json_file(laser_scan_filepath)
     odometry_data = load_json_file(odometry_filepath)
