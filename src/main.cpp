@@ -8,6 +8,10 @@
 #include "CommanderHandler.h"
 #include "SharedMemory.h"
 #include "VisualizeDataHandler.h"
+#include "CommanderHandler.h"
+
+bool stopControl = false;  // Define stopControl globally
+
 
 /**
  * @file main.cpp
@@ -33,6 +37,7 @@ int main(int argc, char *argv[]) {
         std::cerr << "Usage: " << argv[0] << " <Server IP>" << std::endl;
         exit(1);
     }
+    
 
     const char *serverIP = argv[1];
 

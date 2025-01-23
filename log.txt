@@ -1,0 +1,922 @@
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] Connection closed by client.
+[DEBUG] Connection closed by client.
+nifa@ubuntu:~/git/advanced-programing-robot$ make clean all
+rm -rf ./build
+mkdir -p build
+mkdir -p build/client_server_communication
+mkdir -p build/processes_threads
+mkdir -p build/shared_memory
+g++ -Wall -Iinclude -pthread src/main.cpp src/ConnectToServer.cpp src/LaserScanHandler.cpp src/OdometryHandler.cpp src/CommanderHandler.cpp src/SharedMemory.cpp src/VisualizeDataHandler.cpp -o build/Main -ljsoncpp -pthread -lrt
+g++ -Wall -Iinclude -pthread -ljsoncpp -pthread -lrt src/TalkOnTCPPort.cpp src/ConnectToServer.cpp -o build/TalkOnTCPPort
+g++ -Wall -Iinclude -pthread -ljsoncpp -pthread -lrt src/ListenOnTCPPort.cpp src/ConnectToServer.cpp -o build/ListenOnTCPPort
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoClient.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/TCPEchoClient
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c -o build/client_server_communication/TCPEchoServer
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Fork.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-Fork
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Fork-SIGCHLD.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-Fork-SIGCHLD
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-ForkN.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-ForkN
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Select.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-Select
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Thread.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -ljsoncpp -pthread -lrt -o build/client_server_communication/TCPEchoServer-Thread
+gcc -Wall -Iinclude -pthread examples/client_server_communication/BroadcastReceiver.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/BroadcastReceiver
+gcc -Wall -Iinclude -pthread examples/client_server_communication/BroadcastSender.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/BroadcastSender
+gcc -Wall -Iinclude -pthread examples/client_server_communication/UDPEchoClient.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/UDPEchoClient
+gcc -Wall -Iinclude -pthread examples/client_server_communication/UDPEchoServer.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/UDPEchoServer
+gcc -Wall -Iinclude -pthread examples/processes_threads/pthread1.c -ljsoncpp -pthread -lrt -o build/processes_threads/pthread1
+gcc -Wall -Iinclude -pthread examples/processes_threads/race_demo.c -ljsoncpp -pthread -lrt -o build/processes_threads/race_demo
+gcc -Wall -Iinclude -pthread examples/processes_threads/mutex1.c -ljsoncpp -pthread -lrt -o build/processes_threads/mutex1
+gcc -Wall -Iinclude -pthread examples/processes_threads/join1.c -ljsoncpp -pthread -lrt -o build/processes_threads/join1
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem1.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem1
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem2_1.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem2_1
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem2_2.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem2_2
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem3.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem3
+gcc -Wall -Iinclude -pthread examples/processes_threads/semabinit.c -ljsoncpp -pthread -lrt -o build/processes_threads/semabinit
+gcc -Wall -Iinclude -pthread examples/processes_threads/sema.c -ljsoncpp -pthread -lrt -o build/processes_threads/sema
+gcc -Wall -Iinclude -pthread examples/processes_threads/semb.c -ljsoncpp -pthread -lrt -o build/processes_threads/semb
+gcc -Wall -Iinclude -pthread examples/shared_memory/thrd-posix.c -ljsoncpp -pthread -lrt -o build/shared_memory/thrd-posix
+gcc -Wall -Iinclude -pthread examples/shared_memory/fork_exec.c -o build/shared_memory/fork_exec
+gcc -Wall -Iinclude -pthread examples/shared_memory/newproc-posix.c -o build/shared_memory/newproc-posix
+g++ -Wall -Iinclude -pthread examples/shared_memory/shm-prod-cons.cpp -o build/shared_memory/shm-prod-cons
+g++ -Wall -Iinclude -pthread examples/shared_memory/shm-sem-prod-cons.cpp -o build/shared_memory/shm-sem-prod-cons
+g++ -Wall -Iinclude -pthread examples/shared_memory/msgq-prod-cons.cpp -o build/shared_memory/msgq-prod-cons
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+connect() failed: Connection refused
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+connect() failed: Connection refused
+nifa@ubuntu:~/git/advanced-programing-robot$ make clean all
+rm -rf ./build
+mkdir -p build
+mkdir -p build/client_server_communication
+mkdir -p build/processes_threads
+mkdir -p build/shared_memory
+g++ -Wall -Iinclude -pthread src/main.cpp src/ConnectToServer.cpp src/LaserScanHandler.cpp src/OdometryHandler.cpp src/CommanderHandler.cpp src/SharedMemory.cpp src/VisualizeDataHandler.cpp -o build/Main -ljsoncpp -pthread -lrt
+g++ -Wall -Iinclude -pthread -ljsoncpp -pthread -lrt src/TalkOnTCPPort.cpp src/ConnectToServer.cpp -o build/TalkOnTCPPort
+g++ -Wall -Iinclude -pthread -ljsoncpp -pthread -lrt src/ListenOnTCPPort.cpp src/ConnectToServer.cpp -o build/ListenOnTCPPort
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoClient.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/TCPEchoClient
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c -o build/client_server_communication/TCPEchoServer
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Fork.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-Fork
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Fork-SIGCHLD.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-Fork-SIGCHLD
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-ForkN.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-ForkN
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Select.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -o build/client_server_communication/TCPEchoServer-Select
+gcc -Wall -Iinclude -pthread examples/client_server_communication/TCPEchoServer-Thread.c examples/client_server_communication/DieWithError.c examples/client_server_communication/HandleTCPClient.c examples/client_server_communication/AcceptTCPConnection.c examples/client_server_communication/CreateTCPServerSocket.c -ljsoncpp -pthread -lrt -o build/client_server_communication/TCPEchoServer-Thread
+gcc -Wall -Iinclude -pthread examples/client_server_communication/BroadcastReceiver.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/BroadcastReceiver
+gcc -Wall -Iinclude -pthread examples/client_server_communication/BroadcastSender.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/BroadcastSender
+gcc -Wall -Iinclude -pthread examples/client_server_communication/UDPEchoClient.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/UDPEchoClient
+gcc -Wall -Iinclude -pthread examples/client_server_communication/UDPEchoServer.c examples/client_server_communication/DieWithError.c -o build/client_server_communication/UDPEchoServer
+gcc -Wall -Iinclude -pthread examples/processes_threads/pthread1.c -ljsoncpp -pthread -lrt -o build/processes_threads/pthread1
+gcc -Wall -Iinclude -pthread examples/processes_threads/race_demo.c -ljsoncpp -pthread -lrt -o build/processes_threads/race_demo
+gcc -Wall -Iinclude -pthread examples/processes_threads/mutex1.c -ljsoncpp -pthread -lrt -o build/processes_threads/mutex1
+gcc -Wall -Iinclude -pthread examples/processes_threads/join1.c -ljsoncpp -pthread -lrt -o build/processes_threads/join1
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem1.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem1
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem2_1.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem2_1
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem2_2.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem2_2
+gcc -Wall -Iinclude -pthread examples/processes_threads/sem3.c -ljsoncpp -pthread -lrt -o build/processes_threads/sem3
+gcc -Wall -Iinclude -pthread examples/processes_threads/semabinit.c -ljsoncpp -pthread -lrt -o build/processes_threads/semabinit
+gcc -Wall -Iinclude -pthread examples/processes_threads/sema.c -ljsoncpp -pthread -lrt -o build/processes_threads/sema
+gcc -Wall -Iinclude -pthread examples/processes_threads/semb.c -ljsoncpp -pthread -lrt -o build/processes_threads/semb
+gcc -Wall -Iinclude -pthread examples/shared_memory/thrd-posix.c -ljsoncpp -pthread -lrt -o build/shared_memory/thrd-posix
+gcc -Wall -Iinclude -pthread examples/shared_memory/fork_exec.c -o build/shared_memory/fork_exec
+gcc -Wall -Iinclude -pthread examples/shared_memory/newproc-posix.c -o build/shared_memory/newproc-posix
+g++ -Wall -Iinclude -pthread examples/shared_memory/shm-prod-cons.cpp -o build/shared_memory/shm-prod-cons
+g++ -Wall -Iinclude -pthread examples/shared_memory/shm-sem-prod-cons.cpp -o build/shared_memory/shm-sem-prod-cons
+g++ -Wall -Iinclude -pthread examples/shared_memory/msgq-prod-cons.cpp -o build/shared_memory/msgq-prod-cons
+nifa@ubuntu:~/git/advanced-programing-robot$ ping 192.168.100.51
+PING 192.168.100.51 (192.168.100.51) 56(84) bytes of data.
+From 0.250.250.1 icmp_seq=6 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=7 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=8 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=9 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=10 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=11 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=12 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=13 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=14 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=15 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=16 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=17 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=18 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=19 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=20 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=21 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=22 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=23 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=24 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=30 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=31 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=32 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=33 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=34 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=35 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=36 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=37 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=38 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=39 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=40 Destination Host Unreachable
+From 0.250.250.1 icmp_seq=41 Destination Host Unreachable
+64 bytes from 192.168.100.51: icmp_seq=1 ttl=63 time=41961 ms
+64 bytes from 192.168.100.51: icmp_seq=2 ttl=63 time=40902 ms
+64 bytes from 192.168.100.51: icmp_seq=3 ttl=63 time=39876 ms
+64 bytes from 192.168.100.51: icmp_seq=4 ttl=63 time=38854 ms
+64 bytes from 192.168.100.51: icmp_seq=5 ttl=63 time=37825 ms
+64 bytes from 192.168.100.51: icmp_seq=25 ttl=63 time=17349 ms
+64 bytes from 192.168.100.51: icmp_seq=26 ttl=63 time=16327 ms
+64 bytes from 192.168.100.51: icmp_seq=27 ttl=63 time=15299 ms
+64 bytes from 192.168.100.51: icmp_seq=28 ttl=63 time=14275 ms
+64 bytes from 192.168.100.51: icmp_seq=29 ttl=63 time=13251 ms
+64 bytes from 192.168.100.51: icmp_seq=42 ttl=63 time=5.42 ms
+64 bytes from 192.168.100.51: icmp_seq=43 ttl=63 time=9.90 ms
+^C
+--- 192.168.100.51 ping statistics ---
+43 packets transmitted, 12 received, +31 errors, 72.093% packet loss, time 42988ms
+rtt min/avg/max/mdev = 5.423/22994.576/41961.349/15275.677 ms, pipe 41
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+connect() failed: Connection refused
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+connect() failed: Connection refused
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+connect() failed: Connection refused
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+connect() failed: Connection refused
+nifa@ubuntu:~/git/advanced-programing-robot$ ./build/Main 192.168.100.51
+Connected to server on port 9997
+Connected to server on port 9998
+Connected to server on port 9999
+[INFO] Use arrow keys to move, 's' to stop, 'l' for linear control, 'q' to quit.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+Enter target X: Enter target Y: [DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+Enter target X: Enter target Y: [DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+Enter target X: Enter target Y: [DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[ERROR] Malformed data, could not find valid JSON.
+[ERROR] Malformed data, could not find valid JSON.
+[DEBUG] JSON data written to file.
+[DEBUG] JSON data written to file.
+[DEBUG] Connection closed by client.
+[DEBUG] Connection closed by client.

@@ -12,6 +12,9 @@
 #include "SharedMemory.h"
 #include <semaphore.h>
 
+extern bool stopControl;  // Declare it for use in other files
+
+
 #define BUFFER_SIZE 1024
 
 /**
