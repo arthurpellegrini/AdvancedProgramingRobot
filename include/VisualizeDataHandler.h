@@ -3,6 +3,12 @@
 
 #define BUFFER_SIZE 1024
 
+#include <fstream>
+#include <iostream>
+#include <thread>
+#include <chrono>
+#include <cstdlib> // For system()
+
 
 void VisualizeDataHandler();
 

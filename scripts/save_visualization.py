@@ -2,7 +2,7 @@ import json
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-import time
+from datetime import datetime
 
 def load_json_file(filepath):
     with open(filepath, 'r') as file:
@@ -30,37 +30,40 @@ def extract_odometry_pose(odometry_data):
     theta = odometry_data.get("pose", {}).get("pose", {}).get("orientation", {}).get("z", 0)  # Assuming theta is stored in z
     return [(x, y, theta)]
 
-def visualize_data():
-    plt.ion()  # Enable interactive mode
-    fig, ax = plt.subplots(figsize=(10, 5))
+def visualize_data(laser_scan_points, odometry_pose, output_filepath):
+    plt.figure(figsize=(10, 5))
 
-    laser_scan_filepath = './tmp/laser_data.json'
-    odometry_filepath = './tmp/odometry_data.json'
+    # Plot LaserScan points
+    if laser_scan_points:
+        laser_scan_points = pd.DataFrame(laser_scan_points, columns=['x', 'y'])
+        plt.scatter(laser_scan_points['x'], laser_scan_points['y'], s=1, label='LaserScan Points')
 
-    while True:
-        plt.cla()  # Clear previous frame
+    # Plot Odometry pose
+    if odometry_pose:
+        odometry_pose = pd.DataFrame(odometry_pose, columns=['x', 'y', 'theta'])
+        plt.scatter(odometry_pose['x'], odometry_pose['y'], color='red', label='Odometry Pose', marker='x')
 
-        laser_scan_data = load_json_file(laser_scan_filepath)
-        odometry_data = load_json_file(odometry_filepath)
-    
-        if laser_scan_data and odometry_data:
-            laser_scan_points = extract_laser_scan_points(laser_scan_data)
-            odometry_pose = extract_odometry_pose(odometry_data)
+    plt.xlabel('X')
+    plt.ylabel('Y')
+    plt.title('LaserScan and Odometry Data')
+    plt.legend()
 
-            if laser_scan_points:
-                laser_scan_points_df = pd.DataFrame(laser_scan_points, columns=['x', 'y'])
-                ax.scatter(laser_scan_points_df['x'], laser_scan_points_df['y'], s=1, label='LaserScan Points')
-
-            if odometry_pose:
-                odometry_pose_df = pd.DataFrame(odometry_pose, columns=['x', 'y', 'theta'])
-                ax.scatter(odometry_pose_df['x'], odometry_pose_df['y'], color='red', label='Odometry Pose', marker='x')
-
-            ax.set_xlabel('X')
-            ax.set_ylabel('Y')
-            ax.set_title('LaserScan and Odometry Data')
-            ax.legend()
-
-        plt.pause(1)  # Pause for 1 second before next update
+    # Save visualization to an image file
+    plt.savefig(output_filepath)
+    plt.close()
 
 if __name__ == "__main__":
-    visualize_data()
+    laser_scan_filepath = './tmp/laser_data.json'
+    odometry_filepath = './tmp/odometry_data.json'
+    
+    # Get current timestamp
+    timestamp = datetime.now().strftime("%Y-%m-%d-%H%M%S")
+    output_filepath = f'./tmp/{timestamp}_Visualization.png'
+
+    laser_scan_data = load_json_file(laser_scan_filepath)
+    odometry_data = load_json_file(odometry_filepath)
+    
+    if laser_scan_data and odometry_data:
+        laser_scan_points = extract_laser_scan_points(laser_scan_data)
+        odometry_pose = extract_odometry_pose(odometry_data)
+        visualize_data(laser_scan_points, odometry_pose, output_filepath)
