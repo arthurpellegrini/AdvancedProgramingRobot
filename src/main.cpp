@@ -7,6 +7,7 @@
 #include "OdometryHandler.h"
 #include "CommanderHandler.h"
 #include "SharedMemory.h"
+#include "VisualizeDataHandler.h"
 
 /**
  * @file main.cpp
@@ -79,19 +80,11 @@ int main(int argc, char *argv[]) {
     /**
      * @brief Debugging thread to print shared memory data every 5 seconds.
      */
-    std::thread debugThread([&]() {
-        while (true) {
-            std::this_thread::sleep_for(std::chrono::seconds(5));
+  
+ 
+    // Thread for visualizing data
+    std::thread visualizationThread(VisualizeDataHandler);
 
-            sem_wait(laserSemaphore);
-            std::cout << "[DEBUG] LaserScan Data: " << sharedMemory->laserScanData << std::endl;
-            sem_post(laserSemaphore);
-
-            sem_wait(odometrySemaphore);
-            std::cout << "[DEBUG] Odometry Data: " << sharedMemory->odometryData << std::endl;
-            sem_post(odometrySemaphore);
-        }
-    });
 
     // Connect to the Commander port (9999)
     /**
@@ -109,7 +102,7 @@ int main(int argc, char *argv[]) {
     // Wait for data handling threads to complete
     laserThread.join();
     odometryThread.join();
-    debugThread.join();
+    //debugThread.join();
 
     // Close the Commander socket
     close(commanderSock);
