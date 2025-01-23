@@ -1,9 +1,4 @@
 #include "VisualizeDataHandler.h"
-#include <fstream>
-#include <iostream>
-#include <thread>
-#include <chrono>
-#include <cstdlib> // For system()
 
 void VisualizeDataHandler() {
             // Call the Python script to visualize the data

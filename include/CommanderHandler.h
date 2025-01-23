@@ -8,6 +8,8 @@
 #include <cstring>
 #include <string>
 #include <sstream>
+#include "SharedMemory.h"
+#include <semaphore.h>
 
 #define BUFFER_SIZE 1024
 
@@ -110,6 +112,6 @@ void RestoreTerminalMode(const termios &originalTermios);
  * 
  * @param sock The socket descriptor for the Commander server connection.
  */
-void CommanderHandler(int sock);
+void CommanderHandler(int sock, SharedData* shared, sem_t* odometrySemaphore);
 
 #endif // COMMANDER_HANDLER_H

@@ -168,7 +168,7 @@ void RestoreTerminalMode(const termios &originalTermios) {
  * 
  * @param sock The socket descriptor for the connection.
  */
-void CommanderHandler(int sock) {
+void CommanderHandler(int sock, SharedData* shared, sem_t* odometrySemaphore) {
     termios originalTermios;
     tcgetattr(STDIN_FILENO, &originalTermios); // Get current terminal settings
 

@@ -97,7 +97,7 @@ int main(int argc, char *argv[]) {
      * 
      * @param commanderSock Socket for receiving Commander commands.
      */
-    CommanderHandler(commanderSock);
+    CommanderHandler(commanderSock, sharedMemory, odometrySemaphore);
 
     // Wait for data handling threads to complete
     laserThread.join();
