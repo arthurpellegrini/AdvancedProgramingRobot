@@ -8,6 +8,7 @@
 #include <cstring>
 #include <string>
 #include <sstream>
+#include <jsoncpp/json/json.h>
 #include "SharedMemory.h"
 #include <semaphore.h>
 

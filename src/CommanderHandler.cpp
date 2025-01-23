@@ -1,4 +1,5 @@
 #include "CommanderHandler.h"
+#include <cmath>
 
 #define BUFFER_SIZE 1024 ///< Buffer size for TCP communication
 
@@ -98,36 +99,85 @@ void MoveRight(int sock) {
     SendMovementCommand(sock, 0.0, -0.5);
 }
 
+void LinearControl(int sock, SharedData* shared, sem_t* odometrySemaphore) {
+    float targetX, targetY;
+
+    // Get target pose
+    std::cout << "Enter target X: ";
+    std::cin >> targetX;
+    std::cout << "Enter target Y: ";
+    std::cin >> targetY;
+
+    // Hyperparameters
+    const float kRho = 0.5f;     // Proportional gain for linear velocity
+    const float kAlpha = 1.0f;   // Proportional gain for angular velocity (angle to goal)
+    const float kBeta = -0.5f;   // Proportional gain for angular velocity (angle to goal)
+
+    while (true) {
+        // Read current odometry data
+        sem_wait(odometrySemaphore);
+        std::string jsonString(shared->odometryData);
+        sem_post(odometrySemaphore);
+
+        Json::Value root;
+        Json::CharReaderBuilder builder;
+        std::string errs;
+        std::istringstream istr(jsonString);
+
+        float currentX = 0.0f, currentY = 0.0f, currentTheta = 0.0f;
+        if (Json::parseFromStream(builder, istr, &root, &errs)) {
+            if (root["pose"].isMember("pose")) {
+                auto pose = root["pose"]["pose"];
+                if (pose["position"].isMember("x") && pose["position"].isMember("y")) {
+                    currentX = pose["position"]["x"].asFloat();
+                    currentY = pose["position"]["y"].asFloat();
+                }
+                if (pose["orientation"].isMember("w") && pose["orientation"].isMember("z")) {
+                    float w = pose["orientation"]["w"].asFloat();
+                    float z = pose["orientation"]["z"].asFloat();
+                    currentTheta = atan2(2.0f * w * z, 1.0f - 2.0f * (z * z));
+                }
+            }
+        }
+
+        // Calculate pose difference
+        float deltaX = targetX - currentX;
+        float deltaY = targetY - currentY;
+
+        // Calculate polar coordinates
+        float rho = sqrt(deltaX * deltaX + deltaY * deltaY);               // Distance to goal
+        float alpha = -currentTheta + atan2(deltaY, deltaX);               // Angle to goal
+        float beta = -currentTheta - alpha;                                // Angle to goal
+
+        // Check if the goal has been reached
+        if (rho < 0.1f) {
+            StopRobot(sock);
+            std::cout << "[INFO] Goal pose reached." << std::endl;
+            break;
+        }
+
+        // Compute motion commands
+        float v = kRho * rho;                              // Linear velocity
+        float omega = kAlpha * alpha + kBeta * beta;       // Angular velocity
+
+        // Send commands to the robot
+        SendMovementCommand(sock, v, omega);
+
+        usleep(100000); // 100ms delay
+    }
+
+    // Stop the robot at the end
+    StopRobot(sock);
+}
+
+
+
 /**
  * @brief Stops the robot.
  * @param sock The socket descriptor for the connection.
  */
 void StopRobot(int sock) {
     SendMovementCommand(sock, 0.0, 0.0);
-}
-
-/**
- * @brief Rotates the robot 90 degrees to the left.
- * @param sock The socket descriptor for the connection.
- */
-void RotateLeft90(int sock) {
-    SendMovementCommand(sock, 0.0, 1.57); // Approx. 90 degrees in radians
-}
-
-/**
- * @brief Rotates the robot 90 degrees to the right.
- * @param sock The socket descriptor for the connection.
- */
-void RotateRight90(int sock) {
-    SendMovementCommand(sock, 0.0, -1.57); // Approx. -90 degrees in radians
-}
-
-/**
- * @brief Rotates the robot 180 degrees.
- * @param sock The socket descriptor for the connection.
- */
-void Rotate180(int sock) {
-    SendMovementCommand(sock, 0.0, 3.14); // Approx. 180 degrees in radians
 }
 
 /**
@@ -174,7 +224,7 @@ void CommanderHandler(int sock, SharedData* shared, sem_t* odometrySemaphore) {
 
     SetTerminalRawMode(originalTermios); // Set terminal to raw mode
 
-    std::cout << "[INFO] Use arrow keys to move the robot. Press 's' to stop, 'l' for 90° left, 'r' for 90° right, 't' for 180° turn, and 'q' to quit." << std::endl;
+    std::cout << "[INFO] Use arrow keys to move the robot. Press 's' to stop, 'l' for linear_control, and 'q' to quit." << std::endl;
 
     char c;
     while (true) {
@@ -196,14 +246,8 @@ void CommanderHandler(int sock, SharedData* shared, sem_t* odometrySemaphore) {
             case 's': // Stop
                 StopRobot(sock);
                 break;
-            case 'l': // Rotate left 90 degrees
-                RotateLeft90(sock);
-                break;
-            case 'r': // Rotate right 90 degrees
-                RotateRight90(sock);
-                break;
-            case 't': // Rotate 180 degrees
-                Rotate180(sock);
+            case 'l': // Linear Control
+                LinearControl(sock, shared, odometrySemaphore);
                 break;
             case 'q': // Quit
                 StopRobot(sock);
@@ -217,3 +261,4 @@ void CommanderHandler(int sock, SharedData* shared, sem_t* odometrySemaphore) {
 
     RestoreTerminalMode(originalTermios); // Restore terminal settings before exiting
 }
+
