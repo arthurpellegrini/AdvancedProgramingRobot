@@ -2,20 +2,18 @@
 \label{OdometryHandler_8cpp}\index{src/OdometryHandler.cpp@{src/OdometryHandler.cpp}}
 
 
-Receives and processes Odometry data from a TCP socket.  
+Receives and processes Odometry data from a T\+CP socket.  
 
 
 {\ttfamily \#include \char`\"{}Odometry\+Handler.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$jsoncpp/json/json.\+h$>$}\newline
-{\ttfamily \#include $<$fstream$>$}\newline
-{\ttfamily \#include $<$sstream$>$}\newline
-{\ttfamily \#include $<$ctime$>$}\newline
-{\ttfamily \#include $<$iostream$>$}\newline
-{\ttfamily \#include $<$string$>$}\newline
-{\ttfamily \#include $<$cstdlib$>$}\newline
 {\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
-Include dependency graph for Odometry\+Handler.\+cpp\+:
-% FIG 0
+Include dependency graph for Odometry\+Handler.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{OdometryHandler_8cpp__incl}
+\end{center}
+\end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -24,9 +22,9 @@ void \mbox{\hyperlink{OdometryHandler_8cpp_a559c819c76b76622cdd0304543c8e6e8}{Re
 
 
 \doxysubsection{Detailed Description}
-Receives and processes Odometry data from a TCP socket. 
+Receives and processes Odometry data from a T\+CP socket. 
 
-This function continuously receives Odometry data from the specified socket, processes it, and saves filtered JSON data to a file. The data is also written into shared memory for inter-\/process communication. The function ensures thread safety using semaphores.
+This function continuously receives Odometry data from the specified socket, processes it, and saves filtered J\+S\+ON data to a file. The data is also written into shared memory for inter-\/process communication. The function ensures thread safety using semaphores.
 
 
 \begin{DoxyParams}{Parameters}
@@ -37,7 +35,7 @@ This function continuously receives Odometry data from the specified socket, pro
 {\em odometry\+Semaphore} & Pointer to the semaphore for synchronizing shared memory access.\\
 \hline
 \end{DoxyParams}
-The received data is expected to be in a custom format, starting with {\ttfamily -\/-\/-\/START-\/-\/-\/} and ending with {\ttfamily \+\_\+\+\_\+\+\_\+\+END\+\_\+\+\_\+\+\_\+}. The content between these markers is parsed as JSON. Relevant fields such as {\ttfamily pose} (including {\ttfamily position} and {\ttfamily orientation}) are extracted, written to a JSON file, and stored in shared memory.
+The received data is expected to be in a custom format, starting with {\ttfamily -\/-\/-\/S\+T\+A\+R\+T-\/-\/-\/} and ending with {\ttfamily \+\_\+\+\_\+\+\_\+\+E\+N\+D\+\_\+\+\_\+\+\_\+}. The content between these markers is parsed as J\+S\+ON. Relevant fields such as {\ttfamily pose} (including {\ttfamily position} and {\ttfamily orientation}) are extracted, written to a J\+S\+ON file, and stored in shared memory.
 
 \begin{DoxyNote}{Note}
 Ensure that the specified socket is connected to the correct server before calling this function. The directory {\ttfamily ./tmp} is created to store the output file {\ttfamily odometry\+\_\+data.\+json}. 

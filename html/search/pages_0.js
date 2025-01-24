@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cyberpunk_20mech_20turtle_3a_20advanced_20robotics_20in_20a_20neon_2ddrenched_20future_87',['Cyberpunk Mech Turtle: Advanced Robotics in a Neon-Drenched Future',['../index.html',1,'']]]
+  ['cyberpunk_20mech_20turtlebot_3a_20advanced_20programming_20for_20robots_91',['Cyberpunk Mech Turtlebot: Advanced Programming for Robots',['../index.html',1,'']]]
 ];

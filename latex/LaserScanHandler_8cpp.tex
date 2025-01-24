@@ -1,0 +1,70 @@
+\hypertarget{LaserScanHandler_8cpp}{}\doxysection{src/\+Laser\+Scan\+Handler.cpp File Reference}
+\label{LaserScanHandler_8cpp}\index{src/LaserScanHandler.cpp@{src/LaserScanHandler.cpp}}
+
+
+Receives and processes Laser\+Scan data from a T\+CP socket.  
+
+
+{\ttfamily \#include \char`\"{}Laser\+Scan\+Handler.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
+Include dependency graph for Laser\+Scan\+Handler.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{LaserScanHandler_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{LaserScanHandler_8cpp_ac147f0f17421af3db18b74cabee55b1d}{Receive\+And\+Save\+Laser\+Scan\+Data}} (int sock, \mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$shared, sem\+\_\+t $\ast$laser\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Receives and saves Laser\+Scan data from a socket. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Receives and processes Laser\+Scan data from a T\+CP socket. 
+
+This function continuously receives Laser\+Scan data from the specified socket, processes it, and saves filtered J\+S\+ON data to a file. The data is also written into shared memory for inter-\/process communication. The function ensures thread safety using semaphores.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor used to receive data. \\
+\hline
+{\em shared} & Pointer to the shared memory structure for storing Laser\+Scan data. \\
+\hline
+{\em laser\+Semaphore} & Pointer to the semaphore for synchronizing shared memory access.\\
+\hline
+\end{DoxyParams}
+The received data is expected to be in a custom format, starting with {\ttfamily -\/-\/-\/S\+T\+A\+R\+T-\/-\/-\/} and ending with {\ttfamily \+\_\+\+\_\+\+\_\+\+E\+N\+D\+\_\+\+\_\+\+\_\+}. The content between these markers is parsed as J\+S\+ON. Relevant fields such as {\ttfamily angle\+\_\+increment} and {\ttfamily ranges} are extracted, written to a J\+S\+ON file, and stored in shared memory.
+
+\begin{DoxyNote}{Note}
+Ensure that the specified socket is connected to the correct server before calling this function. The directory {\ttfamily ./tmp} is created to store the output file {\ttfamily laser\+\_\+data.\+json}. 
+\end{DoxyNote}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{LaserScanHandler_8cpp_ac147f0f17421af3db18b74cabee55b1d}\label{LaserScanHandler_8cpp_ac147f0f17421af3db18b74cabee55b1d}} 
+\index{LaserScanHandler.cpp@{LaserScanHandler.cpp}!ReceiveAndSaveLaserScanData@{ReceiveAndSaveLaserScanData}}
+\index{ReceiveAndSaveLaserScanData@{ReceiveAndSaveLaserScanData}!LaserScanHandler.cpp@{LaserScanHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{ReceiveAndSaveLaserScanData()}{ReceiveAndSaveLaserScanData()}}
+{\footnotesize\ttfamily void Receive\+And\+Save\+Laser\+Scan\+Data (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$}]{shared,  }\item[{sem\+\_\+t $\ast$}]{laser\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Receives and saves Laser\+Scan data from a socket. 
+
+This function handles the reception of Laser\+Scan data from the given socket, processes it, and stores it in shared memory. Synchronization is managed using the provided semaphore to ensure thread safety.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor used to receive data. \\
+\hline
+{\em shared} & Pointer to the shared memory structure where data will be stored. \\
+\hline
+{\em laser\+Semaphore} & Pointer to the semaphore used for synchronizing access to shared memory.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Ensure the socket is connected to the correct server and port before calling this function.
+\end{DoxyNote}
+The function operates in a loop, continuously receiving data and writing it to the shared memory. Each data entry is timestamped for debugging and analysis purposes. 

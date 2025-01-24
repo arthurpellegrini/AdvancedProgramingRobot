@@ -1,40 +1,40 @@
-\hypertarget{TalkOnTCPPort_8cpp}{}\doxysection{src/\+Talk\+On\+TCPPort.cpp File Reference}
+\hypertarget{TalkOnTCPPort_8cpp}{}\doxysection{src/\+Talk\+On\+T\+C\+P\+Port.cpp File Reference}
 \label{TalkOnTCPPort_8cpp}\index{src/TalkOnTCPPort.cpp@{src/TalkOnTCPPort.cpp}}
 
 
-Sends a movement command to the Turtle\+Bot via TCP.  
+Sends a movement command to the Turtle\+Bot via T\+CP.  
 
 
-{\ttfamily \#include $<$iostream$>$}\newline
-{\ttfamily \#include $<$thread$>$}\newline
-{\ttfamily \#include $<$cstring$>$}\newline
-{\ttfamily \#include $<$unistd.\+h$>$}\newline
-{\ttfamily \#include $<$atomic$>$}\newline
-{\ttfamily \#include \char`\"{}Talk\+On\+TCPPort.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Talk\+On\+T\+C\+P\+Port.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Connect\+To\+Server.\+h\char`\"{}}\newline
-Include dependency graph for Talk\+On\+TCPPort.\+cpp\+:
-% FIG 0
+Include dependency graph for Talk\+On\+T\+C\+P\+Port.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{TalkOnTCPPort_8cpp__incl}
+\end{center}
+\end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 std\+::atomic$<$ bool $>$ \mbox{\hyperlink{TalkOnTCPPort_8cpp_a1276809578f8d382764b687335d41c13}{running}} (true)
 \begin{DoxyCompactList}\small\item\em Atomic flag to control the running state of the program. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{TalkOnTCPPort_8cpp_ad72d0865e1082d68eb3c9269824e1d55}{start\+Talk\+On\+TCPPort}} (int socket, float linear\+\_\+x, float angular\+\_\+z)
-\begin{DoxyCompactList}\small\item\em Sends a movement command to the Turtle\+Bot via a TCP socket. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{TalkOnTCPPort_8cpp_ad72d0865e1082d68eb3c9269824e1d55}{start\+Talk\+On\+T\+C\+P\+Port}} (int socket, float linear\+\_\+x, float angular\+\_\+z)
+\begin{DoxyCompactList}\small\item\em Sends a movement command to the Turtle\+Bot via a T\+CP socket. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{TalkOnTCPPort_8cpp_adef3ae63340428d54e1ba9d5b473a7cd}{maintain\+Connection}} (const char $\ast$server\+IP, int port, int \&tcp\+Sock)
-\begin{DoxyCompactList}\small\item\em Maintains the TCP connection with the server. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em Maintains the T\+CP connection with the server. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{TalkOnTCPPort_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
-\begin{DoxyCompactList}\small\item\em Main function to control the Turtle\+Bot via TCP commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Main function to control the Turtle\+Bot via T\+CP commands. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Sends a movement command to the Turtle\+Bot via TCP. 
+Sends a movement command to the Turtle\+Bot via T\+CP. 
 
 This function constructs a movement command in a predefined format and sends it to the Turtle\+Bot using the specified socket connection.
 
 
 \begin{DoxyParams}{Parameters}
-{\em socket} & The socket descriptor for the TCP connection. \\
+{\em socket} & The socket descriptor for the T\+CP connection. \\
 \hline
 {\em linear\+\_\+x} & The linear velocity for the Turtle\+Bot (in meters per second). \\
 \hline
@@ -57,7 +57,7 @@ This function constructs a movement command in a predefined format and sends it 
 
 
 
-Main function to control the Turtle\+Bot via TCP commands. 
+Main function to control the Turtle\+Bot via T\+CP commands. 
 
 This program connects to the Turtle\+Bot\textquotesingle{}s command server and allows the user to input movement commands interactively. It also maintains the connection and handles reconnections if needed.
 
@@ -74,9 +74,10 @@ Returns 0 on successful execution, or 1 on invalid input or connection failure.
 Usage example\+: 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{./TalkOnTCPPort <IP> <PORT>}
-
 \end{DoxyCode}
- The program supports user input in the format {\ttfamily $<$linear\+\_\+x$>$ $<$angular\+\_\+z$>$} to control the Turtle\+Bot\textquotesingle{}s movement. Enter {\ttfamily q} to quit the program. \mbox{\Hypertarget{TalkOnTCPPort_8cpp_adef3ae63340428d54e1ba9d5b473a7cd}\label{TalkOnTCPPort_8cpp_adef3ae63340428d54e1ba9d5b473a7cd}} 
+
+
+The program supports user input in the format {\ttfamily $<$linear\+\_\+x$>$ $<$angular\+\_\+z$>$} to control the Turtle\+Bot\textquotesingle{}s movement. Enter {\ttfamily q} to quit the program. \mbox{\Hypertarget{TalkOnTCPPort_8cpp_adef3ae63340428d54e1ba9d5b473a7cd}\label{TalkOnTCPPort_8cpp_adef3ae63340428d54e1ba9d5b473a7cd}} 
 \index{TalkOnTCPPort.cpp@{TalkOnTCPPort.cpp}!maintainConnection@{maintainConnection}}
 \index{maintainConnection@{maintainConnection}!TalkOnTCPPort.cpp@{TalkOnTCPPort.cpp}}
 \doxysubsubsection{\texorpdfstring{maintainConnection()}{maintainConnection()}}
@@ -84,7 +85,7 @@ Usage example\+:
 
 
 
-Maintains the TCP connection with the server. 
+Maintains the T\+CP connection with the server. 
 
 This function monitors the connection status and attempts to reconnect if the connection is lost. Upon reconnection, it sends a stop command to the Turtle\+Bot to ensure safety.
 
@@ -94,7 +95,7 @@ This function monitors the connection status and attempts to reconnect if the co
 \hline
 {\em port} & The port number of the server. \\
 \hline
-{\em tcp\+Sock} & Reference to the socket descriptor for the TCP connection. \\
+{\em tcp\+Sock} & Reference to the socket descriptor for the T\+CP connection. \\
 \hline
 \end{DoxyParams}
 \mbox{\Hypertarget{TalkOnTCPPort_8cpp_a1276809578f8d382764b687335d41c13}\label{TalkOnTCPPort_8cpp_a1276809578f8d382764b687335d41c13}} 
@@ -111,17 +112,17 @@ Atomic flag to control the running state of the program.
 \index{TalkOnTCPPort.cpp@{TalkOnTCPPort.cpp}!startTalkOnTCPPort@{startTalkOnTCPPort}}
 \index{startTalkOnTCPPort@{startTalkOnTCPPort}!TalkOnTCPPort.cpp@{TalkOnTCPPort.cpp}}
 \doxysubsubsection{\texorpdfstring{startTalkOnTCPPort()}{startTalkOnTCPPort()}}
-{\footnotesize\ttfamily void start\+Talk\+On\+TCPPort (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{float}]{linear\+\_\+x,  }\item[{float}]{angular\+\_\+z }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void start\+Talk\+On\+T\+C\+P\+Port (\begin{DoxyParamCaption}\item[{int}]{socket,  }\item[{float}]{linear\+\_\+x,  }\item[{float}]{angular\+\_\+z }\end{DoxyParamCaption})}
 
 
 
-Sends a movement command to the Turtle\+Bot via a TCP socket. 
+Sends a movement command to the Turtle\+Bot via a T\+CP socket. 
 
 This function constructs a movement command with the specified linear and angular velocities and sends it to the Turtle\+Bot through the provided socket.
 
 
 \begin{DoxyParams}{Parameters}
-{\em socket} & The socket descriptor for the TCP connection. \\
+{\em socket} & The socket descriptor for the T\+CP connection. \\
 \hline
 {\em linear\+\_\+x} & The linear velocity for the Turtle\+Bot (in meters per second). \\
 \hline

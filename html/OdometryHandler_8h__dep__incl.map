@@ -1,4 +1,5 @@
 <map id="include/OdometryHandler.h" name="include/OdometryHandler.h">
-<area shape="rect" id="node1" title="Handles the reception and storage of Odometry data." alt="" coords="5,5,207,32"/>
-<area shape="rect" id="node2" href="$main_8cpp.html" title="Main program to connect to a server and handle LaserScan, Odometry, and Commander data." alt="" coords="53,80,159,107"/>
+<area shape="rect" id="node1" title="Handles the reception and storage of Odometry data." alt="" coords="43,5,244,32"/>
+<area shape="rect" id="node2" href="$main_8cpp.html" title="Main program to connect to a server and handle LaserScan, Odometry, and Commander data." alt="" coords="5,80,111,107"/>
+<area shape="rect" id="node3" href="$OdometryHandler_8cpp.html" title="Receives and processes Odometry data from a TCP socket." alt="" coords="135,80,323,107"/>
 </map>

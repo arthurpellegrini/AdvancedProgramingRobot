@@ -1,20 +1,17 @@
-
-
- 
+  
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md1}{}\doxysubsection{🌟 Welcome to Cyberpunk Mech Turtle}\label{index_autotoc_md1}
-The {\bfseries{Cyberpunk Mech Turtle}} is an advanced robotics platform designed to merge sleek cyberpunk aesthetics with cutting-\/edge technology. This project pushes the boundaries of robotics, offering AI-\/driven navigation, robust hardware, and modular software for urban and industrial applications.
+\hypertarget{index_autotoc_md1}{}\doxysubsection{🐢 Welcome to Cyberpunk Mech Turtlebot}\label{index_autotoc_md1}
+The {\bfseries{Cyberpunk Mech Turtlebot}} is an advanced robotics platform designed to merge sleek cyberpunk aesthetics with cutting-\/edge technology. This project pushes the boundaries of robotics, offering robust hardware and modular software for urban and industrial applications.
 
 \DoxyHorRuler{0}
 \hypertarget{index_autotoc_md3}{}\doxysubsection{🚀 Project Highlights}\label{index_autotoc_md3}
 
 \begin{DoxyItemize}
-\item {\bfseries{AI-\/\+Powered Navigation}}\+: Leverage neural networks for autonomous movement.
 \item {\bfseries{Rugged Cyberpunk Design}}\+: Built to withstand dynamic environments and urban hazards.
 \item {\bfseries{Customizable Hardware}}\+: Add-\/ons for surveillance, delivery, and exploration.
-\item {\bfseries{Advanced Sensor Suite}}\+: Includes LIDAR, ultrasonic sensors, and cameras for 360-\/degree awareness.
-\item {\bfseries{Seamless Integration}}\+: Powered by ROS 2 for modular and scalable development.
+\item {\bfseries{Advanced Sensor Suite}}\+: Includes L\+I\+D\+AR, ultrasonic sensors, and cameras for 360-\/degree awareness.
+\item {\bfseries{Seamless Integration}}\+: using Telepathy.
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
@@ -23,53 +20,82 @@ Clone the repository and launch the project\+:
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{git clone https://github.com/your-\/username/cyberpunk-\/mech-\/turtle.git}
-\DoxyCodeLine{cd cyberpunk-\/mech-\/turtle}
-
+\DoxyCodeLine{git clone https://github.com/arthurpellegrini/AdvancedProgramingRobot}
+\DoxyCodeLine{cd cyberpunk-\/mech-\/turtlebot}
 \end{DoxyCode}
-\hypertarget{index_autotoc_md6}{}\doxysubsubsection{Launch the Simulation}\label{index_autotoc_md6}
+\hypertarget{index_autotoc_md6}{}\doxysection{How to compile and commit provided c-\/scripts}\label{index_autotoc_md6}
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{ros2 launch mech\_turtle simulation.launch.py}
-
+\DoxyCodeLine{cd sockets}
+\DoxyCodeLine{./compileme.sh}
 \end{DoxyCode}
-\hypertarget{index_autotoc_md7}{}\doxysubsubsection{Upload Sensor Data}\label{index_autotoc_md7}
+
+
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{python scripts/upload\_data.py -\/-\/source ./data}
-
+\DoxyCodeLine{git add .}
+\DoxyCodeLine{}
+\DoxyCodeLine{git commit -\/m "feat: TITLE" \(\backslash\)}
+\DoxyCodeLine{-\/m "DESCRIPTION" \(\backslash\)}
+\DoxyCodeLine{-\/m "Co-\/authored-\/by: nils93 <n.fandrey@gmail.com>" \(\backslash\)}
+\DoxyCodeLine{-\/m "Co-\/authored-\/by: Arthur PELLEGRINI <arthur.pellegrini@outlook.fr>" \(\backslash\)}
+\DoxyCodeLine{-\/m "Co-\/authored-\/by:  cfriedl1 <ch.friedl1010@gmail.com>" \(\backslash\)  }
+\DoxyCodeLine{-\/m "Co-\/authored-\/by:  Felix130899 <felixhaier1308@gmail.com>"}
+\DoxyCodeLine{\#only 1 author + 1 co-\/author }
+\DoxyCodeLine{}
+\DoxyCodeLine{git push}
 \end{DoxyCode}
+\hypertarget{index_autotoc_md7}{}\doxysection{Install required Json package}\label{index_autotoc_md7}
 
-
-\DoxyHorRuler{0}
-\hypertarget{index_autotoc_md9}{}\doxysubsection{⚙️ Key Technologies}\label{index_autotoc_md9}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt-\/get install libjsoncpp-\/dev}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md8}{}\doxysection{Generated Executables}\label{index_autotoc_md8}
 
 \begin{DoxyItemize}
-\item {\bfseries{Robotics Framework}}\+: ROS 2 (Robot Operating System).
-\item {\bfseries{AI Libraries}}\+: Tensor\+Flow, Py\+Torch.
+\item Listen\+On\+T\+C\+P\+Port\+: A T\+C\+P\+Socket that connects to a tcp-\/ip port. Received data will be displayed in the terminal.
+\item Command\+Handler\+: A T\+C\+P\+Socket that connects to a tcp-\/ip port. Data can be send via user input via this port.
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysection{Setting up the connection with the robot}\label{index_autotoc_md9}
+Cyberpunk mech turtlebot IP\+: 192.\+168.\+100.\+5..
+
+Password\+: on the back side of the router
+
+Put the Battery and do not forgot to switch the button to turn on the robot.
+
+Try the connection between the robot and your laptop\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{ping 192.168.100.5..}
+\end{DoxyCode}
+
+
+
+\begin{DoxyItemize}
+\item Port 9998-\/$>$ /odom
+\item Port 9997-\/$>$ /scan
+\item Port 9999-\/$>$ /cmd\+\_\+vel
+\end{DoxyItemize}\hypertarget{index_autotoc_md10}{}\doxysubsection{⚙️ Key Technologies}\label{index_autotoc_md10}
+
+\begin{DoxyItemize}
 \item {\bfseries{Hardware Components}}\+:
 \begin{DoxyItemize}
-\item NVIDIA Jetson Nano for on-\/board AI processing.
+\item Raspberry pi 3.
 \item High-\/precision motors and modular sensor arrays.
 \end{DoxyItemize}
-\item {\bfseries{Languages}}\+: C++, Python, Rust.
+\item {\bfseries{Languages}}\+: C++.
 \item {\bfseries{Documentation}}\+: Doxygen for code documentation.
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md11}{}\doxysubsection{📜 Generated Tools and Executables}\label{index_autotoc_md11}
+\hypertarget{index_autotoc_md12}{}\doxysubsection{📜 Generated Tools and Executables}\label{index_autotoc_md12}
 
 \begin{DoxyItemize}
-\item {\bfseries{Chatty\+TCPServer}}\+: A TCP server simulating Laser\+Scan and Odometry data.
-\item {\bfseries{Talk\+On\+TCPPort}}\+: Sends movement commands via TCP.
-\item {\bfseries{Listen\+On\+TCPPort}}\+: Displays real-\/time TCP data in the terminal.
-\item {\bfseries{Ros\+Laser\+Listener}}\+: Subscribes to Laser\+Scan data via ROS 2.
-\item {\bfseries{Ros\+TCPOdometry\+Listener}}\+: Handles odometry data over TCP.
+\item {\bfseries{Commander\+Handler}}\+: Sends movement commands via T\+CP.
+\item {\bfseries{Listen\+On\+T\+C\+P\+Port}}\+: Displays real-\/time T\+CP data in the terminal.
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md13}{}\doxysubsection{🤝 How to Contribute}\label{index_autotoc_md13}
-We welcome contributors to help shape the future of the Cyberpunk Mech Turtle project!
+\hypertarget{index_autotoc_md14}{}\doxysubsection{🤝 How to Contribute}\label{index_autotoc_md14}
+We welcome contributors to help shape the future of the Cyberpunk Mech Turtlebot project!
 
 
 \begin{DoxyEnumerate}
@@ -78,19 +104,18 @@ We welcome contributors to help shape the future of the Cyberpunk Mech Turtle pr
 \item Submit a pull request with your changes.
 \end{DoxyEnumerate}
 
-For inquiries, contact us at $\ast$$\ast$contact@mechturtle.ai$\ast$$\ast$.
+For inquiries, please don\textquotesingle{}t contact us at $\ast$$\ast$contact@mechturtle.turtlebot3$\ast$$\ast$.
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md15}{}\doxysubsection{🌐 Useful Links}\label{index_autotoc_md15}
+\hypertarget{index_autotoc_md16}{}\doxysubsection{🌐 Useful Links}\label{index_autotoc_md16}
 
 \begin{DoxyItemize}
-\item \href{http://wiki.ros.org/noetic/Installation/Ubuntu}{\texttt{ ROS Noetic Installation Guide}}
 \item \href{https://google.github.io/styleguide/cppguide.html}{\texttt{ Google C++ Style Guide}}
 \item \href{https://www.conventionalcommits.org/en/v1.0.0/}{\texttt{ Conventional Commits Guide}}
 \end{DoxyItemize}
 
 \DoxyHorRuler{0}
-\hypertarget{index_autotoc_md17}{}\doxysubsection{📝 Acknowledgments}\label{index_autotoc_md17}
+\hypertarget{index_autotoc_md18}{}\doxysubsection{📝 Acknowledgments}\label{index_autotoc_md18}
 
 \begin{DoxyItemize}
 \item Thanks to the open-\/source robotics community.

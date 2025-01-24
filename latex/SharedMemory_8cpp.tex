@@ -6,19 +6,19 @@ Initializes shared memory and semaphores for inter-\/process communication.
 
 
 {\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$sys/mman.\+h$>$}\newline
-{\ttfamily \#include $<$fcntl.\+h$>$}\newline
-{\ttfamily \#include $<$unistd.\+h$>$}\newline
-{\ttfamily \#include $<$cstring$>$}\newline
-{\ttfamily \#include $<$iostream$>$}\newline
-Include dependency graph for Shared\+Memory.\+cpp\+:
-% FIG 0
+Include dependency graph for Shared\+Memory.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SharedMemory_8cpp__incl}
+\end{center}
+\end{figure}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{SharedMemory_8cpp_ad7050c40a17e3f7b3bc99144847de7b8}{LASER\+\_\+\+SEM\+\_\+\+NAME}}~\char`\"{}/laser\+Sem\char`\"{}
+\#define \mbox{\hyperlink{SharedMemory_8cpp_ad7050c40a17e3f7b3bc99144847de7b8}{L\+A\+S\+E\+R\+\_\+\+S\+E\+M\+\_\+\+N\+A\+ME}}~\char`\"{}/laser\+Sem\char`\"{}
 \begin{DoxyCompactList}\small\item\em Name for the semaphore used to synchronize Laser\+Scan data. \end{DoxyCompactList}\item 
-\#define \mbox{\hyperlink{SharedMemory_8cpp_abdee599c749c813ffb20413aee1df788}{ODOM\+\_\+\+SEM\+\_\+\+NAME}}~\char`\"{}/odom\+Sem\char`\"{}
+\#define \mbox{\hyperlink{SharedMemory_8cpp_abdee599c749c813ffb20413aee1df788}{O\+D\+O\+M\+\_\+\+S\+E\+M\+\_\+\+N\+A\+ME}}~\char`\"{}/odom\+Sem\char`\"{}
 \begin{DoxyCompactList}\small\item\em Name for the semaphore used to synchronize Odometry data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -56,7 +56,7 @@ The shared memory and semaphores must be cleaned up using {\ttfamily Cleanup\+Sh
 \index{SharedMemory.cpp@{SharedMemory.cpp}!LASER\_SEM\_NAME@{LASER\_SEM\_NAME}}
 \index{LASER\_SEM\_NAME@{LASER\_SEM\_NAME}!SharedMemory.cpp@{SharedMemory.cpp}}
 \doxysubsubsection{\texorpdfstring{LASER\_SEM\_NAME}{LASER\_SEM\_NAME}}
-{\footnotesize\ttfamily \#define LASER\+\_\+\+SEM\+\_\+\+NAME~\char`\"{}/laser\+Sem\char`\"{}}
+{\footnotesize\ttfamily \#define L\+A\+S\+E\+R\+\_\+\+S\+E\+M\+\_\+\+N\+A\+ME~\char`\"{}/laser\+Sem\char`\"{}}
 
 
 
@@ -66,7 +66,7 @@ Name for the semaphore used to synchronize Laser\+Scan data.
 \index{SharedMemory.cpp@{SharedMemory.cpp}!ODOM\_SEM\_NAME@{ODOM\_SEM\_NAME}}
 \index{ODOM\_SEM\_NAME@{ODOM\_SEM\_NAME}!SharedMemory.cpp@{SharedMemory.cpp}}
 \doxysubsubsection{\texorpdfstring{ODOM\_SEM\_NAME}{ODOM\_SEM\_NAME}}
-{\footnotesize\ttfamily \#define ODOM\+\_\+\+SEM\+\_\+\+NAME~\char`\"{}/odom\+Sem\char`\"{}}
+{\footnotesize\ttfamily \#define O\+D\+O\+M\+\_\+\+S\+E\+M\+\_\+\+N\+A\+ME~\char`\"{}/odom\+Sem\char`\"{}}
 
 
 
