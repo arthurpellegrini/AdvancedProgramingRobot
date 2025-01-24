@@ -7,13 +7,16 @@ Handles the reception and storage of Laser\+Scan data.
 
 {\ttfamily \#include $<$sstream$>$}\newline
 {\ttfamily \#include $<$ctime$>$}\newline
+{\ttfamily \#include $<$jsoncpp/json/json.\+h$>$}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
 {\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$string$>$}\newline
 {\ttfamily \#include $<$cstring$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
 {\ttfamily \#include $<$sys/socket.\+h$>$}\newline
 {\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
 {\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$semaphore.\+h$>$}\newline
 Include dependency graph for Laser\+Scan\+Handler.\+h\+:\nopagebreak
@@ -27,13 +30,13 @@ This graph shows which files directly or indirectly include this file\+:\nopageb
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=232pt]{LaserScanHandler_8h__dep__incl}
+\includegraphics[width=320pt]{LaserScanHandler_8h__dep__incl}
 \end{center}
 \end{figure}
 \doxysubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#define \mbox{\hyperlink{LaserScanHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}{BUFFER\+\_\+\+SIZE}}~1024
+\#define \mbox{\hyperlink{LaserScanHandler_8h_a6b20d41d6252e9871430c242cb1a56e7}{B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}}~1024
 \begin{DoxyCompactList}\small\item\em Defines the buffer size for receiving Laser\+Scan data. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
@@ -52,7 +55,7 @@ This header defines functions and constants used for processing Laser\+Scan data
 \index{LaserScanHandler.h@{LaserScanHandler.h}!BUFFER\_SIZE@{BUFFER\_SIZE}}
 \index{BUFFER\_SIZE@{BUFFER\_SIZE}!LaserScanHandler.h@{LaserScanHandler.h}}
 \doxysubsubsection{\texorpdfstring{BUFFER\_SIZE}{BUFFER\_SIZE}}
-{\footnotesize\ttfamily \#define BUFFER\+\_\+\+SIZE~1024}
+{\footnotesize\ttfamily \#define B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE~1024}
 
 
 

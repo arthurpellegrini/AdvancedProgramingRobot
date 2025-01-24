@@ -1,0 +1,4 @@
+<map id="include/TalkOnTCPPort.h" name="include/TalkOnTCPPort.h">
+<area shape="rect" id="node1" title="Provides functionality to send movement commands to the TurtleBot via a TCP socket." alt="" coords="5,5,185,32"/>
+<area shape="rect" id="node2" href="$TalkOnTCPPort_8cpp.html" title="Sends a movement command to the TurtleBot via TCP." alt="" coords="12,80,179,107"/>
+</map>

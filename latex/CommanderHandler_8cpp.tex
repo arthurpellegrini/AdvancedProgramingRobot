@@ -2,14 +2,269 @@
 \label{CommanderHandler_8cpp}\index{src/CommanderHandler.cpp@{src/CommanderHandler.cpp}}
 
 
-Connects to the Commander server.  
+Implementation of the Commander Handler for robotic control.  
 
 
+{\ttfamily \#include \char`\"{}Commander\+Handler.\+h\char`\"{}}\newline
 {\ttfamily \#include $<$iostream$>$}\newline
-{\ttfamily \#include $<$termios.\+h$>$}\newline
+{\ttfamily \#include $<$sstream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
 {\ttfamily \#include $<$unistd.\+h$>$}\newline
 {\ttfamily \#include $<$arpa/inet.\+h$>$}\newline
-{\ttfamily \#include $<$cstring$>$}\newline
-{\ttfamily \#include $<$string$>$}\newline
-{\ttfamily \#include $<$sstream$>$}\newline
-Include dependency graph for Commander\+Handler.\+cpp\+:
+{\ttfamily \#include $<$sys/socket.\+h$>$}\newline
+{\ttfamily \#include $<$netinet/in.\+h$>$}\newline
+{\ttfamily \#include $<$jsoncpp/json/json.\+h$>$}\newline
+{\ttfamily \#include $<$termios.\+h$>$}\newline
+Include dependency graph for Commander\+Handler.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{CommanderHandler_8cpp__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{CommanderHandler_8cpp_a6b20d41d6252e9871430c242cb1a56e7}\label{CommanderHandler_8cpp_a6b20d41d6252e9871430c242cb1a56e7}} 
+\#define {\bfseries B\+U\+F\+F\+E\+R\+\_\+\+S\+I\+ZE}~1024
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{CommanderHandler_8cpp_a38ba2228846c78841d06c2fa5d3975f2}{Connect\+To\+Commander\+Server}} (const char $\ast$server\+IP, int port)
+\begin{DoxyCompactList}\small\item\em Connects to the commander server on a specified IP and port. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a7947abd8a398ff0f2452b83ee2110895}{Send\+Movement\+Command}} (int sock, float linear, float angular)
+\begin{DoxyCompactList}\small\item\em Sends a movement command to the robot. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a1ce5ab04ce41dc571c2eaf34a295af90}{Move\+Forward}} (int sock)
+\begin{DoxyCompactList}\small\item\em Moves the robot forward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_afeea8af6d3ee5278aff8b08fb1a5b14a}{Move\+Backward}} (int sock)
+\begin{DoxyCompactList}\small\item\em Moves the robot backward. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a6556ef1b5b1312515dfdb495c3290d17}{Move\+Left}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot to the left. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a3ce8fe0a91a1e00c570f1efa3f919435}{Move\+Right}} (int sock)
+\begin{DoxyCompactList}\small\item\em Rotates the robot to the right. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_aee6c5d89c2601dd9fd2ea00f403824e7}{Stop\+Robot}} (int sock)
+\begin{DoxyCompactList}\small\item\em Stops the robot. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{CommanderHandler_8cpp_a37fad816f0c4c9c5744fa3d0d0251d94}{Normalize\+Angle}} (float angle)
+\begin{DoxyCompactList}\small\item\em Normalizes an angle to the range \mbox{[}-\/π, π\mbox{]}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_ab2ce2162b0babfa6788dc877b47fe869}{Linear\+Control}} (int sock, \mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$shared, sem\+\_\+t $\ast$odometry\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Handles linear control of the robot using odometry data. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_a76d526a34213d5784dc4f6e7831be3af}{Set\+Terminal\+Raw\+Mode}} (termios \&original\+Termios)
+\begin{DoxyCompactList}\small\item\em Sets the terminal to raw mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_ac2d56473474506830956c87841ccc073}{Restore\+Terminal\+Mode}} (const termios \&original\+Termios)
+\begin{DoxyCompactList}\small\item\em Restores the terminal to its original mode. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{CommanderHandler_8cpp_ac9ba4d6438fa7c5f3caddfbf15899a70}{Commander\+Handler}} (int sock, \mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$shared, sem\+\_\+t $\ast$odometry\+Semaphore)
+\begin{DoxyCompactList}\small\item\em Handles interactive robot control via keyboard input. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{CommanderHandler_8cpp_a7fd9c21bced0f3b20299714c88bbca9e}{stop\+Control}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the Commander Handler for robotic control. 
+
+This file contains the implementation of the Commander Handler, which includes functions for connecting to a server, sending movement commands, and handling interactive robot control. It supports features such as linear control and keyboard input for real-\/time robot movement. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{CommanderHandler_8cpp_ac9ba4d6438fa7c5f3caddfbf15899a70}\label{CommanderHandler_8cpp_ac9ba4d6438fa7c5f3caddfbf15899a70}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!CommanderHandler@{CommanderHandler}}
+\index{CommanderHandler@{CommanderHandler}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{CommanderHandler()}{CommanderHandler()}}
+{\footnotesize\ttfamily void Commander\+Handler (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$}]{shared,  }\item[{sem\+\_\+t $\ast$}]{odometry\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Handles interactive robot control via keyboard input. 
+
+Handles robot movement commands interactively.
+
+The function supports movement commands (arrow keys), stopping (\textquotesingle{}s\textquotesingle{}), linear control (\textquotesingle{}l\textquotesingle{}), and quitting (\textquotesingle{}q\textquotesingle{}).
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the commander server connection. \\
+\hline
+{\em shared} & Shared memory containing odometry data. \\
+\hline
+{\em odometry\+Semaphore} & Semaphore to manage access to shared memory. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a38ba2228846c78841d06c2fa5d3975f2}\label{CommanderHandler_8cpp_a38ba2228846c78841d06c2fa5d3975f2}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!ConnectToCommanderServer@{ConnectToCommanderServer}}
+\index{ConnectToCommanderServer@{ConnectToCommanderServer}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{ConnectToCommanderServer()}{ConnectToCommanderServer()}}
+{\footnotesize\ttfamily int Connect\+To\+Commander\+Server (\begin{DoxyParamCaption}\item[{const char $\ast$}]{server\+IP,  }\item[{int}]{port }\end{DoxyParamCaption})}
+
+
+
+Connects to the commander server on a specified IP and port. 
+
+This function creates a T\+CP socket and attempts to connect to the given server. It retries the connection until successful and provides debug information during the process.
+
+
+\begin{DoxyParams}{Parameters}
+{\em server\+IP} & The IP address of the commander server. \\
+\hline
+{\em port} & The port number to connect to. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The socket descriptor for the established connection.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Terminates} & the program if socket creation or connection fails. \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{CommanderHandler_8cpp_ab2ce2162b0babfa6788dc877b47fe869}\label{CommanderHandler_8cpp_ab2ce2162b0babfa6788dc877b47fe869}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!LinearControl@{LinearControl}}
+\index{LinearControl@{LinearControl}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{LinearControl()}{LinearControl()}}
+{\footnotesize\ttfamily void Linear\+Control (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{\mbox{\hyperlink{structSharedData}{Shared\+Data}} $\ast$}]{shared,  }\item[{sem\+\_\+t $\ast$}]{odometry\+Semaphore }\end{DoxyParamCaption})}
+
+
+
+Handles linear control of the robot using odometry data. 
+
+This function calculates the required velocities to move the robot to a specified target position using proportional control.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the commander server connection. \\
+\hline
+{\em shared} & Shared memory containing odometry data. \\
+\hline
+{\em odometry\+Semaphore} & Semaphore to manage access to shared memory. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_afeea8af6d3ee5278aff8b08fb1a5b14a}\label{CommanderHandler_8cpp_afeea8af6d3ee5278aff8b08fb1a5b14a}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveBackward@{MoveBackward}}
+\index{MoveBackward@{MoveBackward}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveBackward()}{MoveBackward()}}
+{\footnotesize\ttfamily void Move\+Backward (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Moves the robot backward. 
+
+Commands the robot to move backward. \mbox{\Hypertarget{CommanderHandler_8cpp_a1ce5ab04ce41dc571c2eaf34a295af90}\label{CommanderHandler_8cpp_a1ce5ab04ce41dc571c2eaf34a295af90}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveForward@{MoveForward}}
+\index{MoveForward@{MoveForward}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveForward()}{MoveForward()}}
+{\footnotesize\ttfamily void Move\+Forward (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Moves the robot forward. 
+
+Commands the robot to move forward. \mbox{\Hypertarget{CommanderHandler_8cpp_a6556ef1b5b1312515dfdb495c3290d17}\label{CommanderHandler_8cpp_a6556ef1b5b1312515dfdb495c3290d17}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveLeft@{MoveLeft}}
+\index{MoveLeft@{MoveLeft}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveLeft()}{MoveLeft()}}
+{\footnotesize\ttfamily void Move\+Left (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot to the left. 
+
+Commands the robot to turn left. \mbox{\Hypertarget{CommanderHandler_8cpp_a3ce8fe0a91a1e00c570f1efa3f919435}\label{CommanderHandler_8cpp_a3ce8fe0a91a1e00c570f1efa3f919435}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!MoveRight@{MoveRight}}
+\index{MoveRight@{MoveRight}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{MoveRight()}{MoveRight()}}
+{\footnotesize\ttfamily void Move\+Right (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Rotates the robot to the right. 
+
+Commands the robot to turn right. \mbox{\Hypertarget{CommanderHandler_8cpp_a37fad816f0c4c9c5744fa3d0d0251d94}\label{CommanderHandler_8cpp_a37fad816f0c4c9c5744fa3d0d0251d94}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!NormalizeAngle@{NormalizeAngle}}
+\index{NormalizeAngle@{NormalizeAngle}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{NormalizeAngle()}{NormalizeAngle()}}
+{\footnotesize\ttfamily float Normalize\+Angle (\begin{DoxyParamCaption}\item[{float}]{angle }\end{DoxyParamCaption})}
+
+
+
+Normalizes an angle to the range \mbox{[}-\/π, π\mbox{]}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em angle} & The angle to normalize (in radians). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The normalized angle in the range \mbox{[}-\/π, π\mbox{]}. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{CommanderHandler_8cpp_ac2d56473474506830956c87841ccc073}\label{CommanderHandler_8cpp_ac2d56473474506830956c87841ccc073}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!RestoreTerminalMode@{RestoreTerminalMode}}
+\index{RestoreTerminalMode@{RestoreTerminalMode}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{RestoreTerminalMode()}{RestoreTerminalMode()}}
+{\footnotesize\ttfamily void Restore\+Terminal\+Mode (\begin{DoxyParamCaption}\item[{const termios \&}]{original\+Termios }\end{DoxyParamCaption})}
+
+
+
+Restores the terminal to its original mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Termios} & The original terminal settings to restore. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a7947abd8a398ff0f2452b83ee2110895}\label{CommanderHandler_8cpp_a7947abd8a398ff0f2452b83ee2110895}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!SendMovementCommand@{SendMovementCommand}}
+\index{SendMovementCommand@{SendMovementCommand}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{SendMovementCommand()}{SendMovementCommand()}}
+{\footnotesize\ttfamily void Send\+Movement\+Command (\begin{DoxyParamCaption}\item[{int}]{sock,  }\item[{float}]{linear,  }\item[{float}]{angular }\end{DoxyParamCaption})}
+
+
+
+Sends a movement command to the robot. 
+
+Constructs a J\+S\+ON command string with the specified linear and angular velocities and sends it to the connected server.
+
+
+\begin{DoxyParams}{Parameters}
+{\em sock} & The socket descriptor for the commander server connection. \\
+\hline
+{\em linear} & The linear velocity of the robot (m/s). \\
+\hline
+{\em angular} & The angular velocity of the robot (rad/s). \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a76d526a34213d5784dc4f6e7831be3af}\label{CommanderHandler_8cpp_a76d526a34213d5784dc4f6e7831be3af}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!SetTerminalRawMode@{SetTerminalRawMode}}
+\index{SetTerminalRawMode@{SetTerminalRawMode}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{SetTerminalRawMode()}{SetTerminalRawMode()}}
+{\footnotesize\ttfamily void Set\+Terminal\+Raw\+Mode (\begin{DoxyParamCaption}\item[{termios \&}]{original\+Termios }\end{DoxyParamCaption})}
+
+
+
+Sets the terminal to raw mode. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em original\+Termios} & The original terminal settings to restore later. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{CommanderHandler_8cpp_aee6c5d89c2601dd9fd2ea00f403824e7}\label{CommanderHandler_8cpp_aee6c5d89c2601dd9fd2ea00f403824e7}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!StopRobot@{StopRobot}}
+\index{StopRobot@{StopRobot}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{StopRobot()}{StopRobot()}}
+{\footnotesize\ttfamily void Stop\+Robot (\begin{DoxyParamCaption}\item[{int}]{sock }\end{DoxyParamCaption})}
+
+
+
+Stops the robot. 
+
+Commands the robot to stop. 
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{CommanderHandler_8cpp_a7fd9c21bced0f3b20299714c88bbca9e}\label{CommanderHandler_8cpp_a7fd9c21bced0f3b20299714c88bbca9e}} 
+\index{CommanderHandler.cpp@{CommanderHandler.cpp}!stopControl@{stopControl}}
+\index{stopControl@{stopControl}!CommanderHandler.cpp@{CommanderHandler.cpp}}
+\doxysubsubsection{\texorpdfstring{stopControl}{stopControl}}
+{\footnotesize\ttfamily bool stop\+Control}
+
+Flag to control the termination of linear control. 

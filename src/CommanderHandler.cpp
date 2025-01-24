@@ -1,3 +1,13 @@
+/**
+ * @file CommanderHandler.cpp
+ * @brief Implementation of the Commander Handler for robotic control.
+ * 
+ * This file contains the implementation of the Commander Handler, which includes
+ * functions for connecting to a server, sending movement commands, and handling
+ * interactive robot control. It supports features such as linear control and
+ * keyboard input for real-time robot movement.
+ */
+
 #include "CommanderHandler.h"
 #include <iostream>
 #include <sstream>
@@ -11,6 +21,19 @@
 
 #define BUFFER_SIZE 1024
 
+/**
+ * @brief Connects to the commander server on a specified IP and port.
+ * 
+ * This function creates a TCP socket and attempts to connect to the given server.
+ * It retries the connection until successful and provides debug information during
+ * the process.
+ * 
+ * @param serverIP The IP address of the commander server.
+ * @param port The port number to connect to.
+ * @return The socket descriptor for the established connection.
+ * 
+ * @throws Terminates the program if socket creation or connection fails.
+ */
 int ConnectToCommanderServer(const char *serverIP, int port) {
     int sock;
     sockaddr_in serverAddr{};
@@ -26,14 +49,14 @@ int ConnectToCommanderServer(const char *serverIP, int port) {
         sock = socket(AF_INET, SOCK_STREAM, 0);
         if (sock < 0) {
             perror("Socket creation failed");
-            sleep(1); // Wait before retrying
+            sleep(1); // Retry after delay
             continue;
         }
 
         if (connect(sock, (struct sockaddr *)&serverAddr, sizeof(serverAddr)) < 0) {
             perror("Connection failed, retrying...");
             close(sock);
-            sleep(5); // Wait longer before retrying to handle "Connection refused"
+            sleep(5); // Retry after delay
             continue;
         }
 
@@ -44,6 +67,16 @@ int ConnectToCommanderServer(const char *serverIP, int port) {
     return sock;
 }
 
+/**
+ * @brief Sends a movement command to the robot.
+ * 
+ * Constructs a JSON command string with the specified linear and angular velocities
+ * and sends it to the connected server.
+ * 
+ * @param sock The socket descriptor for the commander server connection.
+ * @param linear The linear velocity of the robot (m/s).
+ * @param angular The angular velocity of the robot (rad/s).
+ */
 void SendMovementCommand(int sock, float linear, float angular) {
     std::ostringstream oss;
     oss << "---START---{";
@@ -57,20 +90,46 @@ void SendMovementCommand(int sock, float linear, float angular) {
     }
 }
 
+/** @brief Moves the robot forward. */
 void MoveForward(int sock) { SendMovementCommand(sock, 0.1, 0.0); }
+
+/** @brief Moves the robot backward. */
 void MoveBackward(int sock) { SendMovementCommand(sock, -0.1, 0.0); }
+
+/** @brief Rotates the robot to the left. */
 void MoveLeft(int sock) { SendMovementCommand(sock, 0.0, 0.5); }
+
+/** @brief Rotates the robot to the right. */
 void MoveRight(int sock) { SendMovementCommand(sock, 0.0, -0.5); }
+
+/** @brief Stops the robot. */
 void StopRobot(int sock) { SendMovementCommand(sock, 0.0, 0.0); }
 
+/**
+ * @brief Normalizes an angle to the range [-π, π].
+ * 
+ * @param angle The angle to normalize (in radians).
+ * @return The normalized angle in the range [-π, π].
+ */
 float NormalizeAngle(float angle) {
     angle = fmod(angle + M_PI, 2.0f * M_PI);
     if (angle < 0) angle += 2.0f * M_PI;
     return angle - M_PI;
 }
 
+/** Flag to control the termination of linear control. */
 extern bool stopControl;
 
+/**
+ * @brief Handles linear control of the robot using odometry data.
+ * 
+ * This function calculates the required velocities to move the robot to
+ * a specified target position using proportional control.
+ * 
+ * @param sock The socket descriptor for the commander server connection.
+ * @param shared Shared memory containing odometry data.
+ * @param odometrySemaphore Semaphore to manage access to shared memory.
+ */
 void LinearControl(int sock, SharedData* shared, sem_t* odometrySemaphore) {
     float targetX, targetY;
     std::cout << "Enter target X: "; std::cin >> targetX;
@@ -122,16 +181,36 @@ void LinearControl(int sock, SharedData* shared, sem_t* odometrySemaphore) {
     StopRobot(sock);
 }
 
+/**
+ * @brief Sets the terminal to raw mode.
+ * 
+ * @param originalTermios The original terminal settings to restore later.
+ */
 void SetTerminalRawMode(termios &originalTermios) {
     termios raw = originalTermios;
     raw.c_lflag &= ~(ICANON | ECHO);
     tcsetattr(STDIN_FILENO, TCSANOW, &raw);
 }
 
+/**
+ * @brief Restores the terminal to its original mode.
+ * 
+ * @param originalTermios The original terminal settings to restore.
+ */
 void RestoreTerminalMode(const termios &originalTermios) {
     tcsetattr(STDIN_FILENO, TCSANOW, &originalTermios);
 }
 
+/**
+ * @brief Handles interactive robot control via keyboard input.
+ * 
+ * The function supports movement commands (arrow keys), stopping ('s'),
+ * linear control ('l'), and quitting ('q').
+ * 
+ * @param sock The socket descriptor for the commander server connection.
+ * @param shared Shared memory containing odometry data.
+ * @param odometrySemaphore Semaphore to manage access to shared memory.
+ */
 void CommanderHandler(int sock, SharedData* shared, sem_t* odometrySemaphore) {
     termios originalTermios;
     tcgetattr(STDIN_FILENO, &originalTermios);

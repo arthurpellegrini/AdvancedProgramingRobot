@@ -1,6 +1,7 @@
 <map id="include/ConnectToServer.h" name="include/ConnectToServer.h">
-<area shape="rect" id="node1" title="Provides a function to establish a connection to a server." alt="" coords="127,5,322,32"/>
+<area shape="rect" id="node1" title="Provides a function to establish a connection to a server." alt="" coords="219,5,414,32"/>
 <area shape="rect" id="node2" href="$main_8cpp.html" title="Main program to connect to a server and handle LaserScan, Odometry, and Commander data." alt="" coords="5,80,111,107"/>
-<area shape="rect" id="node3" href="$ListenOnTCPPort_8cpp.html" title="Implementation of TCP listening and data processing." alt="" coords="135,80,315,107"/>
-<area shape="rect" id="node4" href="$ConnectToServer_8cpp.html" title="Implementation of the function to establish a connection to a server on a specific port." alt="" coords="339,80,521,107"/>
+<area shape="rect" id="node3" href="$TalkOnTCPPort_8cpp.html" title="Sends a movement command to the TurtleBot via TCP." alt="" coords="135,80,301,107"/>
+<area shape="rect" id="node4" href="$ListenOnTCPPort_8cpp.html" title="Implementation of TCP listening and data processing." alt="" coords="325,80,505,107"/>
+<area shape="rect" id="node5" href="$ConnectToServer_8cpp.html" title="Implementation of the function to establish a connection to a server on a specific port." alt="" coords="530,80,711,107"/>
 </map>

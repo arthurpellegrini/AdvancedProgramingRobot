@@ -14,13 +14,24 @@ Main program to connect to a server and handle Laser\+Scan, Odometry, and Comman
 {\ttfamily \#include \char`\"{}Odometry\+Handler.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Commander\+Handler.\+h\char`\"{}}\newline
 {\ttfamily \#include \char`\"{}Shared\+Memory.\+h\char`\"{}}\newline
-Include dependency graph for main.\+cpp\+:
-% FIG 0
+{\ttfamily \#include \char`\"{}Visualize\+Data\+Handler.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{main_8cpp__incl}
+\end{center}
+\end{figure}
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 int \mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
 \begin{DoxyCompactList}\small\item\em Main function of the program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{main_8cpp_a7fd9c21bced0f3b20299714c88bbca9e}{stop\+Control}} = false
+\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -76,3 +87,13 @@ Handles Commander commands received from the server.
 {\em commander\+Sock} & Socket for receiving Commander commands.\\
 \hline
 \end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{main_8cpp_a7fd9c21bced0f3b20299714c88bbca9e}\label{main_8cpp_a7fd9c21bced0f3b20299714c88bbca9e}} 
+\index{main.cpp@{main.cpp}!stopControl@{stopControl}}
+\index{stopControl@{stopControl}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{stopControl}{stopControl}}
+{\footnotesize\ttfamily bool stop\+Control = false}
+
+Flag to control the termination of linear control. 
